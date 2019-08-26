@@ -42,14 +42,14 @@
 		<a id="CreateMeetingManageL" href="MeetingManage.jsp">管理会议</a> <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
 		<a id="CreateLoginL" href="Login.jsp">退出登陆</a>
 	</div>
-	<form action="" name="meetingManageForm" method="post">
+	<form action="" id="meetingManageForm" name="meetingManageForm" method="post">
 		<table id="CreateTable">
 			<td>
 				<table width="100%" border="0" cellspacing="5"
 					style="margin-top: 40px; margin-left: 20px">
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">会议名称：</td>
-						<td><input type="text"
+						<td><input type="text" id="meetingName" name="meetingName"
 							style="width: 500px; height: 30px; font-size: 30px; border: 1px solid #E2E3E5;"></td>
 					</tr>
 					<tr>
@@ -112,10 +112,9 @@
 				</table>
 			</td>
 		</table>
-		<input type="button" id="CreateRelease" value="发  布"
-			onclick="Release()"> <input type="button" id="CreateSave"
-			value="保存草稿" onclick="Save()"> <input type="reset"
-			id="CreateReset" value="重  置">
+		<input type="button" id="CreateRelease" value="发  布" onclick="Release()"> 
+		<input type="button" id="CreateSave" value="保存草稿" onclick="Save()"> 
+		<input type="reset" id="CreateReset" value="重  置">
 		<div id="CreateSubmitBox"></div>
 	</form>
 

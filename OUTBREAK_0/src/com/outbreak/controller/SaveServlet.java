@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 public class SaveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGet is over.");
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//保存完成，返回会议管理页面
+		response.sendRedirect("MeetingManage.jsp");
 	}
 
 	/**

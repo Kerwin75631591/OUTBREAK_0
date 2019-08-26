@@ -13,29 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ReleaseServlet")
 public class ReleaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReleaseServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @author HuYu
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String meetingName = request.getParameter("meetingName");
+		response.getWriter().append(meetingName);
+		response.getWriter().append("doGet is over!");
+		
+		//提交完成，返回会议管理页面
+		response.sendRedirect("MeetingManage.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
+		String meetingName = request.getParameter("meetingName");
+		response.getWriter().append(meetingName);
+		response.getWriter().append("doGet is over!");
+		System.out.println("doPost is over!");
+		
+		//提交完成，返回会议管理页面
+		response.sendRedirect("MeetingManage.jsp");
 	}
 
 }
