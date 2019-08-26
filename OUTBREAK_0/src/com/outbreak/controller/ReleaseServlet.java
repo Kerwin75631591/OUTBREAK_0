@@ -23,7 +23,7 @@ public class ReleaseServlet extends HttpServlet {
 		response.getWriter().append(meetingName);
 		response.getWriter().append("doGet is over!");
 		
-		//提交完成，返回会议管理页面
+		//鎻愪氦瀹屾垚锛岃繑鍥炰細璁鐞嗛〉闈�
 		response.sendRedirect("MeetingManage.jsp");
 	}
 
@@ -31,14 +31,14 @@ public class ReleaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		//doGet(request, response);
 		String meetingName = request.getParameter("meetingName");
 		response.getWriter().append(meetingName);
 		response.getWriter().append("doGet is over!");
 		System.out.println("doPost is over!");
 		
-		//提交完成，返回会议管理页面
-		response.sendRedirect("MeetingManage.jsp");
+		//鎻愪氦瀹屾垚锛岃繑鍥炰細璁鐞嗛〉闈�
+		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
 	}
 
 }

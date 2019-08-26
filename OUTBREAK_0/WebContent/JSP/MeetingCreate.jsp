@@ -11,7 +11,7 @@
 	function Release(){
 		document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
 		document.meetingManageForm.submit();
- 　　}
+	} 
 	function Save(){
         document.meetingManageForm.action = "/OUTBREAK_0/SaveServlet";
         document.meetingManageForm.submit();

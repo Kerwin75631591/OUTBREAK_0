@@ -19,8 +19,8 @@ public class SaveServlet extends HttpServlet {
 		System.out.println("doGet is over.");
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		//保存完成，返回会议管理页面
-		response.sendRedirect("MeetingManage.jsp");
+		//淇濆瓨瀹屾垚锛岃繑鍥炰細璁鐞嗛〉闈�
+		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
 	}
 
 	/**
