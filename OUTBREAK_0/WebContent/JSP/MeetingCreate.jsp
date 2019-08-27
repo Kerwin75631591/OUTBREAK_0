@@ -22,6 +22,8 @@
 			alert("请完整填写申请表后再提交，或者先保存为草稿！");
 			return;
 		}
+		
+		
 		document.meetingManageForm.action = "login.do";
         document.meetingManageForm.submit();
 	}
@@ -30,7 +32,7 @@
         document.meetingManageForm.submit();
  　　}
 	function Add(){
-        var Name = document.getElementById("Name").value;
+		var Name = document.getElementById("Name").value;
         var Phone = document.getElementById("Phone").value;
         var Email = document.getElementById("Email").value;
         
@@ -62,7 +64,7 @@
 		document.getElementById("Name").value = null;
         document.getElementById("Phone").value = null;
         document.getElementById("Email").value = null;
- 　　}
+	}
 	function Delete(obj){
 		var trId = obj.parentNode.parentNode.id;
 		var trObj = document.getElementById(trId);
