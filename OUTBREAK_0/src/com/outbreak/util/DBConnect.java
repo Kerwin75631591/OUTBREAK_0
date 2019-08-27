@@ -209,18 +209,13 @@ public class DBConnect {
 	public void insertPeople(int id, InvitedPeople people) throws SQLException {
 		while (people.getNext() != null) {
 
-			String sql = "SELECT id FROM UserTable WHERE email= '" + people.getEmail() + "'";
-			rs = statement.executeQuery(sql);
-			rs.next();
-			int pid = rs.getInt("id");
-
-			sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
+			String sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
 			statement.executeUpdate(sql);
 
 			sql = "INSERT INTO PeopleTable(Mid,Pid,TOF)values(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			pstmt.setInt(2, pid);
+			pstmt.setString(2, people.getName());
 			pstmt.setBoolean(3, false);
 			pstmt.addBatch();
 			pstmt.clearParameters();
@@ -236,13 +231,6 @@ public class DBConnect {
 			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
-		}
-	//pid×ª»»³ÉÃû×Ö
-		public String pid2name(int pid)throws SQLException {
-			String sql = "SELECT name FROM UserTable WHERE id = '"+pid+"'";
-			rs = statement.executeQuery(sql);
-			rs.next();
-			return rs.getString("name");
 		}
 		
 		

@@ -15,8 +15,9 @@
 	String meetingid=request.getParameter("meetingId");
 	int MID=Integer.parseInt(meetingid);
 	String meetingName=request.getParameter("meetingName");
-	UserBeanCL ubcl=new UserBeanCL();
-	ResultSet inviteds=ubcl.db.searchPeople(MID);
+	DBConnect db=new DBConnect();
+	db.connect();
+	ResultSet inviteds=db.searchPeople(MID);
 %>
 <header><h1><%=meetingName %></h1></header>
 <table>
@@ -30,18 +31,16 @@
 		<%
 	}else{
 		while(inviteds.next()){
-			int pid=inviteds.getInt(2);
-			
-			int status=inviteds.getInt(3);
+			String uid=inviteds.getString("uid");
+			int status=inviteds.getInt("TOF");
 			String statusString;
-			String pname=ubcl.db.pid2name(pid);
 			if(status==0){
 				statusString="未确定参加";
 			}else{
 				statusString="确定参加";
 			}
 			%>
-	<tr><td><%=pname %></td><td><%=statusString %></td></tr>
+	<tr><td><%=uid %></td><td><%=statusString %></td></tr>
 			<%
 		}
 	}

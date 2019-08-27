@@ -97,6 +97,7 @@ charset=GBK" pageEncoding="GBK"%>
 	<%
 			counter++;
 		}
+		mbcl.db.close();
 	} 
 	%>
 	</table>
