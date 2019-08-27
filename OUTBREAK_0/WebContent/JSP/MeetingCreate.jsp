@@ -20,15 +20,49 @@
         var Name = document.getElementById("Name").value;
         var Phone = document.getElementById("Phone").value;
         var Email = document.getElementById("Email").value;
+        
+        //E-mail验证
+        var atpos = Email.indexOf("@");
+        var dotpos = Email.lastIndexOf(".");
+        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=Email.length){
+          alert("不是一个有效的 e-mail 地址");
+          return false;
+        }
+        
+        //联系方式验证
+        if (isNaN(Phone)){
+        	alert("不是一个有效的联系方式");
+            return false;
+        }
+        
+        //添加到Users里面，故可以传输至servlet
+		var temp = document.getElementById("Users").value;
+        Users.value = temp + Name + "-" + Phone + "-" + Email + "-";
+
+        //添加到UsersTable中
 		var trObj = document.createElement("tr");
 		trObj.id = new Date().getTime();
 		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='删除' onclick='Delete(this)'></td>";
 		document.getElementById("UserTable").appendChild(trObj);
+		
+		//重置输入框
+		document.getElementById("Name").value = null;
+        document.getElementById("Phone").value = null;
+        document.getElementById("Email").value = null;
  　　}
 	function Delete(obj){
 		var trId = obj.parentNode.parentNode.id;
 		var trObj = document.getElementById(trId);
 		document.getElementById("UserTable").removeChild(trObj);
+	}
+	function Reset(){ 
+		var tb = document.getElementById("UserTable");
+		var rowNum = tb.rows.length;
+	    for (var i = 0; i<rowNum; ++i)
+	    {
+	        tb.deleteRow(1);
+	        --rowNum;
+	    }
 	}
 	</script>
 </head>
@@ -54,33 +88,33 @@
 					</tr>
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">会议主题：</td>
-						<td><input type="text"
+						<td><input type="text" id="meetingTopic" name="meetingTopic"
 							style="width: 500px; height: 30px; font-size: 30px"></td>
 					</tr>
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">日期：</td>
-						<td><input type="date"
+						<td><input type="date" id="meetingData" name="meetingData"
 							style="width: 500px; height: 30px; font-size: 30px"></td>
 					</tr>
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">会议地点：</td>
-						<td><input type="text"
+						<td><input type="text" id="meetingPlace" name="meetingPlace"
 							style="width: 500px; height: 30px; font-size: 30px"></td>
 					</tr>
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">会议内容：</td>
-						<td><textarea
+						<td><textarea id="meetingContent" name="meetingContent"
 								style="line-height: 30px; width: 500px; height: 400px; font-size: 30px"></textarea></td>
 					</tr>
 					<tr>
 						<td style="border: 1px solid #E2E3E5; font-size: 20px">上传资料：</td>
-						<td><input type="file"
+						<td><input type="file" name="uploadFile"
 							style="width: 500px; height: 30px; font-size: 20px"></td>
 					</tr>
 				</table>
 			</td>
 			<td>
-				<table id="UserTable" style="margin-top: 0px;">
+				<table id="UserTable" name="UserTable" style="margin-top: 0px;">
 					<tr>
 						<td
 							style="border: 1px solid #E2E3E5; font-size: 20px; margin-left: -400px">与会人员：</td>
@@ -115,6 +149,7 @@
 		<input type="button" id="CreateRelease" value="发  布" onclick="Release()"> 
 		<input type="button" id="CreateSave" value="保存草稿" onclick="Save()"> 
 		<input type="reset" id="CreateReset" value="重  置">
+		<input type="text" id="Users" name="Users" style="display:none">
 		<div id="CreateSubmitBox"></div>
 	</form>
 
