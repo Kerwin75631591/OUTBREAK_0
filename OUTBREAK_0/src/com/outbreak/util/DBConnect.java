@@ -174,14 +174,13 @@ public class DBConnect {
 	// MeetingTable搜索某人举办的会议，返回resultset
 	public ResultSet searchMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE host = '" + host + "'";
-		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
 	// MeetingTable搜索所有未提交的会议，返回resultset
-	public ResultSet searchMeeting() throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE state = 0";
+	public ResultSet searchChangableMeeting(String host) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
