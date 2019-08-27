@@ -11,7 +11,7 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 				var em = document.getElementById("IDInput").value;
 				var pw = document.getElementById("PasswordInput").value;
 				if(em.length == 0) {
-					alert("请输入邮箱！");
+					alert("请输入账号！");
 				} else if(pw.length == 0) {
 					alert("请输入密码！");
 				} else {
