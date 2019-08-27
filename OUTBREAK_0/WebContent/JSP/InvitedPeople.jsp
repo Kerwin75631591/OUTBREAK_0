@@ -9,6 +9,7 @@
 <head>
 <meta charset="GBK">
 <title>受邀名单</title>
+<link type="text/css" rel="stylesheet" href="<%= path %>/CSS/InvitedPeople.css">
 </head>
 <body>
 <%
@@ -40,7 +41,7 @@
 				statusString="确定参加";
 			}
 			%>
-	<tr><td><%=uid %></td><td><%=statusString %></td></tr>
+	<tr><td class="name_in_table"><%=uid %></td><td class="status_in_table"><%=statusString %></td></tr>
 			<%
 		}
 	}
