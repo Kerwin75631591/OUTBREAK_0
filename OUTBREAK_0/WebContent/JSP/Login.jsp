@@ -6,6 +6,19 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 	<head>
 		<meta charset="UTF-8">
 		<title>登录页面</title>
+		<script>
+			function checkL() {
+				var em = document.getElementByID("IDInput").value;
+				var pw = document.getElementByID("PasswordInput").value;
+				if(em.length == 0) {
+					alert("请输入邮箱！");
+				} else if(pw.length == 0) {
+					alert("请输入密码！");
+				} else {
+					document.submit();
+				}
+			}
+		</script>
 		<link rel="stylesheet" href="../CSS/Login.css" >
 	</head>
 	<body>
@@ -25,8 +38,8 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 				<span><input type="text" id="VericodeInput" name="LoginVericode"></span>
 				<span id="LoginVericodePic"></span>
 			</div>
-			<span><input type="button" id="RegistWant" value="注册" onclick="window.location.href='Register.jsp';"/></span>
-			<span><input type="submit" id="LoginInput" value="登录"></span>
+			<span><input type="button" id="RegistWant" value="注册" onclick="window.location.href='Register.jsp'"></span>
+			<span><input type="button" id="LoginInput" value="登录" onclick="checkL()"></span>
 		</div>
 		</form>
 	</body>
