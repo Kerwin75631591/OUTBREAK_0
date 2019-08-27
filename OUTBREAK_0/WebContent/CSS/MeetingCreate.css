@@ -1,45 +1,140 @@
 body{
+	background:url(../images/CrtBackground.jpg);
     background-origin:content;
-    background-position:50% 50%;
+    background-position:center 0;
     background-size:cover; 
     background-repeat:no-repeat;
-    background-attachment:fixed
+    background-attachment:fixed;
 }
-#CreateToptitle{
-	width: 700px;
-	position:relative;
-	border: 1px solid #E2E3E5;
-	color:#00FF00;
-	font-size:40px;
-	text-align:center;
-	margin:-90px auto auto auto
+#CrtTopBox{
+	width: 400px;
+	height:70px;
+	position:absolute;
+	top:37px;
+	right:50px;
+	//border: 1px solid #E2E3E5;
 }
 #CreateWelcome{
-	width: 200px;
+	width: 400px;
 	position:relative;
-	border: 1px solid #E2E3E5;
-	margin:-40px 400px auto auto;
-	font-size:20px;
+	//border: 1px solid #E2E3E5;
+	margin:auto auto auto auto;
+	font-size:25px;
+	color:#FFFFFF;
+	text-align:center;
 }
 #CreateJump{
-	width: 200px;
+	width: 215px;
 	position:relative;
+	//border: 1px solid #E2E3E5;
+	margin:5px auto auto auto;
+}
+#CreateMeetingManageBtn{
 	border: 1px solid #E2E3E5;
-	margin:-25px 20px auto auto;
+	font: 20px Arial;
+	width:100px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
 }
-#CreateTable{
-	margin-left:200px;
+#CreateLoginBtn{
+	border: 1px solid #E2E3E5;
+	font: 20px Arial;
+	width:100px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+	margin-left:10px;
 }
-#CreateSubmitBox{
+#CrtLeftBox{
 	position:relative;
-	margin:-40px 429px auto auto;
-	width:250px;
+    //border: 1px solid #E2E3E5;
+    width: 700px;
+	height: 670px;
+	box-shadow: 10px 10px 30px #888888;
+	background:#FFFFCC;
+	margin:0px auto auto 5%;
+}
+#CrtRightBox{
+	position:relative;
+    //border: 1px solid #E2E3E5;
+    width: 1000px;
+	height: 670px;
+	box-shadow: 10px 10px 30px #888888;
+	background:#FFFFCC;
+	margin:-685px 50px auto auto;
+}
+#Box{
+	overflow-x:hidden;
+	overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
+    height:550px;
+    width:1000px;
+}
+#UserTable{
+    margin-top: 15px;
+    margin-left: 10px;
+}
+#InputTable{
 	border: 1px solid #E2E3E5;
+	position:absolute;
+	bottom: 5px;
+	left: 10px;
 }
 #CreateAdd{
-	 width:100px;
-	 height:30px;
-	 font-size:20px;
+	border: 1px solid #E2E3E5;
+	font: 20px Arial;
+	width:100px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+}
+#CrtBottomBox{
+	position:relative;
+	margin:20px 510px auto auto;
+	width:700px;
+	height:40px;
+}
+#CreateRelease{
+	border: 1px solid #E2E3E5;
+	font: 30px Arial;
+	width:100px;
+	height:42px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:10px;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+}
+#CreateSave{
+	border: 1px solid #E2E3E5;
+	font: 30px Arial;
+	width:150px;
+	height:42px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:40px;
+	//margin-top:50px;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+}
+#CreateReset{
+	border: 1px solid #E2E3E5;
+	font: 30px Arial;
+	width:100px;
+	height:42px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:40px;
+	//margin-top:50px;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
 }
 #CreateDelete{
 	 width:100px;
