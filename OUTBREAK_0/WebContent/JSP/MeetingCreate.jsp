@@ -10,6 +10,18 @@
 <link rel="stylesheet" href="../CSS/MeetingCreate.css" />
 <script type="text/javascript">
 	function Release(){
+        var meetingName = document.getElementById("meetingName").value.replace(/(^\s*)|(\s*$)/g, '');
+        var meetingTopic = document.getElementById("meetingTopic").value.replace(/(^\s*)|(\s*$)/g, '');
+        var meetingData = document.getElementById("meetingData").value.replace(/(^\s*)|(\s*$)/g, '');
+        var meetingPlace = document.getElementById("meetingPlace").value.replace(/(^\s*)|(\s*$)/g, '');
+        var meetingContent = document.getElementById("meetingContent").value.replace(/(^\s*)|(\s*$)/g, '');
+		var rowNum = document.getElementById("UserTable").rows.length;
+		
+		//判断是否填满每一项（文件除外）
+		if(meetingName == '' || meetingTopic == '' || meetingPlace == '' || meetingContent == '' || meetingData == '' || rowNum == 1){
+			alert("请完整填写申请表后再提交，或者先保存为草稿！");
+			return;
+		}
 		document.meetingManageForm.action = "login.do";
         document.meetingManageForm.submit();
 	}
