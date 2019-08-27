@@ -135,7 +135,7 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public int insertMeeting(int state, Date time, String place, String name, String content, String host,
+	public int insertMeeting(int state, Date time, String place, String name,String topic, String content, String host,
 			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
 		rs = statement.executeQuery(sql);
@@ -144,18 +144,19 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO MeetingTable(id,time,place,name,content,host,state,PeopleNum,ArrivalNum,FileUrl)values(?,?,?,?,?,?,?,?,?,?)";
+		sql = "INSERT INTO MeetingTable(id,time,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)values(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setDate(2, new java.sql.Date(time.getTime()));
 		pstmt.setString(3, place);
 		pstmt.setString(4, name);
-		pstmt.setString(5, content);
-		pstmt.setString(6, host);
-		pstmt.setInt(7, state);
-		pstmt.setInt(8, PeopleNum);
-		pstmt.setInt(9, ArrivalNum);
-		pstmt.setString(10, FileUrl);
+		pstmt.setString(5, topic);
+		pstmt.setString(6, content);
+		pstmt.setString(7, host);
+		pstmt.setInt(8, state);
+		pstmt.setInt(9, PeopleNum);
+		pstmt.setInt(10, ArrivalNum);
+		pstmt.setString(11, FileUrl);
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
@@ -209,18 +210,13 @@ public class DBConnect {
 	public void insertPeople(int id, InvitedPeople people) throws SQLException {
 		while (people.getNext() != null) {
 
-			String sql = "SELECT id FROM UserTable WHERE email= '" + people.getEmail() + "'";
-			rs = statement.executeQuery(sql);
-			rs.next();
-			int pid = rs.getInt("id");
-
-			sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
+			String sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
 			statement.executeUpdate(sql);
 
 			sql = "INSERT INTO PeopleTable(Mid,Pid,TOF)values(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			pstmt.setInt(2, pid);
+			pstmt.setString(2, people.getName());
 			pstmt.setBoolean(3, false);
 			pstmt.addBatch();
 			pstmt.clearParameters();
@@ -233,16 +229,9 @@ public class DBConnect {
 
 	// PeopleTable搜索所有该mid的会议，返回resultset
 		public ResultSet searchPeople(int mid) throws SQLException {
-			String sql = "SELECT * FROM MeetingTable WHERE mid = '"+mid+"'";
+			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
-		}
-	//pid转换成名字
-		public String pid2name(int pid)throws SQLException {
-			String sql = "SELECT name FROM UserTable WHERE id = '"+pid+"'";
-			rs = statement.executeQuery(sql);
-			rs.next();
-			return rs.getString("name");
 		}
 		
 		

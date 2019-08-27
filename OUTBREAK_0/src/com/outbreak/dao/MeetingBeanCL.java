@@ -34,7 +34,7 @@ public class MeetingBeanCL {
 		else
 			state=0;
 		try {
-			int id=db.insertMeeting(state,mb.getTime(),mb.getPlace(),mb.getName(),mb.getContent()
+			int id=db.insertMeeting(state,mb.getTime(),mb.getPlace(),mb.getName(),mb.getTopic(),mb.getContent()
 					,mb.getHost(),mb.getPeopleNum(),mb.getArrivalNum(),mb.getFileUrl());
 			db.insertPeople(id,mb.getPeople());
 		} catch (SQLException e) {
