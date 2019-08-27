@@ -14,6 +14,13 @@ public class MeetingBean {
 	private int ArrivalNum;//会议到达人数
 	InvitedPeople People;//到达情况键值对
 	private String FileUrl;//会议文件路径
+
+	public MeetingBean() {
+		PeopleNum=0;
+		ArrivalNum=0;
+		People =new InvitedPeople();
+	}
+	
 	
 	public String getTopic() {
 		return topic;
@@ -29,12 +36,6 @@ public class MeetingBean {
 
 	public void setFileUrl(String fileUrl) {
 		FileUrl = fileUrl;
-	}
-
-	public MeetingBean() {
-		PeopleNum=0;
-		ArrivalNum=0;
-		People =new InvitedPeople();
 	}
 	
 	public int getArrivalNum() {
