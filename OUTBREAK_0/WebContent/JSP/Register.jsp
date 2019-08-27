@@ -13,7 +13,7 @@
 		var rpw=document.getElementById("rpw").value;
 		var email=document.getElementById("em").value;
 		var check=document.getElementById("chk").value;					
-		if(check==null){
+		if(check.length==0){
 			alert("请输入验证码");
 		}else{
 			if(CHECK!=check){
@@ -74,7 +74,7 @@
 	  </div>
 	  <div>
 	     <span id="RegistPasswordAgaLabel">重复密码：</span>
-		 <span><input input id="rpw" type="password" name="RePassword"></span>
+		 <span><input id="rpw" type="password" name="RePassword"></span>
 	  </div>
 	  <div>
 	     <span id="RegistVerifyCodeLabel">验证码：</span>
