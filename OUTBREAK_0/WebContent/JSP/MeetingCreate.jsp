@@ -24,7 +24,7 @@
 		}
 		
 		
-		document.meetingManageForm.action = "login.do";
+		document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
         document.meetingManageForm.submit();
 	}
 	function Save(){
