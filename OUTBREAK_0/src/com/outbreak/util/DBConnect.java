@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+
 import com.outbreak.entity.InvitedPeople;
 
 public class DBConnect {
@@ -206,23 +209,25 @@ public class DBConnect {
 	}
 
 	// 在PeopleTable中加入新的数据
-	public void insertPeople(int id, InvitedPeople people) throws SQLException {
-		while (people.getNext() != null) {
-
-			String sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
+	public void insertPeople(int id, ArrayList<InvitedPeople> people) throws SQLException {
+		System.out.println("insertPeople已进入");
+		Iterator<InvitedPeople> it = people.iterator();
+		while (it.hasNext()) {
+			InvitedPeople p=it.next();
+			System.out.println(p.getName()+"+"+p.getEmail());
+			String sql = "UPDATE UserTable SET NAME =  '" + p.getName() + "'  WHERE email= '" + p.getEmail() + "'";
 			statement.executeUpdate(sql);
 
-			sql = "INSERT INTO PeopleTable(Mid,Pid,TOF)values(?,?,?)";
+			sql = "INSERT INTO PeopleTable(Mid,uid,TOF)values(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			pstmt.setString(2, people.getName());
+			pstmt.setString(2, p.getName());
 			pstmt.setBoolean(3, false);
 			pstmt.addBatch();
 			pstmt.clearParameters();
 			pstmt.executeBatch();
 			pstmt.clearBatch();
 
-			people = people.getNext();
 		}
 	}
 

@@ -1,5 +1,6 @@
 package com.outbreak.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MeetingBean {
@@ -12,16 +13,33 @@ public class MeetingBean {
 	private int state;//0.未提交 1.待审核 2.审核通过 3.审核未通过 4.已完成
 	private int PeopleNum;//会议邀请人数
 	private int ArrivalNum;//会议到达人数
-	InvitedPeople People;//到达情况键值对
+	ArrayList<InvitedPeople> People;//到达情况键值对
 	private String FileUrl;//会议文件路径
 
 	public MeetingBean() {
 		PeopleNum=0;
 		ArrivalNum=0;
-		People =new InvitedPeople();
+		People =new ArrayList<InvitedPeople>();
 	}
 	
+	public void addpeople(String name,String email,String phoneNumber) {
+		InvitedPeople temp=new InvitedPeople();
+		temp.setEmail(email);
+		temp.setName(name);
+		temp.setPhoneNumber(phoneNumber);
+		People.add(temp);
+	}
 	
+	public ArrayList<InvitedPeople> getPeople() {
+		return People;
+	}
+
+
+	public void setPeople(ArrayList<InvitedPeople> people) {
+		People = people;
+	}
+
+
 	public String getTopic() {
 		return topic;
 	}
@@ -91,16 +109,5 @@ public class MeetingBean {
 		this.state = state;
 	}
 
-	public InvitedPeople getPeople() {
-		return People;
-	}
-
-	public void setPeople(InvitedPeople people) {
-		while(People.getNext()!=null) {
-			People=People.getNext();
-		}
-		People.setNext(people)  ;
-	}
-	
 	
 }

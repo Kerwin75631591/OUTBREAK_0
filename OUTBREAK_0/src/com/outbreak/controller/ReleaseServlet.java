@@ -20,7 +20,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.outbreak.entity.InvitedPeople;
 import com.outbreak.entity.MeetingBean;
 import com.outbreak.util.DBConnect;
 
@@ -153,13 +152,9 @@ public class ReleaseServlet extends HttpServlet {
 		
 		//制作会议邀请名单
 		String[] guests = map.get("Users").split("-");
-		InvitedPeople people = new InvitedPeople();
 		for(int i = 0; i<guests.length/3; i+=3)
 		{
-			people.setName(guests[i]);
-			people.setPhoneNumber(guests[i+1]);
-			people.setEmail(guests[i+2]);
-			mb.setPeople(people);
+			mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
 		}
 		mb.setPeopleNum(guests.length / 3);
 		
@@ -179,7 +174,7 @@ public class ReleaseServlet extends HttpServlet {
 		}
 		
 		try {
-			db.insertPeople(id, people);
+			db.insertPeople(id, mb.getPeople());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
