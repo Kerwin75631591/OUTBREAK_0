@@ -36,7 +36,7 @@
 	<canvas></canvas>
 	<div id="CreateToptitle">OUTBREAK 多客户端云会议系统</div>
 	<div id="CreateWelcome">
-		您好，<%=request.getSession().getAttribute("sessionname") %>！
+		您好，<%=request.getParameter("email") %>！
 	</div>
 	<div id="CreateJump">
 		<a id="CreateMeetingManageL" href="MeetingManage.jsp">管理会议</a> <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>

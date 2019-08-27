@@ -20,8 +20,8 @@
 				alert("验证码错误！");
 			}else{
 				if(pw==rpw){
-					alert("提交表单");
-					//document.forms[0].submit();
+					//alert("提交表单");
+					document.forms[0].submit();
 				}else{
 					alert("两次密码输入不一致！");
 				}
@@ -30,15 +30,29 @@
 	}
 	function postEmail(){
 		while(true){
-			CHECK=Math.floor(Math.random()*10000);
-			if(CHECK>999)
+			CHECK=Math.floor(Math.random()*1000000);
+			if(CHECK>99999)
 				break;
 		}
 		var email=document.getElementById("em").value;
 		document.getElementById("show_check").innerHTML=CHECK;
 		document.getElementById("em").disabled=true;
 		document.getElementById("email_button").disabled=true;
-		//window.open("RegisterCL.jsp?Email="+email);
+		var e=encrypt();
+		//alert(e);
+		//window.open("CheckCL.jsp?Email="+email+"&check="+e);
+	}
+	function encrypt(){
+		//alert(typeof CHECK);
+		var enc="";
+		var holder=CHECK;
+		var temp=0;
+		while(holder!=0){
+			temp=holder%100;
+			holder=Math.floor(holder/100);
+			enc+=String.fromCharCode(temp);
+		}
+		return enc;
 	}
 </script>
 <link type="text/css" rel="stylesheet" href="<%= path %>/CSS/Register.css">
