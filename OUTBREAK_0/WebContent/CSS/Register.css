@@ -1,41 +1,136 @@
 body{
-	background-image:linear-gradient(145deg,#fff,#000);
-	background-repeat:no-repeat;
-	height: 700px;
+    background:url(../images/LgiRstBackground.jpg);
+    background-origin:content;
+    background-position:center 0;
+    background-size:cover; 
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
 
-#content{
-	margin-top:7%;
+#RegistBox{
+	position:relative;
+    border: 1px solid #E2E3E5;
+    width: 570px;
+	height: 300px;
+	box-shadow: 10px 10px 30px #888888;
+	background:#FFFFCC;
+	margin:10% 35% auto auto;
+	
 }
-
-h1{
-	text-align:center;
-	font-size:2.5em;
+#RegistIDLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:100px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
 }
-
-#register_form{
-	margin-left:35%;
-	margin-right:35%;
-	margin-top:5%;
+#em{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
 }
-
-.table{
-	display:table;
-	border-space:30px 10px 30px 10px;
+#email_button{
+	border: 1px solid #E2E3E5;
+	font: bold 15px Arial;
+	width:100px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+	margin:10px;
 }
-
-.table_row{
-	display:table-row;
+#RegistPasswordLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:100px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
 }
-.table_cell{
-	display:table-cell;
-	padding:5px;
+#pw{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
 }
-
-.right_align{
-	text-align:right;
+#RegistPasswordAgaLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:40px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
 }
-
-.center_align{
-	text-align:center;
+#rpw{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#RegistVerifyCodeLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:70px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#chk{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#RegistBack{
+	font:"Microsoft YaHei";
+	font-size:20px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:180px;
+    margin-bottom:10px;
+    margin-top:25px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#RegistBtn{
+	margin-left:20px;
+	border: 1px solid #E2E3E5;
+	font: bold 30px Arial;
+	width:100px;
+	height:40px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
 }
