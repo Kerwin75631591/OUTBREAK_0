@@ -50,7 +50,8 @@ public class DBConnect {
 			// 创建会议表并记录 id，邮箱，密码，联系方式，名字，地址，
 			statement.executeUpdate(
 					"create table MeetingTable(id integer(5),time date,place varchar(20),name varchar(20), "
-							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5))");
+							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5),"
+							+ "FileUrl varchar(20))");
 
 			// 创建人员表并记录 会议id，人员id，是否参加
 			statement.executeUpdate("create table PeopleTable(Mid integer(5),Uid integer(5),TOF tinyint)");
@@ -135,7 +136,7 @@ public class DBConnect {
 
 	// 在MeetingTable中加入新的数据
 	public int insertMeeting(int state, Date time, String place, String name, String content, String host,
-			int PeopleNum, int ArrivalNum) throws SQLException {
+			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
 		rs = statement.executeQuery(sql);
 		int id = 0;
@@ -143,7 +144,7 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO MeetingTable(id,time,place,name,content,host,state,PeopleNum,ArrivalNum)values(?,?,?,?,?,?,?,?,?)";
+		sql = "INSERT INTO MeetingTable(id,time,place,name,content,host,state,PeopleNum,ArrivalNum,FileUrl)values(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setDate(2, new java.sql.Date(time.getTime()));
@@ -154,6 +155,7 @@ public class DBConnect {
 		pstmt.setInt(7, state);
 		pstmt.setInt(8, PeopleNum);
 		pstmt.setInt(9, ArrivalNum);
+		pstmt.setString(10, FileUrl);
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
