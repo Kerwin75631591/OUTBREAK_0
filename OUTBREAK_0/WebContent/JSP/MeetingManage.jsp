@@ -63,17 +63,35 @@ charset=GBK" pageEncoding="GBK"%>
 			String cont=meetings.getString(5);
 			int arr=meetings.getInt(9);
 			int total=meetings.getInt(8);
-			String num=arr+"//"+total;
+			String numString=arr+"//"+total;
 			int state=meetings.getInt(7);
+			String stateString=null;
+			switch(state){
+			case 0:
+				stateString=new String("未提交");
+				break;
+			case 1:
+				stateString=new String("未审核");
+				break;
+			case 2:
+				stateString=new String("审核通过");
+				break;
+			case 3:
+				stateString=new String("审核失败");
+				break;
+			case 5:
+				stateString=new String("会议结束");
+				break;
+			}
 	%>
 		<tr>
 			<td id=<%="name"+counter %>><%=name %></td>
 			<td id=<%="date"+counter %>><%=date %></td>
 			<td id=<%="loc"+counter %>><%=loc %></td>
 			<td id=<%="content"+counter %>><%=cont %></td>
-			<td id=<%="num"+counter %>><%=num %></td>
-			<td id=<%="state"+counter %>><%=state %></td>
-			<td><input type="button" value="修改" onclick="submit(<%=counter%>)"></td>
+			<td id=<%="num"+counter %>><%=numString %></td>
+			<td id=<%="state"+counter %>><%=stateString %></td>
+			<td><input type="button" value="修改" onclick="submit(<%=counter%>)" <%if(state!=0)%> disabled="disabled"></td>
 		</tr>
 	<%
 			counter++;
