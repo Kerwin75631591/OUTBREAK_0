@@ -24,7 +24,6 @@ public class MeetingBeanCL {
 		try {
 			judge = db.searchMeeting(mb.getTime(),mb.getName());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (!judge) {
@@ -35,10 +34,10 @@ public class MeetingBeanCL {
 		else
 			state=0;
 		try {
-			db.insertMeeting(state,mb.getTime(),mb.getPlace(),mb.getName(),mb.getContent()
+			int id=db.insertMeeting(state,mb.getTime(),mb.getPlace(),mb.getName(),mb.getContent()
 					,mb.getHost(),mb.getPeopleNum(),mb.getArrivalNum());
+			db.insertPeople(id,mb.getPeople());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;

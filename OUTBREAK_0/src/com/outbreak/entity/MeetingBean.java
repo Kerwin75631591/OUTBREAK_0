@@ -1,8 +1,6 @@
 package com.outbreak.entity;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MeetingBean {
 	private Date time;//会议时间
@@ -13,12 +11,12 @@ public class MeetingBean {
 	private int state;//0.未提交 1.待审核 2.审核通过 3.审核未通过 4.已完成
 	private int PeopleNum;//会议邀请人数
 	private int ArrivalNum;//会议到达人数
-	Map<String,Boolean> People;
+	InvitedPeople People;//到达情况键值对
 	
 	public MeetingBean() {
 		PeopleNum=0;
 		ArrivalNum=0;
-		People =new HashMap<>();
+		People =new InvitedPeople();
 	}
 	
 	public int getArrivalNum() {
@@ -73,11 +71,17 @@ public class MeetingBean {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public Map<String, Boolean> getPeople() {
+
+	public InvitedPeople getPeople() {
 		return People;
 	}
-	public void setPeople(Map<String, Boolean> people) {
-		People = people;
+
+	public void setPeople(InvitedPeople people) {
+		while(People.getNext()!=null) {
+			People=People.getNext();
+		}
+		People.setNext(people)  ;
 	}
+	
 	
 }

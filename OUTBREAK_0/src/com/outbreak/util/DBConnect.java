@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import com.outbreak.entity.InvitedPeople;
 
 public class DBConnect {
 	public Connection connection = null;
@@ -133,7 +134,7 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public void insertMeeting(int state, Date time, String place, String name, String content, String host,
+	public int insertMeeting(int state, Date time, String place, String name, String content, String host,
 			int PeopleNum, int ArrivalNum) throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
 		rs = statement.executeQuery(sql);
@@ -157,6 +158,8 @@ public class DBConnect {
 		pstmt.clearParameters();
 		pstmt.executeBatch();
 		pstmt.clearBatch();
+
+		return id;
 	}
 
 	// 在MeetingTable中删除数据
@@ -172,12 +175,14 @@ public class DBConnect {
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	//MeetingTable搜索所有待审核的会议，返回resultset
+
+	// MeetingTable搜索所有未提交的会议，返回resultset
 	public ResultSet searchMeeting() throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 0";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
+
 	// MeetingTable搜索的同名同时会议
 	public boolean searchMeeting(Date time, String name) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE time = '" + time + "' name = '" + name + "'";
@@ -192,10 +197,36 @@ public class DBConnect {
 
 	// MeetingTable修改某个会议的状态
 	public void updateMeeting(int id, int state) throws SQLException {
-		String sql = "UPDATE MeetingTable SET state = "+state+" WHERE   id = '" + id + "'";
+		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 
+	}
+
+	// 在PeopleTable中加入新的数据
+	public void insertPeople(int id, InvitedPeople people) throws SQLException {
+		while (people.getNext() != null) {
+
+			String sql = "SELECT id FROM UserTable WHERE email= '" + people.getEmail() + "'";
+			rs = statement.executeQuery(sql);
+			rs.next();
+			int pid = rs.getInt("id");
+
+			sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
+			statement.executeUpdate(sql);
+
+			sql = "INSERT INTO PeopleTable(Mid,Pid,TOF)values(?,?,?)";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, pid);
+			pstmt.setBoolean(3, false);
+			pstmt.addBatch();
+			pstmt.clearParameters();
+			pstmt.executeBatch();
+			pstmt.clearBatch();
+
+			people = people.getNext();
+		}
 	}
 
 	// 关闭数据库连接
