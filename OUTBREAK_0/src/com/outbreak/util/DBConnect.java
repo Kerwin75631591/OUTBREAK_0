@@ -237,7 +237,15 @@ public class DBConnect {
 			rs = statement.executeQuery(sql);
 			return rs;
 		}
-	
+	//pid转换成名字
+		public String pid2name(int pid)throws SQLException {
+			String sql = "SELECT name FROM UserTable WHERE id = '"+pid+"'";
+			rs = statement.executeQuery(sql);
+			rs.next();
+			return rs.getString("name");
+		}
+		
+		
 	// 关闭数据库连接
 	public void close() {
 		try {
