@@ -12,18 +12,22 @@
 		var pw=document.getElementById("pw").value;
 		var rpw=document.getElementById("rpw").value;
 		var email=document.getElementById("em").value;
-		var check=document.getElementById("chk").value;					
-		if(check.length==0){
-			alert("请输入验证码");
+		var check=document.getElementById("chk").value;	
+		if(email.length==0){
+			alert("请输入邮箱");
 		}else{
-			if(CHECK!=check){
-				alert("验证码错误！");
+			if(check.length==0){
+				alert("请输入验证码");
 			}else{
-				if(pw==rpw){
-					//alert("提交表单");
-					document.forms[0].submit();
+				if(CHECK!=check){
+					alert("验证码错误！");
 				}else{
-					alert("两次密码输入不一致！");
+					if(pw==rpw){
+						//alert("提交表单");
+						document.forms[0].submit();
+					}else{
+						alert("两次密码输入不一致！");
+					}
 				}
 			}
 		}
