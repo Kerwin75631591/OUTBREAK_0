@@ -31,6 +31,7 @@
 	}else{
 		while(inviteds.next()){
 			int pid=inviteds.getInt(2);
+			String pname=ubcl.db.pid2name(pid);
 			int status=inviteds.getInt(3);
 			String statusString;
 			if(status==0){
@@ -39,7 +40,7 @@
 				statusString="确定参加";
 			}
 			%>
-	<tr><td><%=pid %></td><td><%=statusString %></td></tr>
+	<tr><td><%=pname %></td><td><%=statusString %></td></tr>
 			<%
 		}
 	}
