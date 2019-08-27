@@ -31,9 +31,10 @@
 	}else{
 		while(inviteds.next()){
 			int pid=inviteds.getInt(2);
-			String pname=ubcl.db.pid2name(pid);
+			
 			int status=inviteds.getInt(3);
 			String statusString;
+			String pname=ubcl.db.pid2name(pid);
 			if(status==0){
 				statusString="未确定参加";
 			}else{

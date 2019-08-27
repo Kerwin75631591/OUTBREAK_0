@@ -233,7 +233,7 @@ public class DBConnect {
 
 	// PeopleTable搜索所有该mid的会议，返回resultset
 		public ResultSet searchPeople(int mid) throws SQLException {
-			String sql = "SELECT * FROM MeetingTable WHERE mid = '"+mid+"'";
+			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
 		}
