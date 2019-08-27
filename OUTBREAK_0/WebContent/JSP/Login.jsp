@@ -8,14 +8,14 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 		<title>登录页面</title>
 		<script>
 			function checkL() {
-				var em = document.getElementByID("IDInput").value;
-				var pw = document.getElementByID("PasswordInput").value;
+				var em = document.getElementById("IDInput").value;
+				var pw = document.getElementById("PasswordInput").value;
 				if(em.length == 0) {
-					alert("请输入邮箱！");
+					alert("请输入账号！");
 				} else if(pw.length == 0) {
 					alert("请输入密码！");
 				} else {
-					document.submit();
+					document.forms[0].submit();
 				}
 			}
 		</script>
