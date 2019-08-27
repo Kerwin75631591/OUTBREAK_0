@@ -6,6 +6,7 @@ public class MeetingBean {
 	private Date time;//会议时间
 	private String place;//会议地点
 	private String name;//会议名称
+	private String topic;//会议主题
 	private String content;//会议内容
 	private String host;//会议举办方
 	private int state;//0.未提交 1.待审核 2.审核通过 3.审核未通过 4.已完成
@@ -14,6 +15,14 @@ public class MeetingBean {
 	InvitedPeople People;//到达情况键值对
 	private String FileUrl;//会议文件路径
 	
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
 	public String getFileUrl() {
 		return FileUrl;
 	}
