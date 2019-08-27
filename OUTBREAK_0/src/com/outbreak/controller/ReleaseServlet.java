@@ -54,8 +54,8 @@ public class ReleaseServlet extends HttpServlet {
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
         	request.setAttribute("message", "错误信息: Error: 表单必须包含 enctype=multipart/form-data");
-            request.setAttribute("next", "/OUTBREAK_0/MeetingCreate.jsp");
-            response.sendRedirect("/OUTBREAK_0/Message.jsp");
+            request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
+            response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
             return;
         }
  
@@ -116,8 +116,8 @@ public class ReleaseServlet extends HttpServlet {
             }
         } catch (Exception ex) {
             request.setAttribute("message", "错误信息: " + ex.getMessage());
-            request.setAttribute("next", "/OUTBREAK_0/MeetingCreate.jsp");
-            response.sendRedirect("/OUTBREAK_0/Message.jsp");
+            request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
+            response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
             return;
         }
         
@@ -136,11 +136,11 @@ public class ReleaseServlet extends HttpServlet {
 		mb.setName(map.get("meetingName"));
 		mb.setTopic(map.get("meetingTopic"));
 		try {
-			mb.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(map.get("meetingData")));
+			mb.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("meetingData")));
 		} catch (ParseException e) {
 	           request.setAttribute("message", "错误信息: " + e.getMessage());
-	           request.setAttribute("next", "/OUTBREAK_0/MeetingCreate.jsp");
-	           response.sendRedirect("/OUTBREAK_0/Message.jsp");
+	           request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
+	           response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
 	           return;
 		}
 		mb.setContent(map.get("meetingContent"));
@@ -185,7 +185,7 @@ public class ReleaseServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.sendRedirect("/OUTBREAK_0/MeetingManage.jsp");
+		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
 	}
 
 }
