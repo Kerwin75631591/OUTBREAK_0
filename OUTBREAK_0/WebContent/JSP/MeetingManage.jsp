@@ -57,6 +57,7 @@ charset=GBK" pageEncoding="GBK"%>
 	<%}else{ 
 		int counter=1;
 		while(meetings.next()){
+			int meetingid=meetings.getInt(1);
 			String name=meetings.getString(4);
 			Date date=(Date)meetings.getObject(2);
 			String loc=meetings.getString(3);
@@ -89,7 +90,7 @@ charset=GBK" pageEncoding="GBK"%>
 			<td id=<%="date"+counter %>><%=date %></td>
 			<td id=<%="loc"+counter %>><%=loc %></td>
 			<td id=<%="content"+counter %>><%=cont %></td>
-			<td id=<%="num"+counter %>><a href="InvitedPeople.jsp" title="点击查看被邀请者的状态" target="_blank"><%=numString %></a></td>
+			<td id=<%="num"+counter %>><a href=<%="InvitedPeople.jsp?meetingName="+name+"&meetingId="+meetingid %> title="点击查看被邀请者的状态" target="_blank"><%=numString %></a></td>
 			<td id=<%="state"+counter %>><%=stateString %></td>
 			<td><input type="button" value="修改" onclick="submit(<%=counter%>)" <%if(state!=0)%> disabled="disabled"></td>
 		</tr>
