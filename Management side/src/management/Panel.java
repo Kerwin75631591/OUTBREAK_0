@@ -65,7 +65,7 @@ public class Panel extends JPanel {
 	private class RefreshActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			ResultSet rs = null;
-			String str="  id\t time\t place\t name\t content\t host\t  PeopleNum\t Arrival\t \n";
+			String str="  id\t time\t endtime\t place\t name\t topic\t content\t host\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
 			try {
 				rs = db.searchMeeting();
 			} catch (SQLException e) {
@@ -73,9 +73,10 @@ public class Panel extends JPanel {
 			}
 			try {
 				while(rs.next()) {
-					str=str+"  "+rs.getString("id")+"\t"+rs.getString("time")+"\t"+rs.getString("place")+"\t"+
-				rs.getString("name")+"\t"+rs.getString("content")+"\t"+rs.getString("host")+"\t"+
-				+rs.getInt("PeopleNum")+"\t"+rs.getInt("ArrivalNum")+"\n";
+					str=str+"  "+rs.getString("id")+"\t"+rs.getString("time")+"\t"+rs.getString("endtime")+"\t"+
+				rs.getString("place")+"\t"+rs.getString("name")+"\t"+rs.getString("topic")+"\t"+
+				rs.getString("content")+"\t"+rs.getString("host")+"\t"+rs.getInt("PeopleNum")+"\t"+
+				rs.getInt("ArrivalNum")+"\n";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
