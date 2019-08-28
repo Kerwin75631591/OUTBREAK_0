@@ -41,6 +41,20 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String meetingName = request.getParameter("meetingName");
+		String meetingTopic = request.getParameter("meetingTopic");
+		String meetingData = request.getParameter("meetingData");
+		String meetingPlace = request.getParameter("meetingPlace");
+		String meetingContent = request.getParameter("meetingContent");
+		String Users = request.getParameter("Users");
+		
+		System.out.println(meetingName);
+		System.out.println(meetingTopic);
+		System.out.println(meetingData);
+		System.out.println(meetingPlace);
+		System.out.println(meetingContent);
+		System.out.println(Users);
+
 		//新建会议实体
 		MeetingBean mb = new MeetingBean();
 		
@@ -69,14 +83,14 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		
 		DBConnect db=new DBConnect();
 		//检查是否有同名同时同地会议
-				try {
-					if(db.searchMeeting(mb.getBegintime(), mb.getName(), mb.getPlace())){
-						response.getWriter().print("<script type=\"text/javascript\">alert('检测到同名同时同地会议，请合理安排会议日程');window.location=/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
-					}
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
+//				try {
+//					if(db.searchMeeting(mb.getBegintime(), mb.getName())){
+//						response.getWriter().print("<script type=\"text/javascript\">alert('检测到同名同时同地会议，请合理安排会议日程');window.location=/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
+//					}
+//				} catch (SQLException e2) {
+//					// TODO Auto-generated catch block
+//					e2.printStackTrace();
+//				}
 		try {
 			db.connect();
 		} catch (SQLException e1) {
@@ -101,7 +115,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成！');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
+		response.getWriter().print("<script type=\"text/javascript\">alert('Release completed!');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
 	}
 
 }

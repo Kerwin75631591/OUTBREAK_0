@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -52,7 +53,7 @@ public class DBConnect {
 
 			// 创建会议表并记录 id，邮箱，密码，联系方式，名字，地址，
 			statement.executeUpdate(
-					"create table MeetingTable(id integer(5),time datetime,endtime datetime,place varchar(20),name varchar(20), "
+					"create table MeetingTable(id integer(5),begintime datetime,endtime datetime,place varchar(20),name varchar(20), "
 							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5),"
 							+ "FileUrl varchar(20))");
 
@@ -138,7 +139,7 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public int insertMeeting(int state, Date time,Date endtime, String place, String name,String topic, String content, String host,
+	public int insertMeeting(int state, Date begintime,Date endtime, String place, String name,String topic, String content, String host,
 			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
 		rs = statement.executeQuery(sql);
@@ -147,11 +148,11 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO MeetingTable(id,time,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
+		sql = "INSERT INTO MeetingTable(id,begintime,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
-		pstmt.setDate(2, new java.sql.Date(time.getTime()));
+		pstmt.setDate(2, new java.sql.Date(begintime.getTime()));
 		pstmt.setDate(3, new java.sql.Date(endtime.getTime()));
 		pstmt.setString(4, place);
 		pstmt.setString(5, name);
@@ -172,7 +173,7 @@ public class DBConnect {
 
 	// 在MeetingTable中删除数据
 	public void deleteMeeting(Date time, String name) throws SQLException {
-		String sql = "DELETE FROM MeetingTable WHERE time = " + time + " And name = " + name;
+		String sql = "DELETE FROM MeetingTable WHERE begintime = " + time + " And name = " + name;
 		statement.execute(sql);
 	}
 
@@ -191,8 +192,10 @@ public class DBConnect {
 	}
 
 	// MeetingTable搜索的同名同时会议
-	public boolean searchMeeting(Date time, String name,String place) throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE time = '" + time + "' name = '" + name + "' place = '"+place+"'";
+	public boolean searchMeeting(Date time, String name) throws SQLException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		String sql = "SELECT * FROM MeetingTable WHERE begintime = '" + sdf.format(time) + "' AND name = '" + name + "'";
 		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		boolean judge = true;

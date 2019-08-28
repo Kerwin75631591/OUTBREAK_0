@@ -15,6 +15,7 @@ charset=GBK" pageEncoding="GBK"%>
 		//alert(" ");
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
+		window.close();
 	}
 </script>
 </head>
@@ -25,7 +26,7 @@ charset=GBK" pageEncoding="GBK"%>
 %>
 
 	<div id="MngTopBox">
-	   <div id="MngWelcome">您好，<span id="email"><%=request.getSession().getAttribute("sessionname") %></span>！</div>
+	   <div id="MngWelcome">您好，<span id="email"><%=request.getSession().getAttribute("sessionemail") %></span>！</div>
 	   <div id="MngJump">
 	      <span id="createMeeting"><input type="button" id="CreateMeetingBtn" value="发布新会议" onclick="jumpToCreate()"></span>
 	      <span><input type="button" id="ManageLoginBtn" 

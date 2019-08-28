@@ -48,6 +48,7 @@
 		document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
 		
 		if(!(document.getElementById("uploadFile").value == "")){
+			document.meetingManageForm.enctype = "multipart/form-data" 
 			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
 	        document.meetingManageForm.submit();
 		}else{
@@ -117,7 +118,7 @@
 <body>
 	<canvas></canvas>
 	<div id="CrtTopBox">
-	   <div id="CreateWelcome">您好，<%=request.getSession().getAttribute("sessionname") %>！</div>
+	   <div id="CreateWelcome">您好，<%=request.getSession().getAttribute("sessionemail") %>！</div>
 	   <div id="CreateJump">
 	      <span><input type="button" id="CreateMeetingManageBtn" 
 	            value="管理会议" onclick="window.location.href='MeetingManage.jsp';"/></span>
@@ -126,7 +127,7 @@
 	   </div>
 	</div>
 	
-	<form action="" id="meetingManageForm" name="meetingManageForm" enctype="multipart/form-data" method="post">
+	<form action="" id="meetingManageForm" name="meetingManageForm" method="post">
 
 	
 	<div id="CrtLeftBox">

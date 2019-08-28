@@ -1,13 +1,31 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "标题文字",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+   
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "images/index/home.png",
+        "selectedIconPath": "images/index/home_s.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/index/my.png",
+        "selectedIconPath": "images/index/my_s.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }
