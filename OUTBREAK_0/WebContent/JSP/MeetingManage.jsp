@@ -58,12 +58,14 @@ charset=GBK" pageEncoding="GBK"%>
 		int counter=1;
 		while(meetings.next()){
 			int meetingid=meetings.getInt(1);
-			String name=meetings.getString(4);
-			Date date=(Date)meetings.getObject(2);
-			String loc=meetings.getString(3);
-			String cont=meetings.getString(5);
-			int arr=meetings.getInt(9);
-			int total=meetings.getInt(8);
+			String name=meetings.getString(5);
+			Date startDate=(Date)meetings.getObject(2);
+			Date endDate=(Date)meetings.getObject(3);
+			String dateString=startDate+"---"+endDate;
+			String loc=meetings.getString(4);
+			String topic=meetings.getString(6);
+			int arr=meetings.getInt(11);
+			int total=meetings.getInt(10);
 			String numString=arr+"//"+total;
 			int state=meetings.getInt(7);
 			String stateString=null;
@@ -87,9 +89,9 @@ charset=GBK" pageEncoding="GBK"%>
 	%>
 		<tr>
 			<td id=<%="name"+counter %>><%=name %></td>
-			<td id=<%="date"+counter %>><%=date %></td>
+			<td id=<%="date"+counter %>><%=dateString %></td>
 			<td id=<%="loc"+counter %>><%=loc %></td>
-			<td id=<%="content"+counter %>><%=cont %></td>
+			<td id=<%="content"+counter %>><%=topic %></td>
 			<td id=<%="num"+counter %>><a href=<%="InvitedPeople.jsp?meetingName="+name+"&meetingId="+meetingid %> title="点击查看被邀请者的状态" target="_blank"><%=numString %></a></td>
 			<td id=<%="state"+counter %>><%=stateString %></td>
 			<td><input type="button" value="修改" onclick="submit(<%=counter%>)" <%if(state!=0)%> disabled="disabled"></td>
