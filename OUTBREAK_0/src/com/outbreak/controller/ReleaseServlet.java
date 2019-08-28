@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -133,18 +134,20 @@ public class ReleaseServlet extends HttpServlet {
 		//新建会议实体
 		MeetingBean mb = new MeetingBean();
 		
+		//合成会议时间
+		try {
+			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(map.get("meetingData") + " " + map.get("meetingBegintime"));
+			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(map.get("meetingData") + " " + map.get("meetingBegintime"));
+			mb.setBegintime(begintime);
+			mb.setEndtime(endtime);
+		} catch (ParseException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
 		//设置会议内容
 		mb.setName(map.get("meetingName"));
 		mb.setTopic(map.get("meetingTopic"));
-		try {
-			mb.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("meetingData")));
-		} catch (ParseException e) {
-			System.out.println("3");
-	           request.setAttribute("message", "错误信息: " + e.getMessage());
-	           request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
-	           response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
-	           return;
-		}
 		mb.setContent(map.get("meetingContent"));
 		mb.setPlace(map.get("meetingPlace"));
 		mb.setFileUrl(filePath);
@@ -167,7 +170,7 @@ public class ReleaseServlet extends HttpServlet {
 		}
 		int id=0;
 		try {
-			id = db.insertMeeting(1, mb.getTime(), mb.getPlace(), mb.getName(), mb.getTopic(), mb.getContent(), mb.getHost(), mb.getPeopleNum(), mb.getArrivalNum(), mb.getFileUrl());
+			id = db.insertMeeting(1, mb.getBegintime(), mb.getEndtime(), mb.getPlace(), mb.getName(), mb.getTopic(), mb.getContent(), mb.getHost(), mb.getPeopleNum(), mb.getArrivalNum(), mb.getFileUrl());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
