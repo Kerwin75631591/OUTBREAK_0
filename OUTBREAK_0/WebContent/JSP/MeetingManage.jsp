@@ -12,8 +12,9 @@ charset=GBK" pageEncoding="GBK"%>
 <link type="text/css" rel="stylesheet" href="<%=path %>/CSS/MeetingManage.css">
 <script>
 	function jumpToCreate(){
+		//alert(" ");
 		var email=document.getElementById("email").value;
-		window.open("MeetingCreate.jsp?email="+email);
+		window.open("../JSP/MeetingCreate.jsp?email="+email);
 	}
 </script>
 </head>
@@ -24,7 +25,7 @@ charset=GBK" pageEncoding="GBK"%>
 %>
 
 	<div id="MngTopBox">
-	   <div id="MngWelcome">您好，<%=request.getSession().getAttribute("sessionname") %>！</div>
+	   <div id="MngWelcome">您好，<span id="email"><%=request.getSession().getAttribute("sessionname") %></span>！</div>
 	   <div id="MngJump">
 	      <span id="createMeeting"><input type="button" id="CreateMeetingBtn" value="发布新会议" onclick="jumpToCreate()"></span>
 	      <span><input type="button" id="ManageLoginBtn" 

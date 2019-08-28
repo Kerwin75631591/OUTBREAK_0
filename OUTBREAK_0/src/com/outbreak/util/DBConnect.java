@@ -191,8 +191,8 @@ public class DBConnect {
 	}
 
 	// MeetingTable搜索的同名同时会议
-	public boolean searchMeeting(Date time, String name) throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE time = '" + time + "' name = '" + name + "'";
+	public boolean searchMeeting(Date time, String name,String place) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE time = '" + time + "' name = '" + name + "' place = '"+place+"'";
 		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		boolean judge = true;
