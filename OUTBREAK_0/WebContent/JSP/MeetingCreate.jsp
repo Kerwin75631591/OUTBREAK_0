@@ -47,10 +47,19 @@
 		document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
 		document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
 		
-		document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
-        document.meetingManageForm.submit();
+		if(!(document.getElementById("uploadFile").value == "")){
+			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
+	        document.meetingManageForm.submit();
+		}else{
+			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseWithoutFileServlet";
+	        document.meetingManageForm.submit();
+		}
 	}
 	function Save(){
+		if(!(document.getElementById("uploadFile").value == "")){
+			alert("保存草稿功能不支持保存文件，请在发布时再上传文件！");
+		}
+		
         document.meetingManageForm.action = "/OUTBREAK_0/SaveServlet";
         document.meetingManageForm.submit();
  　　}
