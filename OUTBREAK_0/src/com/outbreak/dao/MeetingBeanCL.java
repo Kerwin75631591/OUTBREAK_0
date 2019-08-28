@@ -22,7 +22,7 @@ public class MeetingBeanCL {
 		boolean judge = true;
 		int state=99;
 		try {
-			judge = db.searchMeeting(mb.getTime(),mb.getName());
+			judge = db.searchMeeting(mb.getBegintime(),mb.getName());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +34,7 @@ public class MeetingBeanCL {
 		else
 			state=0;
 		try {
-			int id=db.insertMeeting(state,mb.getTime(),mb.getPlace(),mb.getName(),mb.getTopic(),mb.getContent()
+			int id=db.insertMeeting(state,mb.getBegintime(),mb.getEndtime(),mb.getPlace(),mb.getName(),mb.getTopic(),mb.getContent()
 					,mb.getHost(),mb.getPeopleNum(),mb.getArrivalNum(),mb.getFileUrl());
 			db.insertPeople(id,mb.getPeople());
 		} catch (SQLException e) {

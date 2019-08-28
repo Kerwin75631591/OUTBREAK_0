@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+
 import com.outbreak.entity.InvitedPeople;
 
 public class DBConnect {
@@ -49,7 +52,7 @@ public class DBConnect {
 
 			// 创建会议表并记录 id，邮箱，密码，联系方式，名字，地址，
 			statement.executeUpdate(
-					"create table MeetingTable(id integer(5),time date,place varchar(20),name varchar(20), "
+					"create table MeetingTable(id integer(5),time date,endtime date,place varchar(20),name varchar(20), "
 							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5),"
 							+ "FileUrl varchar(20))");
 
@@ -135,28 +138,30 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public int insertMeeting(int state, Date time, String place, String name,String topic, String content, String host,
+	public int insertMeeting(int state, Date time,Date endtime, String place, String name,String topic, String content, String host,
 			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
-		String sql = "SELECT id FROM UserTable ";
+		String sql = "SELECT id FROM MeetingTable ";
 		rs = statement.executeQuery(sql);
 		int id = 0;
 		while (rs.next()) {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO MeetingTable(id,time,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)values(?,?,?,?,?,?,?,?,?,?,?)";
+		sql = "INSERT INTO MeetingTable(id,time,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setDate(2, new java.sql.Date(time.getTime()));
-		pstmt.setString(3, place);
-		pstmt.setString(4, name);
-		pstmt.setString(5, topic);
-		pstmt.setString(6, content);
-		pstmt.setString(7, host);
-		pstmt.setInt(8, state);
-		pstmt.setInt(9, PeopleNum);
-		pstmt.setInt(10, ArrivalNum);
-		pstmt.setString(11, FileUrl);
+		pstmt.setDate(3, new java.sql.Date(endtime.getTime()));
+		pstmt.setString(4, place);
+		pstmt.setString(5, name);
+		pstmt.setString(6, topic);
+		pstmt.setString(7, content);
+		pstmt.setString(8, host);
+		pstmt.setInt(9, state);
+		pstmt.setInt(10, PeopleNum);
+		pstmt.setInt(11, ArrivalNum);
+		pstmt.setString(12, FileUrl);
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
@@ -174,14 +179,13 @@ public class DBConnect {
 	// MeetingTable搜索某人举办的会议，返回resultset
 	public ResultSet searchMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE host = '" + host + "'";
-		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
 	// MeetingTable搜索所有未提交的会议，返回resultset
-	public ResultSet searchMeeting() throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE state = 0";
+	public ResultSet searchChangableMeeting(String host) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
@@ -207,23 +211,25 @@ public class DBConnect {
 	}
 
 	// 在PeopleTable中加入新的数据
-	public void insertPeople(int id, InvitedPeople people) throws SQLException {
-		while (people.getNext() != null) {
-
-			String sql = "UPDATE UserTable SET NAME =  '" + people.getName() + "'  WHERE email= '" + people.getEmail() + "'";
+	public void insertPeople(int id, ArrayList<InvitedPeople> people) throws SQLException {
+		System.out.println("insertPeople已进入");
+		Iterator<InvitedPeople> it = people.iterator();
+		while (it.hasNext()) {
+			InvitedPeople p=it.next();
+			System.out.println(p.getName()+"+"+p.getEmail());
+			String sql = "UPDATE UserTable SET NAME =  '" + p.getName() + "'  WHERE email= '" + p.getEmail() + "'";
 			statement.executeUpdate(sql);
 
-			sql = "INSERT INTO PeopleTable(Mid,Pid,TOF)values(?,?,?)";
+			sql = "INSERT INTO PeopleTable(Mid,uid,TOF)values(?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			pstmt.setString(2, people.getName());
+			pstmt.setString(2, p.getName());
 			pstmt.setBoolean(3, false);
 			pstmt.addBatch();
 			pstmt.clearParameters();
 			pstmt.executeBatch();
 			pstmt.clearBatch();
 
-			people = people.getNext();
 		}
 	}
 

@@ -20,7 +20,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.outbreak.entity.InvitedPeople;
 import com.outbreak.entity.MeetingBean;
 import com.outbreak.util.DBConnect;
 
@@ -53,6 +52,7 @@ public class ReleaseServlet extends HttpServlet {
 		// 检测是否为多媒体上传
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
+        	System.out.println("1");
         	request.setAttribute("message", "错误信息: Error: 表单必须包含 enctype=multipart/form-data");
             request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
             response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
@@ -115,6 +115,7 @@ public class ReleaseServlet extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
+        	System.out.println("2");
             request.setAttribute("message", "错误信息: " + ex.getMessage());
             request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
             response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
@@ -138,6 +139,7 @@ public class ReleaseServlet extends HttpServlet {
 		try {
 			mb.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("meetingData")));
 		} catch (ParseException e) {
+			System.out.println("3");
 	           request.setAttribute("message", "错误信息: " + e.getMessage());
 	           request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
 	           response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
@@ -150,13 +152,9 @@ public class ReleaseServlet extends HttpServlet {
 		
 		//制作会议邀请名单
 		String[] guests = map.get("Users").split("-");
-		InvitedPeople people = new InvitedPeople();
 		for(int i = 0; i<guests.length/3; i+=3)
 		{
-			people.setName(guests[i]);
-			people.setPhoneNumber(guests[i+1]);
-			people.setEmail(guests[i+2]);
-			mb.setPeople(people);
+			mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
 		}
 		mb.setPeopleNum(guests.length / 3);
 		
@@ -176,7 +174,7 @@ public class ReleaseServlet extends HttpServlet {
 		}
 		
 		try {
-			db.insertPeople(id, people);
+			db.insertPeople(id, mb.getPeople());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

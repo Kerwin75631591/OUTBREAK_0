@@ -6,21 +6,11 @@ public class InvitedPeople {
 	private String email;
 	private String phoneNumber;
 	private boolean TOF;
-	private InvitedPeople next;
 	
 	public InvitedPeople() {
 		TOF=false;
-		next=null;
 	}
 	
-	public InvitedPeople getNext() {
-		return next;
-	}
-
-	public void setNext(InvitedPeople next) {
-		this.next = next;
-	}
-
 	public String getName() {
 		return name;
 	}
