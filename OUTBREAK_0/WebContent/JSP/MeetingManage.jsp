@@ -56,7 +56,6 @@ charset=GBK" pageEncoding="GBK"%>
 			<td style="font-size: 15px">null</td>
 			<td style="font-size: 15px">null</td>
 			<td style="font-size: 15px">null</td>
-			<td><input type="button" id="MngBoxInBtn" value="ÐÞ¸Ä" style="border: 1px solid #E2E3E5;font: 15px Arial;width:100px;height:30px;display:inline-block;vertical-align:middle;background:#FFFFFF;box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);margin-left:10px;"></td>
 		</tr>
 	<%}else{ 
 		int counter=1;
