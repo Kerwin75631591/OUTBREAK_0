@@ -79,7 +79,7 @@
 	        --rowNum;
 	    }
 	}
-	</script>
+</script>
 </head>
 
 <body>
@@ -110,8 +110,28 @@
 			 <td><input id="meetingTopic" name="meetingTopic" type="text"style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
-		     <td style="font-size: 20px">日期：</td>
+		     <td style="font-size: 20px">会议日期：</td>
 			 <td><input id="meetingData" name="meetingData" type="date" style="width: 500px; height: 30px; font-size: 30px"></td>
+		  </tr>
+		  <tr>
+		     <td style="font-size: 20px">会议时间：</td>
+			 <td>
+			    <table id="TimeTable">
+			       <tr>
+			          <td style="font-size: 20px;"><input id="BeginH" type="text" 
+			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
+			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
+			          <td style="font-size: 20px;"><input id="BeginM" type="text" 
+			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
+			          <td style="font:bold;font-size: 20px; width: 80px;text-align:center;">至</td>
+			          <td style="font-size: 20px;"><input id="EndH" type="text" 
+			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
+			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
+			          <td style="font-size: 20px;"><input id="EndM" type="text" 
+			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
+			       </tr>
+			    </table>
+			 </td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议地点：</td>
@@ -119,7 +139,7 @@
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议内容：</td>
-			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 400px; font-size: 30px"></textarea></td>
+			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"></textarea></td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">上传资料：</td>
