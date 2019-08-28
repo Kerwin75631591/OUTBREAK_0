@@ -8,6 +8,10 @@ charset=UTF-8" pageEncoding="UTF-8"%>
 		<title>登录页面</title>
 		<script>
 			function checkL() {
+				if(document.getElementById("VericodeInput").length == 0 || document.getElementById("VericodeInput").value != "7364"){
+					alert("验证码错误！");
+					return;
+				}
 				var em = document.getElementById("IDInput").value;
 				var pw = document.getElementById("PasswordInput").value;
 				if(em.length == 0) {

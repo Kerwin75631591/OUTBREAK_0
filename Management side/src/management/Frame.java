@@ -13,7 +13,7 @@ public class Frame extends JFrame {
 		this.setTitle("OUTBREAK会议管理程序  管理端");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(panel);
-		this.setSize(900, 900);
+		this.setSize(1500, 900);
 		this.setResizable(false);
 	}
 

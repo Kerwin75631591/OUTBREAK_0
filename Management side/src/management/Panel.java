@@ -39,7 +39,7 @@ public class Panel extends JPanel {
         jl.setFont(fnt);                   //设置标签中的字体
 		this.setLayout(new FlowLayout(1,10,10));
 		this.setName("inner panel");
-		textArea = new JTextArea(30, 70);
+		textArea = new JTextArea(40, 110);
 		textArea.setEditable(false);
 		textArea.setBorder(BasicBorders.getTextFieldBorder());
 		textField = new JTextField(24);
@@ -65,7 +65,7 @@ public class Panel extends JPanel {
 	private class RefreshActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			ResultSet rs = null;
-			String str="  id\t begintime\t endtime\t place\t name\t topic\t content\t host\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
+			String str="  id\t begintime\t\t endtime\t\t place\t name\t topic\t content\t host\t\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
 			try {
 				rs = db.searchMeeting();
 			} catch (SQLException e) {
@@ -73,10 +73,10 @@ public class Panel extends JPanel {
 			}
 			try {
 				while(rs.next()) {
-					str=str+"  "+rs.getString("id")+"\t"+rs.getString("time")+"\t"+rs.getString("endtime")+"\t"+
+					str=str+"  "+rs.getString("id")+"\t"+rs.getString("begintime")+"\t"+rs.getString("endtime")+"\t"+
 				rs.getString("place")+"\t"+rs.getString("name")+"\t"+rs.getString("topic")+"\t"+
 				rs.getString("content")+"\t"+rs.getString("host")+"\t"+rs.getInt("PeopleNum")+"\t"+
-				rs.getInt("ArrivalNum")+"\n";
+				rs.getInt("ArrivalNum")+"\t"+rs.getString("FileUrl")+"\t"+"\n";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

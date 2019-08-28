@@ -19,7 +19,7 @@
 			if(check.length==0){
 				alert("请输入验证码");
 			}else{
-				if(CHECK==check){
+				if(CHECK=64=check){
 					alert("验证码错误！");
 				}else{
 					if(pw==rpw){
