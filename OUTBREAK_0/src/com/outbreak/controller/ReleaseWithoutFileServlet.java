@@ -15,10 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.outbreak.entity.MeetingBean;
 import com.outbreak.util.DBConnect;
 
-
-@WebServlet("/SaveServlet")
-public class SaveServlet extends HttpServlet {
+/**
+ * Servlet implementation class ReleaseWithoutFileServlet
+ */
+@WebServlet("/ReleaseWithoutFileServlet")
+public class ReleaseWithoutFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ReleaseWithoutFileServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,39 +41,33 @@ public class SaveServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//æ–°å»ºä¼šè®®å®ä½“
+		//ĞÂ½¨»áÒéÊµÌå
 		MeetingBean mb = new MeetingBean();
 		
-		//è®¾ç½®ä¼šè®®ä¿¡æ¯s
+		//ÉèÖÃ»áÒéĞÅÏ¢
 		mb.setName(request.getParameter("meetingName"));
 		mb.setTopic(request.getParameter("meetingTopic"));
-		if(!request.getParameter("meetingBegintime").isEmpty() && !request.getParameter("meetingEndtime").isEmpty())
-		{
-			//åˆæˆä¼šè®®æ—¶é—´
-			try {
-				Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
-				Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
-				mb.setBegintime(begintime);
-				mb.setEndtime(endtime);
-			} catch (ParseException e2) {
-				e2.printStackTrace();
-			}
+		//ºÏ³É»áÒéÊ±¼ä
+		try {
+			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
+			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
+			mb.setBegintime(begintime);
+			mb.setEndtime(endtime);
+		} catch (ParseException e2) {
+			e2.printStackTrace();
 		}
 		mb.setContent(request.getParameter("meetingContent"));
 		mb.setPlace(request.getParameter("meetingPlace"));
-		if(!request.getParameter("Users").isEmpty()){
-			//åˆ¶ä½œä¼šè®®é‚€è¯·åå•
-			String[] guests = request.getParameter("Users").split("-");
-			for(int i = 0; i<guests.length/3; i+=3)
-			{
-				mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
-			}
-			mb.setPeopleNum(guests.length / 3);
+		//ÖÆ×÷»áÒéÑûÇëÃûµ¥
+		String[] guests = request.getParameter("Users").split("-");
+		for(int i = 0; i<guests.length/3; i+=3)
+		{
+			mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
 		}
+		mb.setPeopleNum(guests.length / 3);
 		mb.setHost((String) request.getSession().getAttribute("sessionemail"));
 		
-		//ä¸Šä¼ è‡³æ•°æ®åº“
-		DBConnect db = new DBConnect();
+		DBConnect db=new DBConnect();
 		try {
 			db.connect();
 		} catch (SQLException e1) {
@@ -72,7 +76,7 @@ public class SaveServlet extends HttpServlet {
 		}
 		int id=0;
 		try {
-			id = db.insertMeeting(0, mb.getBegintime(), mb.getEndtime(), mb.getPlace(), mb.getName(), mb.getTopic(), mb.getContent(), mb.getHost(), mb.getPeopleNum(), mb.getArrivalNum(), mb.getFileUrl());
+			id = db.insertMeeting(1, mb.getBegintime(), mb.getEndtime(), mb.getPlace(), mb.getName(), mb.getTopic(), mb.getContent(), mb.getHost(), mb.getPeopleNum(), mb.getArrivalNum(), mb.getFileUrl());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,9 +88,10 @@ public class SaveServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		db.close();
 		
-		// è·³è½¬åˆ° ä¼šè®®ç®¡ç†é¡µé¢
+        // Ìø×ªµ½ »áÒé¹ÜÀíÒ³Ãæ
 		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
 	}
 
