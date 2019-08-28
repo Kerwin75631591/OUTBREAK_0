@@ -87,7 +87,7 @@ public class SaveServlet extends HttpServlet {
 		db.close();
 		
 		// 跳转到 会议管理页面
-		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
+		response.getWriter().print("<script type=\"text/javascript\">alert('保存完成！');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
 	}
 
 }

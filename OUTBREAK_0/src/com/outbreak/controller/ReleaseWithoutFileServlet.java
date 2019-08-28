@@ -68,6 +68,15 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		mb.setHost((String) request.getSession().getAttribute("sessionemail"));
 		
 		DBConnect db=new DBConnect();
+		//检查是否有同名同时同地会议
+				try {
+					if(db.searchMeeting(mb.getBegintime(), mb.getName(), mb.getPlace())){
+						response.getWriter().print("<script type=\"text/javascript\">alert('检测到同名同时同地会议，请合理安排会议日程');window.location=/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
+					}
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 		try {
 			db.connect();
 		} catch (SQLException e1) {
@@ -92,7 +101,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
+		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成！');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
 	}
 
 }

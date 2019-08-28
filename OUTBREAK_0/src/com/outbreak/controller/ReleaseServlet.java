@@ -54,10 +54,7 @@ public class ReleaseServlet extends HttpServlet {
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
         	System.out.println("1");
-        	request.setAttribute("message", "错误信息: Error: 表单必须包含 enctype=multipart/form-data");
-            request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
-            response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
-            return;
+        	response.getWriter().print("<script type=\"text/javascript\">alert('错误信息: Error: 表单必须包含 enctype=multipart/form-data');window.location='/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
         }
  
         // 配置上传参数
@@ -117,10 +114,7 @@ public class ReleaseServlet extends HttpServlet {
             }
         } catch (Exception ex) {
         	System.out.println("2");
-            request.setAttribute("message", "错误信息: " + ex.getMessage());
-            request.setAttribute("next", "/OUTBREAK_0/JSP/MeetingCreate.jsp");
-            response.sendRedirect("/OUTBREAK_0/JSP/Message.jsp");
-            return;
+        	response.getWriter().print("<script type=\"text/javascript\">alert(错误信息:" + ex.getMessage() + ");window.location='/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
         }
         
         //在控制台迭代输出文本内容
@@ -162,6 +156,15 @@ public class ReleaseServlet extends HttpServlet {
 		mb.setPeopleNum(guests.length / 3);
 		
 		DBConnect db=new DBConnect();
+		//检查是否有同名同时同地会议
+		try {
+			if(db.searchMeeting(mb.getBegintime(), mb.getName(), mb.getPlace())){
+				response.getWriter().print("<script type=\"text/javascript\">alert('检测到同名同时同地会议，请合理安排会议日程');window.location=/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
+			}
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		try {
 			db.connect();
 		} catch (SQLException e1) {
@@ -186,7 +189,7 @@ public class ReleaseServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.sendRedirect("/OUTBREAK_0/JSP/MeetingManage.jsp");
+		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成！');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
 	}
 
 }
