@@ -52,7 +52,7 @@ public class DBConnect {
 
 			// 创建会议表并记录 id，邮箱，密码，联系方式，名字，地址，
 			statement.executeUpdate(
-					"create table MeetingTable(id integer(5),time date,endtime date,place varchar(20),name varchar(20), "
+					"create table MeetingTable(id integer(5),time datetime,endtime datetime,place varchar(20),name varchar(20), "
 							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5),"
 							+ "FileUrl varchar(20))");
 

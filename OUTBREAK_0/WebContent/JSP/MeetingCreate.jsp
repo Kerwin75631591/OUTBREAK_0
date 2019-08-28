@@ -85,8 +85,7 @@
 <body>
 	<canvas></canvas>
 	<div id="CrtTopBox">
-	   <div id="CreateWelcome">您好，<%=request.getSession().getAttribute("sessionname") %>！
-	   </div>
+	   <div id="CreateWelcome">您好，<%=request.getSession().getAttribute("sessionname") %>！</div>
 	   <div id="CreateJump">
 	      <span><input type="button" id="CreateMeetingManageBtn" 
 	            value="管理会议" onclick="window.location.href='MeetingManage.jsp';"/></span>

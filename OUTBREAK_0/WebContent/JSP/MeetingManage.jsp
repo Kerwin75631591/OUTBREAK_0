@@ -22,23 +22,25 @@ charset=GBK" pageEncoding="GBK"%>
 	String sessionName=(String)request.getSession().getAttribute("sessionname");
 	String sessionEmail=(String)request.getSession().getAttribute("sessionemail");
 %>
-	<header>
-	<span id="title">OUTBREAK 多客户端云会议系统</span>
-	<span id="createMeeting"><input type="button" value="发布新会议" onclick="jumpToCreate()"></span>
-	</header>
-	<div id="back">
-		您好，<span id="email"><%=sessionEmail %></span>！&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="Login.jsp">退出登陆</a>
+
+	<div id="MngTopBox">
+	   <div id="MngWelcome">您好，<%=request.getSession().getAttribute("sessionname") %>！</div>
+	   <div id="MngJump">
+	      <span id="createMeeting"><input type="button" id="CreateMeetingBtn" value="发布新会议" onclick="jumpToCreate()"></span>
+	      <span><input type="button" id="ManageLoginBtn" 
+	            value="退出登录" onclick="window.location.href='Login.jsp';"/></span>
+	   </div>
 	</div>
-		
+
+    <div id="ManageBox">
 	<table>
 		<tr>
-			<th id="name">会议名称</th>
-			<th id="date">会议日期</th>
-			<th id="loc">会议地点</th>
-			<th id="content">会议内容</th>
-			<th id="users">与会者名单确认</th>
-			<th id="status">状态</th><th></th>
+			<th id="name" style="font-size: 20px;width:300px">会议名称</th>
+			<th id="date" style="font-size: 20px;width:700px">会议日期</th>
+			<th id="loc" style="font-size: 20px;width:300px">会议地点</th>
+			<th id="content" style="font-size: 20px;width:300px">会议内容</th>
+			<th id="users" style="font-size: 20px;width:350px">与会者名单确认</th>
+			<th id="status" style="font-size: 20px;width:300px">状态</th><th></th>
 		</tr>
 	<% 
 		MeetingBeanCL mbcl=new MeetingBeanCL();
@@ -46,28 +48,28 @@ charset=GBK" pageEncoding="GBK"%>
 		if(meetings==null){
 	%>
 		<tr>
-			<td>null</td>
-			<td>null</td>
-			<td>null</td>
-			<td>null</td>
-			<td>null</td>
-			<td>null</td>
-			<td><input type="button" value="修改"></td>
+			<td style="font-size: 15px">null</td>
+			<td style="font-size: 15px">null</td>
+			<td style="font-size: 15px">null</td>
+			<td style="font-size: 15px">null</td>
+			<td style="font-size: 15px">null</td>
+			<td style="font-size: 15px">null</td>
+			<td><input type="button" id="MngBoxInBtn" value="修改" style="border: 1px solid #E2E3E5;font: 15px Arial;width:100px;height:30px;display:inline-block;vertical-align:middle;background:#FFFFFF;box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);margin-left:10px;"></td>
 		</tr>
 	<%}else{ 
 		int counter=1;
 		while(meetings.next()){
-			int meetingid=meetings.getInt(1);
-			String name=meetings.getString(5);
-			Date startDate=(Date)meetings.getObject(2);
-			Date endDate=(Date)meetings.getObject(3);
+			int meetingid=meetings.getInt("id");
+			String name=meetings.getString("name");
+			Date startDate=(Date)meetings.getObject("begintime");
+			Date endDate=(Date)meetings.getObject("endtime");
 			String dateString=startDate+"---"+endDate;
-			String loc=meetings.getString(4);
-			String topic=meetings.getString(6);
-			int arr=meetings.getInt(11);
-			int total=meetings.getInt(10);
+			String loc=meetings.getString("place");
+			String topic=meetings.getString("topic");
+			int arr=meetings.getInt("ArrivalNum");
+			int total=meetings.getInt("peopleNum");
 			String numString=arr+"//"+total;
-			int state=meetings.getInt(7);
+			int state=meetings.getInt("state");
 			String stateString=null;
 			switch(state){
 			case 0:
@@ -103,6 +105,7 @@ charset=GBK" pageEncoding="GBK"%>
 	} 
 	%>
 	</table>
+	</div>
 	
 </body>
 </html>
