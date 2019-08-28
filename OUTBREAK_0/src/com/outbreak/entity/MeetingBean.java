@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MeetingBean {
-	private Date time;//会议时间
+	private Date begintime;//会议开始时间
+	private Date endtime;//会议结束时间
 	private String place;//会议地点
 	private String name;//会议名称
 	private String topic;//会议主题
@@ -71,13 +72,6 @@ public class MeetingBean {
 	public void setPeopleNum(int peopleNum) {
 		PeopleNum = peopleNum;
 	}
-
-	public Date getTime() {
-		return time;
-	}
-	public void setTime(Date time) {
-		this.time = time;
-	}
 	public String getPlace() {
 		return place;
 	}
@@ -107,6 +101,22 @@ public class MeetingBean {
 	}
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	public Date getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
+	}
+
+	public Date getBegintime() {
+		return begintime;
+	}
+
+	public void setBegintime(Date begintime) {
+		this.begintime = begintime;
 	}
 
 	

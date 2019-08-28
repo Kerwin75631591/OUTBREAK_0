@@ -65,7 +65,7 @@ public class Panel extends JPanel {
 	private class RefreshActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			ResultSet rs = null;
-			String str="  id\t time\t endtime\t place\t name\t topic\t content\t host\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
+			String str="  id\t begintime\t endtime\t place\t name\t topic\t content\t host\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
 			try {
 				rs = db.searchMeeting();
 			} catch (SQLException e) {
