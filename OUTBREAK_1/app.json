@@ -11,7 +11,10 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-   
+   "color": "#fff", // 文字颜色
+   "selectedColor": "#87ceeb", // 选中时的文字颜色
+   "borderStyle": "black", // 上边线的颜色风格
+   "backgroundColor": "#2c2e3b", // 背景色
     "list": [
       {
         "pagePath": "pages/index/index",

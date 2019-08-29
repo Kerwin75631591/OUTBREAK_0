@@ -61,6 +61,35 @@
 			alert("保存草稿功能不支持保存文件，请在发布时再上传文件！");
 		}
 		
+		var meetingBeginH = document.getElementById("BeginH").value;
+		var meetingBeginM = document.getElementById("BeginM").value;
+		var meetingEndH = document.getElementById("EndH").value;
+		var meetingEndM = document.getElementById("EndM").value;
+		
+		if(!(meetingBeginH == "" || meetingBeginM == "" || meetingEndH == "" || meetingEndM == "" || document.getElementById("meetingData").value == "")){
+			//时间格式判断
+			if (isNaN(meetingBeginH) || meetingBeginH < 0 || meetingBeginH > 24 ||
+				isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 60 ||	
+				isNaN(meetingEndH) || meetingEndH < 0 || meetingEndH > 24 ||
+				isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 60 || meetingBeginH > meetingEndH) {
+			    alert("这不是一个有效的时间段");
+			    return;
+			}else{
+				if(meetingBeginH == meetingEndH){
+					if(meetingBeginM > meetingEndM){
+						alert("这不是一个有效的时间段");
+					    return;
+					}
+				}
+			}
+			//时间格式转化为"hh:mm"
+			document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
+			document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
+		}else{
+			document.getElementById("meetingBegintime").value = "";
+			document.getElementById("meetingEndtime").value = "";
+		}
+		
         document.meetingManageForm.action = "/OUTBREAK_0/SaveServlet";
         document.meetingManageForm.submit();
  　　}

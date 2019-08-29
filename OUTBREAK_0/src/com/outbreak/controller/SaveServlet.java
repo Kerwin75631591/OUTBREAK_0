@@ -31,23 +31,43 @@ public class SaveServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String meetingName = request.getParameter("meetingName");
+		String meetingTopic = request.getParameter("meetingTopic");
+		String meetingData = request.getParameter("meetingData");
+		String meetingPlace = request.getParameter("meetingPlace");
+		String meetingContent = request.getParameter("meetingContent");
+		String Users = request.getParameter("Users");
+		
+		System.out.println(meetingName);
+		System.out.println(meetingTopic);
+		System.out.println(meetingData);
+		System.out.println(meetingPlace);
+		System.out.println(meetingContent);
+		System.out.println(Users);
+
 		//新建会议实体
 		MeetingBean mb = new MeetingBean();
 		
-		//设置会议信息s
+		//设置会议信息
 		mb.setName(request.getParameter("meetingName"));
 		mb.setTopic(request.getParameter("meetingTopic"));
-		if(!request.getParameter("meetingBegintime").isEmpty() && !request.getParameter("meetingEndtime").isEmpty())
+		System.out.println(request.getParameter("meetingBegintime"));
+		System.out.println(request.getParameter("meetingEndtime"));
+		if(!request.getParameter("meetingBegintime").equals("") && !request.getParameter("meetingEndtime").equals(""))
 		{
 			//合成会议时间
 			try {
 				Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
-				Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
+				Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingEndtime"));
 				mb.setBegintime(begintime);
 				mb.setEndtime(endtime);
 			} catch (ParseException e2) {
 				e2.printStackTrace();
 			}
+		}
+		else {
+			mb.setBegintime(new Date());
+			mb.setEndtime(new Date());
 		}
 		mb.setContent(request.getParameter("meetingContent"));
 		mb.setPlace(request.getParameter("meetingPlace"));
@@ -61,6 +81,9 @@ public class SaveServlet extends HttpServlet {
 			mb.setPeopleNum(guests.length / 3);
 		}
 		mb.setHost((String) request.getSession().getAttribute("sessionemail"));
+		
+		System.out.println(mb.getBegintime());
+		System.out.println(mb.getEndtime());
 		
 		//上传至数据库
 		DBConnect db = new DBConnect();
