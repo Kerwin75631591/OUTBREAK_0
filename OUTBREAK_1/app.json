@@ -23,7 +23,7 @@
         "selectedIconPath": "images/index/home_s.png"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/message/message",
         "text": "消息",
         "iconPath": "images/index/message.png",
         "selectedIconPath": "images/index/message_s.png"
