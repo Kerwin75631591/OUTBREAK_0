@@ -7,20 +7,26 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "标题文字",
+    "navigationBarTitleText": "OUTBREAK云会议系统",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-   "color": "#fff", // 文字颜色
-   "selectedColor": "#87ceeb", // 选中时的文字颜色
-   "borderStyle": "black", // 上边线的颜色风格
-   "backgroundColor": "#2c2e3b", // 背景色
+   "color": "#000",
+   "selectedColor": "#18FC29", 
+   "borderStyle": "black",
+   "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "images/index/home.png",
         "selectedIconPath": "images/index/home_s.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "消息",
+        "iconPath": "images/index/message.png",
+        "selectedIconPath": "images/index/message_s.png"
       },
       {
         "pagePath": "pages/my/my",
