@@ -13,9 +13,9 @@
 		"coverView": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
-	"appid": "wx65f1aac8f35a0ebf",
-	"projectname": "miniprogram-1",
+	"libVersion": "2.0.4",
+	"appid": "wx4dcdd7db4ee1184f",
+	"projectname": "OUTBREAK_1",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
