@@ -1,3 +1,4 @@
+package com.outbreak.dao;
 
 import java.util.Date;
 import java.util.Properties;
@@ -5,8 +6,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailPoster{
-    String from="15008181891@163.com";
+public class EmailPoster {
+	String from="15008181891@163.com";
     String password="mky999729mzz";
     String to="383250208@qq.com";
     String emailHost="smtp.163.com";
@@ -51,12 +52,21 @@ public class EmailPoster{
             e.printStackTrace();
         }
     }
+    public void sendRegEmail(int check) {
+    	this.sendEmail("outbreak注册验证码", "<p>尊敬的用户您好：</p><p>您在outbreak会议管理系统中注册的验证码为"+check+"</p>");
+    }
     public static void test(){
         EmailPoster emailPoster=new EmailPoster("383250208@qq.com");
         emailPoster.sendEmail("会议提醒","OUTBREAK会议管理系统提醒您：\n您明天在231有一个会议参加");
     }
+    public static void testSendRegEmail() {
+    	EmailPoster emailPoster=new EmailPoster("383250208@qq.com");
+    	emailPoster.sendRegEmail(584213);
+    }
     public static void main(String[] args){
         //test();
-        EmailPoster.test();
+        //EmailPoster.test();
+    	EmailPoster.testSendRegEmail();
     }
+
 }
