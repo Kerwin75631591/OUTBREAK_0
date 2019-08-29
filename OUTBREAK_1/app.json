@@ -1,38 +1,45 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/log/log",
+    "pages/home/home",
+    "pages/reg/reg",
+    "pages/mydata/mydata",
+    "pages/meetingdetail/meetingdetail",
+    "pages/card/card",
+    "pages/info/info",
+    "pages/my/my",
     "pages/logs/logs",
-    "pages/my/my"
+    "pages/my/test",
+    "pages/help/help",
+    "pages/my/ppp"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "OUTBREAK云会议系统",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-   "color": "#000",
-   "selectedColor": "#18FC29", 
-   "borderStyle": "black",
-   "backgroundColor": "#fff",
+    "selectedColor": "#1296DB",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "主页",
-        "iconPath": "images/index/home.png",
-        "selectedIconPath": "images/index/home_s.png"
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/Home.png",
+        "selectedIconPath": "images/Home_s.png"
       },
       {
-        "pagePath": "pages/message/message",
+        "pagePath": "pages/info/info",
         "text": "消息",
-        "iconPath": "images/index/message.png",
-        "selectedIconPath": "images/index/message_s.png"
+        "iconPath": "images/Info.png",
+        "selectedIconPath": "images/Info_s.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
-        "iconPath": "images/index/my.png",
-        "selectedIconPath": "images/index/my_s.png"
+        "iconPath": "images/My.png",
+        "selectedIconPath": "images/My_s.png"
       }
     ]
   },

@@ -1,0 +1,5 @@
+<!--pages/log/log.wxml-->
+<text>pages/log/log.wxml</text>
+<view>
+   <button type="primary" bindtap='jumpPage'>跳转</button>
+</view>
