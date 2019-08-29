@@ -25,14 +25,12 @@ public class UserBeanCL {
 		try {
 			judge = db.searchUser(false, ub.getEmail(), ub.getPassword());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (judge == 0) {
 			try {
 				db.insertUser(ub.getEmail(), ub.getPassword(), ub.getPhoneNumber(), ub.getName(), ub.getAddress());
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return true;

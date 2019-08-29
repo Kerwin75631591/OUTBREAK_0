@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="../CSS/MeetingCreate.css" />
 <script type="text/javascript">
 	function Release(){
+		
+		
         var meetingName = document.getElementById("meetingName").value.replace(/(^\s*)|(\s*$)/g, '');
         var meetingTopic = document.getElementById("meetingTopic").value.replace(/(^\s*)|(\s*$)/g, '');
         var meetingData = document.getElementById("meetingData").value.replace(/(^\s*)|(\s*$)/g, '');

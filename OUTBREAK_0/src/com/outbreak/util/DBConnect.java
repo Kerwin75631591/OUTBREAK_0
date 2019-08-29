@@ -28,44 +28,7 @@ public class DBConnect {
 		}
 	}
 
-	// 初始化数据库
-	public void initiazation() throws SQLException {
-		try {
-			// 连接已有数据库
-			String dbURL = "jdbc:mysql://localhost:3306/"
-					+ "MyDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false";
-			connection = DriverManager.getConnection(dbURL);
-			statement = connection.createStatement();
-			// 新建数据库
-			statement.executeUpdate("create database UserDB");
-			// 打开新建的数据库
-			statement.close();
-			connection.close();
-			Class.forName("com.mysql.jdbc.Driver");
-			dbURL = "jdbc:mysql://localhost:3306/"
-					+ "UserDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false";
-			connection = DriverManager.getConnection(dbURL);
-			statement = connection.createStatement();
-
-			// 创建用户表并记录 id，邮箱，密码，联系方式，名字，地址，
-			statement.executeUpdate(
-					"create table UserTable(id integer(5),email varchar(20),password varchar(20),phoneNumber varchar(11), name varchar(20), address varchar(20))");
-
-			// 创建会议表并记录 id，邮箱，密码，联系方式，名字，地址，
-			statement.executeUpdate(
-					"create table MeetingTable(id integer(5),begintime datetime,endtime datetime,place varchar(20),name varchar(20), "
-							+ "content varchar(20), host varchar(20), state integer(5), PeopleNum integer(5),ArrivalNum integer(5),"
-							+ "FileUrl varchar(20))");
-
-			// 创建人员表并记录 会议id，人员id，是否参加
-			statement.executeUpdate("create table PeopleTable(Mid integer(5),Uid integer(5),TOF tinyint)");
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("无法找到驱动类");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	// 连接数据库
 	public void connect() throws SQLException {
@@ -94,7 +57,7 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address)values(?,?,?,?,?,?)";
+		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public)values(?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setString(2, email);
@@ -102,6 +65,7 @@ public class DBConnect {
 		pstmt.setString(4, phoneNumber);
 		pstmt.setString(5, name);
 		pstmt.setString(6, address);
+		pstmt.setString(7, "0000");
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
@@ -220,14 +184,15 @@ public class DBConnect {
 		while (it.hasNext()) {
 			InvitedPeople p=it.next();
 			System.out.println(p.getName()+"+"+p.getEmail());
-			String sql = "UPDATE UserTable SET NAME =  '" + p.getName() + "'  WHERE email= '" + p.getEmail() + "'";
-			statement.executeUpdate(sql);
+			
 
-			sql = "INSERT INTO PeopleTable(Mid,uid,TOF)values(?,?,?)";
+			String sql = "INSERT INTO PeopleTable(Mid,uid,TOF,Email,PhoneNum)values(?,?,?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			pstmt.setString(2, p.getName());
 			pstmt.setBoolean(3, false);
+			pstmt.setString(4, p.getEmail());
+			pstmt.setString(5, p.getPhoneNumber());
 			pstmt.addBatch();
 			pstmt.clearParameters();
 			pstmt.executeBatch();
@@ -254,10 +219,6 @@ public class DBConnect {
 		}
 	}
 
-	// 数据库初始化
-	public static void main(String[] args) throws SQLException {
-		DBConnect db = new DBConnect();
-		db.initiazation();
-	}
+	
 
 }

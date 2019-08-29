@@ -13,20 +13,25 @@
 		var rpw=document.getElementById("rpw").value;
 		var email=document.getElementById("em").value;
 		var check=document.getElementById("chk").value;	
+		var name=document.getElementById("nm").value;
 		if(email.length==0){
 			alert("请输入邮箱");
 		}else{
 			if(check.length==0){
 				alert("请输入验证码");
 			}else{
-				if(CHECK=64=check){
+				if(CHECK!=check){
 					alert("验证码错误！");
 				}else{
-					if(pw==rpw){
-						//alert("提交表单");
-						document.forms[0].submit();
+					if(name.length==0){
+						alert("请输入名字");
 					}else{
-						alert("两次密码输入不一致！");
+						if(pw==rpw){
+							//alert("提交表单");
+							document.forms[0].submit();
+						}else{
+							alert("两次密码输入不一致！");
+						}
 					}
 				}
 			}
@@ -40,7 +45,6 @@
 		}
 		var email=document.getElementById("em").value;
 		document.getElementById("show_check").innerHTML=CHECK;
-		document.getElementById("em").disabled=true;
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
@@ -72,6 +76,10 @@
 		 <span><input type="email" id="em" name="Email"></span>
 		 <span id="email_poster"><input id="email_button" type="button" value="发送验证码" onclick="postEmail()"></span>
       </div>
+      <div>
+	     <span id="RegistNameLabel">名字：</span>
+		 <span><input id="nm" type="text" name="Name"></span>
+	  </div>
       <div>
 	     <span id="RegistPasswordLabel">密码：</span>
 		 <span><input id="pw" type="password" name="Password"></span>

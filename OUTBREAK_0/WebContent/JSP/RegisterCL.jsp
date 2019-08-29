@@ -27,13 +27,17 @@
 <%
 	String email=request.getParameter("Email");
 	String pw=request.getParameter("Password");
+	String name=request.getParameter("Name");
 	UserBean ub=new UserBean();
 	Boolean success=false;
+	System.out.println(email+"\n"+name+"\n"+pw);
 	if(email!=null&&pw!=null)
 	{
 		ub.setEmail(email);
 		ub.setPassword(pw);
+		ub.setName(name);
 		UserBeanCL ubc=new UserBeanCL();
+		
 		System.out.println(ub.getEmail()+"\n"+ub.getPassword());
 		success=ubc.Register(ub);
 		if(success){
