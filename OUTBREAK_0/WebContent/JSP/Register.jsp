@@ -48,11 +48,18 @@
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
-		window.open("CheckCL.jsp?Email="+email+"&Check="+e);
+		//window.open("CheckCL.jsp?Email="+email+"&check="+e);
 	}
 	function encrypt(){
 		//alert(typeof CHECK);
-		var enc=CHECK;
+		var enc="";
+		var holder=CHECK;
+		var temp=0;
+		while(holder!=0){
+			temp=holder%100;
+			holder=Math.floor(holder/100);
+			enc+=String.fromCharCode(temp);
+		}
 		return enc;
 	}
 </script>
