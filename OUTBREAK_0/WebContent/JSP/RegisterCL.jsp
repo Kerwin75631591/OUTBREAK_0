@@ -25,6 +25,8 @@
 
 <body>
 <%
+	request.setCharacterEncoding("GBK");
+	response.setContentType("text/html;charset=GBK");
 	String email=request.getParameter("Email");
 	String pw=request.getParameter("Password");
 	String name=request.getParameter("Name");

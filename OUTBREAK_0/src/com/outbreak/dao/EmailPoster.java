@@ -1,4 +1,4 @@
-
+package com.outbreak.dao;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.*;

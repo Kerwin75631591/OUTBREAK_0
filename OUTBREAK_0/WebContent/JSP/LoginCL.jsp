@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		request.getSession().setAttribute("sessionemail",ub.getEmail()); //保存邮箱
     		request.getSession().setAttribute("sessionname",ub.getName()); //保存用户名
     		request.getSession().setAttribute("sessionpwd",ub.getPassword()); //保存密码
-    		response.sendRedirect("MeetingManage.jsp");
+    		response.sendRedirect(path+"/JSP/"+"MeetingManage.jsp");
     	}else{
     		ubcl.db.close();
     	}

@@ -50,8 +50,9 @@ public class ReleaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("GBK");
+		response.setContentType("text/html;charset=GBK");
+		response.setCharacterEncoding("GBK");
 		// 检测是否为多媒体上传
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
@@ -75,7 +76,7 @@ public class ReleaseServlet extends HttpServlet {
         upload.setSizeMax(MAX_REQUEST_SIZE);
 
         // 中文处理
-        upload.setHeaderEncoding("UTF-8"); 
+        upload.setHeaderEncoding("GBK"); 
 
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录

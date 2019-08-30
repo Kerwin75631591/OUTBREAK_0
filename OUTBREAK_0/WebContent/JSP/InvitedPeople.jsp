@@ -16,6 +16,7 @@
 	String meetingid=request.getParameter("meetingId");
 	int MID=Integer.parseInt(meetingid);
 	String meetingName=request.getParameter("meetingName");
+	System.out.println("Ω” ’"+meetingName);
 	DBConnect db=new DBConnect();
 	db.connect();
 	ResultSet inviteds=db.searchPeople(MID);

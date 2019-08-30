@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=GBK"
+	pageEncoding="GBK"%>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>åˆ›å»ºä¼šè®®</title>
+<meta charset="GBK">
+<title>´´½¨»áÒé</title>
 <link rel="stylesheet" href="../CSS/MeetingCreate.css" />
 <script type="text/javascript">
 	function Release(){
@@ -19,13 +19,13 @@
         var meetingContent = document.getElementById("meetingContent").value.replace(/(^\s*)|(\s*$)/g, '');
 		var rowNum = document.getElementById("UserTable").rows.length;
 		
-		//åˆ¤æ–­æ˜¯å¦å¡«æ»¡æ¯ä¸€é¡¹ï¼ˆæ–‡ä»¶é™¤å¤–ï¼‰
+		//ÅĞ¶ÏÊÇ·ñÌîÂúÃ¿Ò»Ïî£¨ÎÄ¼ş³ıÍâ£©
 		if(meetingName == '' || meetingTopic == '' || meetingPlace == '' || meetingContent == '' || meetingData == '' || rowNum == 1){
-			alert("è¯·å®Œæ•´å¡«å†™ç”³è¯·è¡¨åå†æäº¤ï¼Œæˆ–è€…å…ˆä¿å­˜ä¸ºè‰ç¨¿ï¼");
+			alert("ÇëÍêÕûÌîĞ´ÉêÇë±íºóÔÙÌá½»£¬»òÕßÏÈ±£´æÎª²İ¸å£¡");
 			return;
 		}
 		
-		//æ—¶é—´æ ¼å¼åˆ¤æ–­
+		//Ê±¼ä¸ñÊ½ÅĞ¶Ï
 		var meetingBeginH = document.getElementById("BeginH").value;
 		var meetingBeginM = document.getElementById("BeginM").value;
 		var meetingEndH = document.getElementById("EndH").value;
@@ -34,18 +34,18 @@
 			isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 60 ||	
 			isNaN(meetingEndH) || meetingEndH < 0 || meetingEndH > 24 ||
 			isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 60 || meetingBeginH > meetingEndH) {
-		    alert("è¿™ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„æ—¶é—´æ®µ");
+		    alert("Õâ²»ÊÇÒ»¸öÓĞĞ§µÄÊ±¼ä¶Î");
 		    return;
 		}else{
 			if(meetingBeginH == meetingEndH){
 				if(meetingBeginM > meetingEndM){
-					alert("è¿™ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„æ—¶é—´æ®µ");
+					alert("Õâ²»ÊÇÒ»¸öÓĞĞ§µÄÊ±¼ä¶Î");
 				    return;
 				}
 			}
 		}
 		
-		//æ—¶é—´æ ¼å¼è½¬åŒ–ä¸º"hh:mm"
+		//Ê±¼ä¸ñÊ½×ª»¯Îª"hh:mm"
 		document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
 		document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
 		
@@ -60,7 +60,7 @@
 	}
 	function Save(){
 		if(!(document.getElementById("uploadFile").value == "")){
-			alert("ä¿å­˜è‰ç¨¿åŠŸèƒ½ä¸æ”¯æŒä¿å­˜æ–‡ä»¶ï¼Œè¯·åœ¨å‘å¸ƒæ—¶å†ä¸Šä¼ æ–‡ä»¶ï¼");
+			alert("±£´æ²İ¸å¹¦ÄÜ²»Ö§³Ö±£´æÎÄ¼ş£¬ÇëÔÚ·¢²¼Ê±ÔÙÉÏ´«ÎÄ¼ş£¡");
 		}
 		
 		var meetingBeginH = document.getElementById("BeginH").value;
@@ -69,22 +69,22 @@
 		var meetingEndM = document.getElementById("EndM").value;
 		
 		if(!(meetingBeginH == "" || meetingBeginM == "" || meetingEndH == "" || meetingEndM == "" || document.getElementById("meetingData").value == "")){
-			//æ—¶é—´æ ¼å¼åˆ¤æ–­
+			//Ê±¼ä¸ñÊ½ÅĞ¶Ï
 			if (isNaN(meetingBeginH) || meetingBeginH < 0 || meetingBeginH > 24 ||
 				isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 60 ||	
 				isNaN(meetingEndH) || meetingEndH < 0 || meetingEndH > 24 ||
 				isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 60 || meetingBeginH > meetingEndH) {
-			    alert("è¿™ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„æ—¶é—´æ®µ");
+			    alert("Õâ²»ÊÇÒ»¸öÓĞĞ§µÄÊ±¼ä¶Î");
 			    return;
 			}else{
 				if(meetingBeginH == meetingEndH){
 					if(meetingBeginM > meetingEndM){
-						alert("è¿™ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„æ—¶é—´æ®µ");
+						alert("Õâ²»ÊÇÒ»¸öÓĞĞ§µÄÊ±¼ä¶Î");
 					    return;
 					}
 				}
 			}
-			//æ—¶é—´æ ¼å¼è½¬åŒ–ä¸º"hh:mm"
+			//Ê±¼ä¸ñÊ½×ª»¯Îª"hh:mm"
 			document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
 			document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
 		}else{
@@ -94,37 +94,37 @@
 		
         document.meetingManageForm.action = "/OUTBREAK_0/SaveServlet";
         document.meetingManageForm.submit();
- ã€€ã€€}
+ ¡¡¡¡}
 	function Add(){
 		var Name = document.getElementById("Name").value;
         var Phone = document.getElementById("Phone").value;
         var Email = document.getElementById("Email").value;
         
-        //E-mailéªŒè¯
+        //E-mailÑéÖ¤
         var atpos = Email.indexOf("@");
         var dotpos = Email.lastIndexOf(".");
         if (atpos<1 || dotpos<atpos+2 || dotpos+2>=Email.length){
-          alert("ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„ e-mail åœ°å€");
+          alert("²»ÊÇÒ»¸öÓĞĞ§µÄ e-mail µØÖ·");
           return false;
         }
         
-        //è”ç³»æ–¹å¼éªŒè¯
+        //ÁªÏµ·½Ê½ÑéÖ¤
         if (isNaN(Phone)){
-        	alert("ä¸æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„è”ç³»æ–¹å¼");
+        	alert("²»ÊÇÒ»¸öÓĞĞ§µÄÁªÏµ·½Ê½");
             return false;
         }
         
-        //æ·»åŠ åˆ°Usersé‡Œé¢ï¼Œæ•…å¯ä»¥ä¼ è¾“è‡³servlet
+        //Ìí¼Óµ½UsersÀïÃæ£¬¹Ê¿ÉÒÔ´«ÊäÖÁservlet
 		var temp = document.getElementById("Users").value;
         Users.value = temp + Name + "-" + Phone + "-" + Email + "-";
 
-        //æ·»åŠ åˆ°UsersTableä¸­
+        //Ìí¼Óµ½UsersTableÖĞ
 		var trObj = document.createElement("tr");
 		trObj.id = new Date().getTime();
-		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='åˆ é™¤' onclick='Delete(this)'></td>";
+		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='É¾³ı' onclick='Delete(this)'></td>";
 		document.getElementById("UserTable").appendChild(trObj);
 		
-		//é‡ç½®è¾“å…¥æ¡†
+		//ÖØÖÃÊäÈë¿ò
 		document.getElementById("Name").value = null;
         document.getElementById("Phone").value = null;
         document.getElementById("Email").value = null;
@@ -149,12 +149,12 @@
 <body>
 	<canvas></canvas>
 	<div id="CrtTopBox">
-	   <div id="CreateWelcome">æ‚¨å¥½ï¼Œ<%=request.getSession().getAttribute("sessionemail") %>ï¼</div>
+	   <div id="CreateWelcome">ÄúºÃ£¬<%=request.getSession().getAttribute("sessionemail") %>£¡</div>
 	   <div id="CreateJump">
 	      <span><input type="button" id="CreateMeetingManageBtn" 
-	            value="ç®¡ç†ä¼šè®®" onclick="window.location.href='MeetingManage.jsp';"/></span>
+	            value="¹ÜÀí»áÒé" onclick="window.location.href='MeetingManage.jsp';"/></span>
 	      <span><input type="button" id="CreateLoginBtn" 
-	            value="é€€å‡ºç™»å½•" onclick="window.location.href='Login.jsp';"/></span>
+	            value="ÍË³öµÇÂ¼" onclick="window.location.href='Login.jsp';"/></span>
 	   </div>
 	</div>
 	
@@ -164,20 +164,20 @@
 	<div id="CrtLeftBox">
 	   <table width="100%" border="0" cellspacing="10" style="margin-top: 10px; margin-left: 20px">
 		  <tr>
-		     <td style="font-size: 20px">ä¼šè®®åç§°ï¼š</td>
+		     <td style="font-size: 20px">»áÒéÃû³Æ£º</td>
 		     <td><input type="text" id="meetingName" name="meetingName"
 		         style="width: 500px; height: 30px; font-size: 30px;"></td>
 		  </tr>
 		  <tr>
-		     <td style="font-size: 20px">ä¼šè®®ä¸»é¢˜ï¼š</td>
+		     <td style="font-size: 20px">»áÒéÖ÷Ìâ£º</td>
 			 <td><input id="meetingTopic" name="meetingTopic" type="text"style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
-		     <td style="font-size: 20px">ä¼šè®®æ—¥æœŸï¼š</td>
+		     <td style="font-size: 20px">»áÒéÈÕÆÚ£º</td>
 			 <td><input id="meetingData" name="meetingData" type="date" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
-		     <td style="font-size: 20px">ä¼šè®®æ—¶é—´ï¼š</td>
+		     <td style="font-size: 20px">»áÒéÊ±¼ä£º</td>
 			 <td>
 			    <table id="TimeTable">
 			       <tr>
@@ -186,7 +186,7 @@
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
 			          <td style="font-size: 20px;"><input id="BeginM" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
-			          <td style="font:bold;font-size: 20px; width: 80px;text-align:center;">è‡³</td>
+			          <td style="font:bold;font-size: 20px; width: 80px;text-align:center;">ÖÁ</td>
 			          <td style="font-size: 20px;"><input id="EndH" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
@@ -197,15 +197,15 @@
 			 </td>
 		  </tr>
 		  <tr>
-			 <td style="font-size: 20px">ä¼šè®®åœ°ç‚¹ï¼š</td>
+			 <td style="font-size: 20px">»áÒéµØµã£º</td>
 			 <td><input id="meetingPlace" name="meetingPlace" type="text" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
-			 <td style="font-size: 20px">ä¼šè®®å†…å®¹ï¼š</td>
+			 <td style="font-size: 20px">»áÒéÄÚÈİ£º</td>
 			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"></textarea></td>
 		  </tr>
 		  <tr>
-			 <td style="font-size: 20px">ä¸Šä¼ èµ„æ–™ï¼š</td>
+			 <td style="font-size: 20px">ÉÏ´«×ÊÁÏ£º</td>
 			 <td><input id="uploadFile" name="uploadFile" type="file" style="width: 500px; height: 30px; font-size: 20px"></td>
 		  </tr>
 	   </table>
@@ -214,34 +214,34 @@
 	<div id="Box">
 	   <table id="UserTable" name="UserTable">
 	      <tr>
-		     <td style="font-size: 20px; margin-left: -400px; width:100px;">ä¸ä¼šäººå‘˜ï¼š</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">äººå‘˜å§“å</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">è”ç³»æ–¹å¼</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">é‚®ç®±åœ°å€</td>
+		     <td style="font-size: 20px; margin-left: -400px; width:100px;">Óë»áÈËÔ±£º</td>
+			 <td style="font-size: 20px; width:250px; text-align:center;">ÈËÔ±ĞÕÃû</td>
+			 <td style="font-size: 20px; width:250px; text-align:center;">ÁªÏµ·½Ê½</td>
+			 <td style="font-size: 20px; width:250px; text-align:center;">ÓÊÏäµØÖ·</td>
 			 <td style="font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		  </tr>
 	   </table>
 	</div>
 	   <table id="InputTable">
 	      <tr>
-		     <td style="font-size: 20px; text-align:center;">è¾“å…¥ä¿¡æ¯ï¼š</td>
-			 <td style="font-size: 20px; text-align:center;">äººå‘˜å§“å</td>
-			 <td style="font-size: 20px; text-align:center;">è”ç³»æ–¹å¼</td>
-			 <td style="font-size: 20px; text-align:center;">é‚®ç®±åœ°å€</td>
+		     <td style="font-size: 20px; text-align:center;">ÊäÈëĞÅÏ¢£º</td>
+			 <td style="font-size: 20px; text-align:center;">ÈËÔ±ĞÕÃû</td>
+			 <td style="font-size: 20px; text-align:center;">ÁªÏµ·½Ê½</td>
+			 <td style="font-size: 20px; text-align:center;">ÓÊÏäµØÖ·</td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">&nbsp;</td>
 			 <td><input type="text" id="Name" style="height: 20px; font-size: 20px"></td>
 			 <td><input type="text" id="Phone" style="height: 20px; font-size: 20px"></td>
 			 <td><input type="email" id="Email" style="height: 20px; font-size: 20px"></td>
-			 <td><span><input type="button" id="CreateAdd" value="å¢  åŠ " onclick="Add()"></span></td>
+			 <td><span><input type="button" id="CreateAdd" value="Ôö  ¼Ó" onclick="Add()"></span></td>
 		  </tr>
 	   </table>
 	</div>
 	<div id="CrtBottomBox">
-	   <input type="button" id="CreateRelease" value="å‘  å¸ƒ" onclick="Release()"> 
-	   <input type="button" id="CreateSave" value="ä¿å­˜è‰ç¨¿" onclick="Save()"> 
-	   <input type="reset" id="CreateReset" value="é‡  ç½®" onclick="Reset()">
+	   <input type="button" id="CreateRelease" value="·¢  ²¼" onclick="Release()"> 
+	   <input type="button" id="CreateSave" value="±£´æ²İ¸å" onclick="Save()"> 
+	   <input type="reset" id="CreateReset" value="ÖØ  ÖÃ" onclick="Reset()">
 	   <input type="text" id="Users" name="Users" style="display:none">
 	   <input type="text" id="meetingBegintime" name="meetingBegintime" style="display:none">
   	 	<input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none">

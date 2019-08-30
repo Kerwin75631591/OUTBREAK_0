@@ -1,49 +1,56 @@
 <%@ page language="java" contentType="text/html; 
-charset=UTF-8" pageEncoding="UTF-8"%>
+charset=GBK" pageEncoding="GBK"%>
+
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+System.out.println(path);
+
+System.out.println(basePath);%>
+
 <!DOCTYPE html>
 <html>
 
 	<head>
-		<meta charset="UTF-8">
-		<title>ç™»å½•é¡µé¢</title>
+		<meta charset="GBK">
+		<title>µÇÂ¼Ò³Ãæ</title>
 		<script>
 			function checkL() {
 				if(document.getElementById("VericodeInput").length == 0 || document.getElementById("VericodeInput").value != "7364"){
-					alert("éªŒè¯ç é”™è¯¯ï¼");
+					alert("ÑéÖ¤Âë´íÎó£¡");
 					return;
 				}
 				var em = document.getElementById("IDInput").value;
 				var pw = document.getElementById("PasswordInput").value;
 				if(em.length == 0) {
-					alert("è¯·è¾“å…¥è´¦å·ï¼");
+					alert("ÇëÊäÈëÕËºÅ£¡");
 				} else if(pw.length == 0) {
-					alert("è¯·è¾“å…¥å¯†ç ï¼");
+					alert("ÇëÊäÈëÃÜÂë£¡");
 				} else {
 					document.forms[0].submit();
 				}
 			}
 		</script>
-		<link rel="stylesheet" href="../CSS/Login.css" >
+		<link rel="stylesheet" href="<%=path %>/CSS/Login.css" >
 	</head>
 	<body>
 		<canvas ></canvas>
-		<form action="LoginCL.jsp" method="post">
+		<form action="<%=path %>/JSP/LoginCL.jsp" method="post">
 		<div id="LoginBox">
 			<div>
-				<span id="LoginIDLabel">å¸å·ï¼š</span>
+				<span id="LoginIDLabel">ÕÊºÅ£º</span>
 				<span><input type="email" id="IDInput" name="LoginEmail"></span>
             </div>
 			<div>
-				<span id="LoginPasswordLabel">å¯†ç ï¼š</span>
+				<span id="LoginPasswordLabel">ÃÜÂë£º</span>
 				<span><input type="password" id="PasswordInput" name="LoginPassword"></span>
 			</div>
 			<div>
-				<span id="LoginVericodeLabel">éªŒè¯ç ï¼š</span>
+				<span id="LoginVericodeLabel">ÑéÖ¤Âë£º</span>
 				<span><input type="text" id="VericodeInput" name="LoginVericode"></span>
 				<span id="LoginVericodePic"></span>
 			</div>
-			<span><input type="button" id="RegistWant" value="æ³¨å†Œ" onclick="window.location.href='Register.jsp'"></span>
-			<span><input type="button" id="LoginInput" value="ç™»å½•" onclick="checkL()"></span>
+			<span><input type="button" id="RegistWant" value="×¢²á" onclick="window.location.href='<%=path %>/JSP/Register.jsp'"></span>
+			<span><input type="button" id="LoginInput" value="µÇÂ¼" onclick="checkL()"></span>
 		</div>
 		</form>
 	</body>
