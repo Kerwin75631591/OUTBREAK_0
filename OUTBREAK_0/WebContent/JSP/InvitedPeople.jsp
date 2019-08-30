@@ -13,10 +13,20 @@
 </head>
 <body>
 <%
+	String all=request.getQueryString();
+	String query=java.net.URLDecoder.decode(all,"GBK");
+	System.out.println(query);
+	String[] qs=query.split("&");
+	String meetingID[]=qs[1].split("=");
+	String meetingNAME[]=qs[0].split("=");
+	String meetingName=meetingNAME[1];
+	int MID=Integer.parseInt(meetingID[1]);
+	/*
 	String meetingid=request.getParameter("meetingId");
 	int MID=Integer.parseInt(meetingid);
 	String meetingName=request.getParameter("meetingName");
-	System.out.println("接收"+meetingName);
+	*/
+	//System.out.println("接收"+meetingName);
 	DBConnect db=new DBConnect();
 	db.connect();
 	ResultSet inviteds=db.searchPeople(MID);
