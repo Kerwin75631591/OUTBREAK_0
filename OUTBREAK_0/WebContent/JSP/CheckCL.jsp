@@ -13,5 +13,8 @@
 	String check=request.getParameter("check");
 	EmailPosterCL.sendRegCheck(receiver, Integer.parseInt(check));
 %>
+<script>
+	window.close();
+</script>
 </body>
 </html>
