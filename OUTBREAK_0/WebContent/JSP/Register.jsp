@@ -44,7 +44,7 @@
 				break;
 		}
 		var email=document.getElementById("em").value;
-		document.getElementById("show_check").innerHTML=CHECK;
+		//document.getElementById("show_check").innerHTML=CHECK;
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
@@ -89,7 +89,6 @@
 	  <span><input id="RegistBtn" type="button" value="зЂВс" onclick="subForm()"></span>
 	  
    </div>
-   <p id="show_check">show check!</p>
    </form>
 </body>
 
