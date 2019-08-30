@@ -1,4 +1,4 @@
-package com.outbreak.entity;
+package management;
 
 import java.util.Date;
 import java.util.Properties;
