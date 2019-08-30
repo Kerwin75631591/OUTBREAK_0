@@ -1,0 +1,26 @@
+<!--login.wxml-->
+<view class="cantainer">
+  <view class="title">
+    <text>OUTBREAK</text>
+    <text>多客户端云会议管理系统</text>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class="section">
+      <text>邮箱：</text>
+      <input type="text" placeholder="请输入邮箱" name="LoginEmail"></input>
+    </view>
+    <view class="section">
+      <text>密码：</text>
+      <input password="true" placeholder="请输入密码" name="LoginPassword"></input>
+    </view>
+    <view class="button">
+      <button class="button" form-type="submit" hover-class="afterClick">登录</button>
+    </view>
+     <view class="button">
+      <button class="button" hover-class="afterClick">忘记密码</button>
+    </view>
+    <view class="button">
+      <button class="button" hover-class="afterClick">注册</button>
+    </view>
+  </form>
+</view>

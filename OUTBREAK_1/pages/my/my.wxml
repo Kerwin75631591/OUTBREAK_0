@@ -1,26 +1,29 @@
-<view class="index">
-  <view class="index-hd">
-    <image class="index-logo" src="/images/index/logo.png"></image>
-  </view>
-  <view class="index-bd">
-    <view class="kind-list">
-      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <view class="kind-list-item">
-          <view id="{{item.id}}" class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
-            <view class="kind-list-text">{{item.name}}</view>
-          </view>
-          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
-            <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
-              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
-                <navigator url="pages/{{page}}/{{page}}" class="navigator">
-                  <view class="navigator-text">{{page}}</view>
-                  <view class="navigator-arrow"></view>
-                </navigator>
-              </block>
-            </view>
-          </view>
-        </view>
-      </block>
+<image class="topimage" src="../../images/tubiao.jpg" mode="aspectFit"></image>
+<text class="welcometext">1111111111@xx.com,您好!</text>
+	<view class="my-list">
+  	<navigator class="my-sitem"></navigator>
+		<navigator class="my-item" url="../mydata/mydata">
+			<image src="../../images/edit.png" mode="aspectFit"></image>
+			<text>编辑个人资料</text>
+		</navigator>
+		<navigator class="my-item" url="../Tcard/Tcard">
+			<image src="../../images/card.png" mode="aspectFit"></image>
+			<text>我收藏的名片</text>
+		</navigator>
+		<navigator class="my-item" url="../help/help">
+			<image src="../../images/help.png" mode="aspectFit"></image>
+			<text>帮助</text>
+		</navigator>
+    <navigator class="my-item" url="../log/log">
+			<image src="../../images/logout.png" mode="aspectFit"></image>
+			<text>退出登录</text>
+		</navigator>
+
+    <view class="viewName">
+      <button class="kefu" bindtap="modalTap2">联系客服</button>
     </view>
+    <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
+      <view> OUTBREAK开发团队项目经理 </view>
+      <view> 王嘉磊 11111111111 </view>
+    </modal>
   </view>
-</view>
