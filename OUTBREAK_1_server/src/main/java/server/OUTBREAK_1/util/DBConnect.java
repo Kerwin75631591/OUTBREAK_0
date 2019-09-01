@@ -24,13 +24,13 @@ public class DBConnect {
 			Class.forName("com.mysql.jdbc.Driver");
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("ï¿½Þ·ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ÎÞ·¨ÕÒµ½Çý¶¯Àà");
 		}
 	}
 
 	
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
+	// Á¬½ÓÊý¾Ý¿â
 	public void connect() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -38,16 +38,16 @@ public class DBConnect {
 					+ "UserDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false";
 			connection = DriverManager.getConnection(dbURL);
 			statement = connection.createStatement();
-			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("Êý¾Ý¿âÒÑÁ¬½Ó");
 		} catch (ClassNotFoundException e) {
-			System.out.println("ï¿½Þ·ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ÎÞ·¨ÕÒµ½Çý¶¯Àà");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("Êý¾Ý¿âÎÞ·¨Á¬½Ó");
 		}
 	}
 
-	// ï¿½ï¿½UserTableï¿½Ð¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚUserTableÖÐ¼ÓÈëÐÂµÄÊý¾Ý
 	public void insertUser(String email, String password, String phoneNumber, String name, String address)
 			throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
@@ -72,17 +72,17 @@ public class DBConnect {
 		pstmt.clearBatch();
 	}
 
-	// ï¿½ï¿½UserTableï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚUserTableÖÐÉ¾³ýÊý¾Ý
 	public void deleteUser(String email) throws SQLException {
 		String sql = "DELETE * FROM UserTable WHERE email = " + email;
 		statement.execute(sql);
 	}
 
-	// UserTableï¿½ï¿½Â¼(true)&×¢ï¿½ï¿½(false)ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Öµ0ÎªÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½1Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2Îªï¿½ËºÅ²ï¿½ï¿½ï¿½ï¿½Ú£ï¿½×¢ï¿½ï¿½ï¿½ï¿½1Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½
+	// UserTableµÇÂ¼(true)&×¢²á(false)¼ì²â ·µ»ØÖµ0ÎªÍ¨¹ý£¬µÇÂ¼ÖÐ1ÎªÃÜÂë´íÎó£¬2ÎªÕËºÅ²»´æÔÚ£¬×¢²áÖÐ1Îª¸ÃÓÊÏäÒÑ×¢²á
 	public int searchUser(boolean judge, String email, String password) throws SQLException {
 		String sql = "SELECT*FROM UserTable";
 		rs = statement.executeQuery(sql);
-		System.out.println("rsï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½");
+		System.out.println("rs±íÒÑ´´½¨");
 		if (judge) {
 			while (rs.next()) {
 				if (email.equals(rs.getString("email"))) {
@@ -102,7 +102,7 @@ public class DBConnect {
 		}
 	}
 
-	// ï¿½ï¿½MeetingTableï¿½Ð¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚMeetingTableÖÐ¼ÓÈëÐÂµÄÊý¾Ý
 	public int insertMeeting(int state, Date begintime,Date endtime, String place, String name,String topic, String content, String host,
 			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
@@ -135,32 +135,31 @@ public class DBConnect {
 		return id;
 	}
 
-	// ï¿½ï¿½MeetingTableï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚMeetingTableÖÐÉ¾³ýÊý¾Ý
 	public void deleteMeeting(Date time, String name) throws SQLException {
 		String sql = "DELETE FROM MeetingTable WHERE begintime = " + time + " And name = " + name;
 		statement.execute(sql);
 	}
 
-	// MeetingTableï¿½ï¿½ï¿½ï¿½Ä³ï¿½Ë¾Ù°ï¿½Ä»ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½resultset
+	// MeetingTableËÑË÷Ä³ÈË¾Ù°ìµÄ»áÒé£¬·µ»Øresultset
 	public ResultSet searchMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE host = '" + host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTableï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½á½»ï¿½Ä»ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½resultset
+	// MeetingTableËÑË÷ËùÓÐÎ´Ìá½»µÄ»áÒé£¬·µ»Øresultset
 	public ResultSet searchChangableMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTableï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½
+	// MeetingTableËÑË÷µÄÍ¬ÃûÍ¬Ê±»áÒé
 	public boolean searchMeeting(Date time, String name) throws SQLException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		String sql = "SELECT * FROM MeetingTable WHERE begintime = '" + sdf.format(time) + "' AND name = '" + name + "'";
-		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		boolean judge = true;
 		while (rs.next())
@@ -168,8 +167,15 @@ public class DBConnect {
 		return judge;
 
 	}
+	
+	// MeetingTableËÑË÷mid
+	public ResultSet searchMeeting(Integer integer) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE mid = '" + integer  + "'";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
 
-	// MeetingTableï¿½Þ¸ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	// MeetingTableÐÞ¸ÄÄ³¸ö»áÒéµÄ×´Ì¬
 	public void updateMeeting(int id, int state) throws SQLException {
 		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
@@ -177,9 +183,9 @@ public class DBConnect {
 
 	}
 
-	// ï¿½ï¿½PeopleTableï¿½Ð¼ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
+	// ÔÚPeopleTableÖÐ¼ÓÈëÐÂµÄÊý¾Ý
 	public void insertPeople(int id, ArrayList<InvitedPeople> people) throws SQLException {
-		System.out.println("insertPeopleï¿½Ñ½ï¿½ï¿½ï¿½");
+		System.out.println("insertPeopleÒÑ½øÈë");
 		Iterator<InvitedPeople> it = people.iterator();
 		while (it.hasNext()) {
 			InvitedPeople p=it.next();
@@ -201,15 +207,20 @@ public class DBConnect {
 		}
 	}
 
-	// PeopleTableï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½midï¿½Ä»ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½resultset
+	// PeopleTableËÑË÷ËùÓÐ¸ÃmidµÄ»áÒé£¬·µ»Øresultset
 		public ResultSet searchPeople(int mid) throws SQLException {
 			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
 		}
+	// PeopleTableËÑË÷ËùÓÐ¸ÃemailµÄ»áÒé£¬·µ»Øresultset
+		public ResultSet searchPeople(String email) throws SQLException {
+			String sql = "SELECT * FROM PeopleTable WHERE email = '"+email+"'";
+			rs = statement.executeQuery(sql);
+			return rs;
+		}
 		
-		
-	// ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ¹Ø±ÕÊý¾Ý¿âÁ¬½Ó
 	public void close() {
 		try {
 			statement.close();
@@ -218,6 +229,10 @@ public class DBConnect {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	
 
 	
 
