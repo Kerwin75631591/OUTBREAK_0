@@ -1,3 +1,7 @@
+*{
+	margin:0px;
+	padding: 0px;
+}
 body{
     background:url(../images/LgiRstBackground.jpg);
     background-origin:content;
@@ -5,26 +9,30 @@ body{
     background-size:cover; 
     background-repeat:no-repeat;
     background-attachment:fixed;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+    
     
 }
 #LoginBox{
 	position:relative;
     border: 1px solid #E2E3E5;
-    width: 400px;
-	height: 300px;
+    width: 21%;
+	height: 30%;
 	box-shadow: 10px 10px 30px #888888;
 	background:#FFFFCC;
-	margin:10% auto auto auto;
+	margin-top:10%;
+	margin-left:40%;
 	
 }
 #LoginIDLabel{
 	position:relative;
 	//border: 1px solid #E2E3E5;
 	font-family:\6977\4F53_GB2312;
-	font-size:30px;
-    margin-left:40px;
-    margin-bottom:10px;
-    margin-top:15px;
+	font-size:200%;
+    margin-left:9%;
+    margin-top:3%;
 	display:inline-block;
 	vertical-align:middle;
 	font:"Microsoft YaHei";
@@ -32,48 +40,52 @@ body{
 #IDInput{
 	position:relative;
 	border: 1px solid #E2E3E5;
-	height:30px;
+	width:60%;
+	height:3%;
 	display:inline-block;
 	vertical-align:middle;
-	font-size:20px;
-	margin-bottom:10px;
-	margin-top:15px;
+	font-size:200%;
+	margin-top:3%;
 }
 #LoginPasswordLabel{
 	position:relative;
 	//border: 1px solid #E2E3E5;
-	font-size:30px;
-	margin-left:40px;
+	font-size:200%;
+    margin-left:9%;
+    margin-top:3%;
 	display:inline-block;
 	vertical-align:middle;
-	font:30px Times;
+	font:200% Times;
 }
 #PasswordInput{
 	position:relative;
 	border: 1px solid #E2E3E5;
-	height:30px;
+	width:60%;
+	height:3%;
+	margin-top:3%;
 	display:inline-block;
 	vertical-align:middle;
-	font-size:20px;
+	font-size:200%;
 }
 #LoginVericodeLabel{
 	position:relative;
 	//border: 1px solid #E2E3E5;
-	font-size:30px;
 	display:inline-block;
-	margin:10px;
+	font-size:200%;
+    margin-left:1%;
+    margin-top:3%;
 	vertical-align:middle;
-	font:30px Times;
-	margin-top:15px;
 }
 #VericodeInput{
 	position:relative;
 	border: 1px solid #E2E3E5;
-	height:30px;
+	width:35%;
+	height:3%;
 	display:inline-block;
+	font-size:200%;
 	vertical-align:middle;
-	margin-left:-10px;
-	margin-top:15px;
+	margin-left:-0.5%;
+	margin-top:3%;
 }
 #LoginVericodePic{
 	position:relative;
@@ -90,12 +102,13 @@ body{
 #RegistWant{
 	border: 1px solid #E2E3E5;
 	font: bold 30px Arial;
-	width:100px;
-	height:40px;
+	width:20%;
+	height:17%;
 	display:inline-block;
 	vertical-align:middle;
-	margin-left:85px;
-	margin-top:50px;
+	margin-left:25%;
+	margin-top:10%;
+	margin-bottom:5%;
 	background:#FFFFFF;
 	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
 }
@@ -104,11 +117,12 @@ body{
 	border: 1px solid #E2E3E5;
 	background:#FFFFFF;
 	font: bold 30px Arial;
-	width:100px;
-	height:40px;
+	width:20%;
+	height:17%;
 	display:inline-block;
 	vertical-align:middle;
-	margin-left:30px;
-	margin-top:50px;
+	margin-left:12%;
+	margin-top:10%;
+	margin-bottom:5%;
 	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
 }
