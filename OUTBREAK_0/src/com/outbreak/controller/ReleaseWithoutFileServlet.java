@@ -66,8 +66,10 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		mb.setTopic(request.getParameter("meetingTopic"));
 		//合成会议时间
 		try {
-			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
-			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingEndtime"));
+			System.out.println(request.getParameter("meetingBegintime"));
+			System.out.println(request.getParameter("meetingEndtime"));
+			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingBegintime"));
+			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingEndtime"));
 			mb.setBegintime(begintime);
 			mb.setEndtime(endtime);
 		} catch (ParseException e2) {

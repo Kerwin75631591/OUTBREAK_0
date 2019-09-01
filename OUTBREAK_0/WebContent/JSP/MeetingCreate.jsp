@@ -31,9 +31,9 @@
 		var meetingEndH = document.getElementById("EndH").value;
 		var meetingEndM = document.getElementById("EndM").value;
 		if (isNaN(meetingBeginH) || meetingBeginH < 0 || meetingBeginH > 24 ||
-			isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 60 ||	
+			isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 59 ||	
 			isNaN(meetingEndH) || meetingEndH < 0 || meetingEndH > 24 ||
-			isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 60 || meetingBeginH > meetingEndH) {
+			isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 59 || meetingBeginH > meetingEndH) {
 		    alert("这不是一个有效的时间段");
 		    return;
 		}else{
@@ -45,15 +45,19 @@
 			}
 		}
 		
-		//时间格式转化为"hh:mm"
-		document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
-		document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
+		//时间格式转化为"HH:mm:ss"
+		meetingBegintime.value = meetingBeginH + ":" + meetingBeginM + ":00";
+		meetingEndtime.value = meetingEndH + ":" + meetingEndM + ":00";
+		alert(meetingBegintime.value);
+		alert(meetingEndtime.value);
 		
 		if(!(document.getElementById("uploadFile").value == "")){
+			alert("Release with file!");
 			document.meetingManageForm.enctype = "multipart/form-data" 
 			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
 	        document.meetingManageForm.submit();
 		}else{
+			alert("Release without file!");
 			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseWithoutFileServlet";
 	        document.meetingManageForm.submit();
 		}
