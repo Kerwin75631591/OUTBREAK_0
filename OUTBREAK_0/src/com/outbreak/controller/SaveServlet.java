@@ -31,6 +31,10 @@ public class SaveServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("GBK");
+		response.setContentType("text/html;charset=GBK");
+		response.setCharacterEncoding("GBK");
+		
 		String meetingName = request.getParameter("meetingName");
 		String meetingTopic = request.getParameter("meetingTopic");
 		String meetingData = request.getParameter("meetingData");

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
 	pageEncoding="GBK"%>
+	<%@ page import="com.outbreak.dao.*"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.util.Date"%>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -247,8 +250,26 @@
   	 	<input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none">
 
 	</div>
-	
 	</form>
-
 </body>
+<script>
+	window.onload = function(){
+		<% 
+			String email = request.getParameter("email");
+			if(email == null || "".equals(email.trim()))
+			{
+				return;
+			}
+			
+			MeetingBeanCL mbcl = new MeetingBeanCL();
+			ResultSet meetings = mbcl.search(email);
+			
+			if(meetings == null)
+			{
+				return;
+			}
+		%>
+			
+	}
+</script>
 </html>

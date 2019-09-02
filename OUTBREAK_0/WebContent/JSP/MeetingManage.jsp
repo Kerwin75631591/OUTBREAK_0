@@ -16,7 +16,6 @@ charset=GBK"
 	href="<%=path%>/CSS/MeetingManage.css">
 <script>
 	function jumpToCreate(){
-		//alert(" ");
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
 		window.close();
@@ -112,8 +111,8 @@ charset=GBK"
 				<td id=<%="num" + counter%>><a href=<%=s%> title=
 					"点击查看被邀请者的状态" target="_blank"><%=numString%></a></td>
 				<td id=<%="state" + counter%>><%=stateString%></td>
-				<td><input type="button" value="修改"
-					onclick="submit(<%=counter%>)" <%if (state != 0)%> disabled="disabled"></td>
+				<td><input type="button" value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?email=<%=sessionEmail%>'"
+				<%if (state != 0 || state != 3){%> disabled="disabled" style="display:none"><%}%></td>
 			</tr>
 			<%
 				counter++;
