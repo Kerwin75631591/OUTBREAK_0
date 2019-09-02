@@ -1,2 +1,11 @@
-<!--pages/help/help.wxml-->
-<text>pages/help/help.wxml</text>
+<!--pages/help/help.wxml  帮助页-->
+<view>
+<text>This is help page!</text>
+<button bindtap="helpbtn">help</button>
+  <view>
+    <text>
+      <!--{{message}-->
+    </text>
+  </view>
+</view>
+ 

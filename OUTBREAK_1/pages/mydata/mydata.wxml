@@ -1,3 +1,4 @@
+<!--mydata.wxml  我的资料页-->
 <view class='content'>
   <view class='nav'>
     <view class='top'>
@@ -25,8 +26,4 @@
     <view class='item' bindtap='resetpwd'>
      <text class='left'> 密码：</text><text class='right'>重置</text>
     </view>
-    <view class='item' bindtap='exit'>
-      <text class='left'>退出：</text><text class='right'>>>></text>
-    </view>
-  
 </view>
