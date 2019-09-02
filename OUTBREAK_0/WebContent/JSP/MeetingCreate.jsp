@@ -295,20 +295,17 @@
 			String meetingContent = meeting.getString("content");
 		%>
 		
-		meetingName.value = <%=meetingName%>;
-		meetingTopic.value = <%=meetingPlace%>;
-		meetingData.value = <%=meetingData%>;
-		BeginH.value = <%=beginH%>;
-		BeginM.value = <%=beginM%>;
-		EndH.value = <%=endH%>;
-		EndM.value = <%=endM%>;
-		meetingPlace.value = <%=meetingPlace%>;
-		meetingContent.value = <%=meetingContent%>;
+		document.getElementById("meetingName").value = <%=meetingName%>;
+		document.getElementById("meetingTopic").value = <%=meetingPlace%>;
+		document.getElementById("meetingData").value = <%=meetingData%>;
+		document.getElementById("BeginH").value = <%=beginH%>;
+		document.getElementById("BeginM").value = <%=beginM%>;
+		document.getElementById("EndH").value = <%=endH%>;
+		document.getElementById("EndM").value = <%=endM%>;
+		document.getElementById("meetingPlace").value = <%=meetingPlace%>;
+		document.getElementById("meetingContent").value = <%=meetingContent%>;
 		
-		<%
-		System.out.println(meetingName);
-		System.out.println(meetingContent);
-		%>
+		alert("meetingName: " + document.getElementById("meetingName").value);
 		
 		<%
 		ResultSet people = db.searchPeople(mid);
