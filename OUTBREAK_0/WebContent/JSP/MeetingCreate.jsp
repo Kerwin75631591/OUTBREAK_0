@@ -266,18 +266,22 @@
 				return;
 			}
 			
+			System.out.println(meetingid);
+
 			int mid = Integer.parseInt(meetingid);
 			
 			DBConnect db = new DBConnect();
+			db.connect();
 			ResultSet meeting = db.searchMeeting(mid);
-			ResultSet people = db.searchPeople(mid);
-			db.close();
+			
 			
 			if(meeting == null)
 			{
+				db.close();
 				return;
 			}
 			
+			meeting.next();
 			String meetingName = meeting.getString("name");
 			String meetingTopic = meeting.getString("topic");
 			String meetingPlace = meeting.getString("place");
@@ -301,7 +305,19 @@
 		meetingPlace.value = <%=meetingPlace%>;
 		meetingContent.value = <%=meetingContent%>;
 		
-		<%while(people.next()){%>
+		<%
+		System.out.println(meetingName);
+		System.out.println(meetingContent);
+		%>
+		
+		<%
+		ResultSet people = db.searchPeople(mid);
+		if(people.getRow() == 0){
+			db.close();
+			return;
+		}
+		while(people.next()){
+		%>
 		var Name = <%=people.getString("Uid")%>;
         var Phone = <%=people.getString("PhoneNum")%>;
         var Email = <%=people.getString("Email")%>;
@@ -315,7 +331,10 @@
 		trObj.id = new Date().getTime();
 		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='É¾³ý' onclick='Delete(this)'></td>";
 		document.getElementById("UserTable").appendChild(trObj);
-		<%}%>
+		<%
+		}
+		db.close();
+		%>
 	}
 </script>
 </html>
