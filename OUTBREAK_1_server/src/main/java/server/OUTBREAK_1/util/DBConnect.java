@@ -48,29 +48,30 @@ public class DBConnect {
 	}
 
 	// 在UserTable中加入新的数据
-	public void insertUser(String email, String password, String phoneNumber, String name, String address)
-			throws SQLException {
-		String sql = "SELECT id FROM UserTable ";
-		rs = statement.executeQuery(sql);
-		int id = 0;
-		while (rs.next()) {
-			id = rs.getInt("id");
+		public void insertUser(String email, String password, String phoneNumber, String name, String address)
+				throws SQLException {
+			String sql = "SELECT id FROM UserTable ";
+			rs = statement.executeQuery(sql);
+			int id = 0;
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+			id = id + 1;
+			sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public,duties)values(?,?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, password);
+			pstmt.setString(4, phoneNumber);
+			pstmt.setString(5, name);
+			pstmt.setString(6, address);
+			pstmt.setString(7, "0000");
+			pstmt.setString(8, null);
+			pstmt.addBatch();
+			pstmt.clearParameters();
+			pstmt.executeBatch();
+			pstmt.clearBatch();
 		}
-		id = id + 1;
-		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public)values(?,?,?,?,?,?,?)";
-		PreparedStatement pstmt = connection.prepareStatement(sql);
-		pstmt.setInt(1, id);
-		pstmt.setString(2, email);
-		pstmt.setString(3, password);
-		pstmt.setString(4, phoneNumber);
-		pstmt.setString(5, name);
-		pstmt.setString(6, address);
-		pstmt.setString(7, "0000");
-		pstmt.addBatch();
-		pstmt.clearParameters();
-		pstmt.executeBatch();
-		pstmt.clearBatch();
-	}
 
 	// 在UserTable中删除数据
 	public void deleteUser(String email) throws SQLException {

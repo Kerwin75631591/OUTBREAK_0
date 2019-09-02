@@ -57,7 +57,7 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public)values(?,?,?,?,?,?,?)";
+		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public,duties)values(?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setString(2, email);
@@ -66,6 +66,7 @@ public class DBConnect {
 		pstmt.setString(5, name);
 		pstmt.setString(6, address);
 		pstmt.setString(7, "0000");
+		pstmt.setString(8, null);
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
