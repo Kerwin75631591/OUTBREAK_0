@@ -15,7 +15,7 @@ import server.OUTBREAK_1.util.DBConnect;
 
 @RestController
 @SpringBootApplication
-public class ControllerText {
+public class Controller {
 	//µÇÂ¼¹¦ÄÜ
 	@RequestMapping("Login")
 	public Map<String, Object> Login(String email,String password){
