@@ -14,7 +14,7 @@
 			<image src="../../images/help.png" mode="aspectFit"></image>
 			<text>帮助</text>
 		</navigator>
-    <navigator class="my-item" url="../log/log">
+    <navigator class="my-item" url="../log/log" open-type="redirect" hover-class="other-navigator-hover">
 			<image src="../../images/logout.png" mode="aspectFit"></image>
 			<text>退出登录</text>
 		</navigator>
