@@ -148,6 +148,13 @@ public class DBConnect {
 		return rs;
 	}
 
+	//MeetingTable搜索该id会议，返回resultset
+			public ResultSet searchMeeting(int id) throws SQLException {
+				String sql = "SELECT * FROM MeetingTable WHERE id = '"+id+"'";
+				rs = statement.executeQuery(sql);
+				return rs;
+			}
+			
 	// MeetingTable搜索所有未提交的会议，返回resultset
 	public ResultSet searchChangableMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";

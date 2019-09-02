@@ -88,13 +88,17 @@ public class Panel extends JPanel {
 	private class SubmitActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			int int1=Integer.parseInt(textField.getText());
+			ResultSet rs = null;
+			String name=null;
 			try {
 				db.updateMeeting(int1, 2);
+				rs=db.searchMeeting(int1);
+				rs.next();
+				name=rs.getString("name");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			ResultSet rs = null;
-			String str="  id\t time\t place\t name\t content\t host\t  PeopleNum\t Arrival\t \n";
+			String str="  id\t begintime\t\t endtime\t\t place\t name\t topic\t content\t host\t\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
 			try {
 				rs = db.searchMeeting();
 			} catch (SQLException e) {
@@ -102,14 +106,26 @@ public class Panel extends JPanel {
 			}
 			try {
 				while(rs.next()) {
-					str=str+"  "+rs.getString("id")+"\t"+rs.getString("time")+"\t"+rs.getString("place")+"\t"+
-				rs.getString("name")+"\t"+rs.getString("content")+"\t"+rs.getString("host")+"\t"+
-				+rs.getInt("PeopleNum")+"\t"+rs.getInt("ArrivalNum")+"\n";
+					str=str+"  "+rs.getString("id")+"\t"+rs.getString("begintime")+"\t"+rs.getString("endtime")+"\t"+
+				rs.getString("place")+"\t"+rs.getString("name")+"\t"+rs.getString("topic")+"\t"+
+				rs.getString("content")+"\t"+rs.getString("host")+"\t"+rs.getInt("PeopleNum")+"\t"+
+				rs.getInt("ArrivalNum")+"\t"+rs.getString("FileUrl")+"\t"+"\n";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			textArea.setText(str);
+			try {
+				rs.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				sendEmail(int1,name);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -142,4 +158,13 @@ public class Panel extends JPanel {
 			textArea.setText(str);
 		}
 	}
+	public void sendEmail(int mid,String name) throws SQLException {
+		ResultSet rs=db.searchPeople(mid);
+		while(rs.next()) {
+			
+			boolean hasRegistered=db.RegistUser(rs.getString("Email"),rs.getString("Uid") ,rs.getString("PhoneNum"));
+			EmailPoster.sendIfInvited(rs.getString("Email"), name, hasRegistered);
+		}
+	}
+	
 }
