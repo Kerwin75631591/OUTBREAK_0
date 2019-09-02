@@ -102,6 +102,12 @@ public class DBConnect {
 			return 0;
 		}
 	}
+	// UserTable用户数据查询
+		public ResultSet searchUserData(String email) throws SQLException {
+			String sql = "SELECT*FROM UserTable where email = '"+email+"'";
+			rs = statement.executeQuery(sql);
+			return rs;
+		}
 
 	// 在MeetingTable中加入新的数据
 	public int insertMeeting(int state, Date begintime,Date endtime, String place, String name,String topic, String content, String host,

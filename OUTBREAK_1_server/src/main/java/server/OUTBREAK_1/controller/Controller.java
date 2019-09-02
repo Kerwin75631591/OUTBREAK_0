@@ -101,4 +101,30 @@ public class Controller {
 		return map;
 	}
 
+	//用户数据查询功能
+		@RequestMapping("UserData")
+		public Map<String, Object> UserData(String email){
+			Map<String, Object> map = new HashMap<String, Object>();
+			DBConnect db=new DBConnect();
+			try {
+				db.connect();
+				System.out.println("数据库连接成功");
+			} catch (SQLException e) {
+				System.out.println("数据库连接失败");
+				e.printStackTrace();
+			}
+			try {
+				ResultSet rs=db.searchUserData(email);
+				rs.next();
+				map.put("name",rs.getString("name"));
+				map.put("phoneNum",rs.getDate("phoneNum"));
+				map.put("duties",rs.getString("duties"));
+				map.put("address",rs.getString("address"));
+				map.put("email",rs.getString("email"));
+			} catch (SQLException e) {
+				System.out.println("登录搜索失败");
+				e.printStackTrace();
+			}
+			return map;
+		}
 }
