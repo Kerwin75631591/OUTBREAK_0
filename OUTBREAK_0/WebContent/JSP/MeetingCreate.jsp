@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
 	pageEncoding="GBK"%>
-	<%@ page import="com.outbreak.dao.*"%>
+<%@ page import="com.outbreak.dao.*"%>
+<%@ page import="com.outbreak.util.*"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.util.Date"%>
 <% String path = request.getContextPath(); %>
@@ -259,21 +260,62 @@
 <script>
 	window.onload = function(){
 		<% 
-			String email = request.getParameter("email");
-			if(email == null || "".equals(email.trim()))
+			String meetingid = request.getParameter("meetingid");
+			if(meetingid == null || "".equals(meetingid.trim()))
 			{
 				return;
 			}
 			
-			MeetingBeanCL mbcl = new MeetingBeanCL();
-			ResultSet meetings = mbcl.search(email);
+			int mid = Integer.parseInt(meetingid);
 			
-			if(meetings == null)
+			DBConnect db = new DBConnect();
+			ResultSet meeting = db.searchMeeting(mid);
+			ResultSet people = db.searchPeople(mid);
+			db.close();
+			
+			if(meeting == null)
 			{
 				return;
 			}
+			
+			String meetingName = meeting.getString("name");
+			String meetingTopic = meeting.getString("topic");
+			String meetingPlace = meeting.getString("place");
+			Date meetingBegintime = (Date) meeting.getObject("begintime");
+			Date meetingEndtime = (Date) meeting.getObject("endtime");
+			String meetingData = meetingBegintime.getYear() + "-" + meetingBegintime.getMonth() + "-" + meetingBegintime.getDay();
+			int beginH = meetingBegintime.getHours();
+			int beginM = meetingBegintime.getMinutes();
+			int endH = meetingEndtime.getHours();
+			int endM = meetingEndtime.getMinutes();
+			String meetingContent = meeting.getString("content");
 		%>
-			
+		
+		meetingName.value = <%=meetingName%>;
+		meetingTopic.value = <%=meetingPlace%>;
+		meetingData.value = <%=meetingData%>;
+		BeginH.value = <%=beginH%>;
+		BeginM.value = <%=beginM%>;
+		EndH.value = <%=endH%>;
+		EndM.value = <%=endM%>;
+		meetingPlace.value = <%=meetingPlace%>;
+		meetingContent.value = <%=meetingContent%>;
+		
+		<%while(people.next()){%>
+		var Name = <%=people.getString("Uid")%>;
+        var Phone = <%=people.getString("PhoneNum")%>;
+        var Email = <%=people.getString("Email")%>;
+		
+        //添加到Users里面，故可以传输至servlet
+		var temp = document.getElementById("Users").value;
+        Users.value = temp + Name + "-" + Phone + "-" + Email + "-";
+
+        //添加到UsersTable中
+		var trObj = document.createElement("tr");
+		trObj.id = new Date().getTime();
+		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='删除' onclick='Delete(this)'></td>";
+		document.getElementById("UserTable").appendChild(trObj);
+		<%}%>
 	}
 </script>
 </html>
