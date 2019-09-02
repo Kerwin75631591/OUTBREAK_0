@@ -53,6 +53,7 @@ public class ReleaseServlet extends HttpServlet {
 		request.setCharacterEncoding("GBK");
 		response.setContentType("text/html;charset=GBK");
 		response.setCharacterEncoding("GBK");
+
 		// 检测是否为多媒体上传
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止

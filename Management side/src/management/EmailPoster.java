@@ -1,9 +1,5 @@
-<<<<<<< HEAD:OUTBREAK_0/src/com/outbreak/dao/EmailPoster.java
-package com.outbreak.dao;
-=======
 package management;
 
->>>>>>> ef14381a848444fcbde20c71ba5aaf591414fd62:Management side/src/management/EmailPoster.java
 import java.util.Date;
 import java.util.Properties;
 

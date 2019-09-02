@@ -2,6 +2,7 @@ package management;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -76,6 +77,49 @@ public class DBConnect {
 		}
 	}
 
+	// 在UserTable中加入新的数据
+	public void insertUser(String email, String password, String phoneNumber, String name, String address)
+			throws SQLException {
+		String sql = "SELECT id FROM UserTable ";
+		rs = statement.executeQuery(sql);
+		int id = 0;
+		while (rs.next()) {
+			id = rs.getInt("id");
+		}
+		id = id + 1;
+		sql = "INSERT INTO UserTable(id ,email ,password ,phoneNumber , name , address,Public)values(?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = connection.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		pstmt.setString(2, email);
+		pstmt.setString(3, password);
+		pstmt.setString(4, phoneNumber);
+		pstmt.setString(5, name);
+		pstmt.setString(6, address);
+		pstmt.setString(7, "0000");
+		pstmt.addBatch();
+		pstmt.clearParameters();
+		pstmt.executeBatch();
+		pstmt.clearBatch();
+	}
+
+	// 在UserTable中删除数据
+	public void deleteUser(String email) throws SQLException {
+		String sql = "DELETE * FROM UserTable WHERE email = " + email;
+		statement.execute(sql);
+	}
+
+	// UserTable注册
+	public boolean RegistUser( String email, String name,String phoneNum) throws SQLException {
+		String sql = "SELECT*FROM UserTable";
+		rs = statement.executeQuery(sql);
+		System.out.println("rs表已创建");
+			while (rs.next()) {
+				if (email.equals(rs.getString("email")))
+					return true;
+			}
+			insertUser(email,"outbreak123",phoneNum,name,null);
+			return false;
+	}
 	
 	//MeetingTable搜索所有待审核的会议，返回resultset
 	public ResultSet searchMeeting() throws SQLException {
@@ -84,6 +128,12 @@ public class DBConnect {
 		return rs;
 	}
 	
+	//MeetingTable搜索该id会议，返回resultset
+		public ResultSet searchMeeting(int id) throws SQLException {
+			String sql = "SELECT * FROM MeetingTable WHERE id = '"+id+"'";
+			rs = statement.executeQuery(sql);
+			return rs;
+		}
 
 	// MeetingTable修改某个会议的状态
 	public void updateMeeting(int id, int state) throws SQLException {
@@ -93,6 +143,13 @@ public class DBConnect {
 
 	}
 
+	//PeopleTable搜索该mid会议，返回resultset
+	public ResultSet searchPeople(int mid) throws SQLException {
+		String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
+	
 	// 关闭数据库连接
 	public void close() {
 		try {
