@@ -112,7 +112,7 @@ charset=GBK"
 					"点击查看被邀请者的状态" target="_blank"><%=numString%></a></td>
 				<td id=<%="state" + counter%>><%=stateString%></td>
 				<td><input type="button" value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>'"
-				<%if (state != 0 || state != 3){%> disabled="disabled" style="display:none"><%}%></td>
+				<%if (state != 0 || state != 3){%> disabled="disabled" style="display:none"<%}%>></td>
 			</tr>
 			<%
 				counter++;
