@@ -2,9 +2,7 @@ package server.OUTBREAK_1.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -47,7 +45,6 @@ public class Controller {
 	@RequestMapping("Register")
 	public Map<String, Object> Register(String email, String password, String name) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> list = new ArrayList<String>();
 		DBConnect db = new DBConnect();
 		boolean message = false;
 		try {
