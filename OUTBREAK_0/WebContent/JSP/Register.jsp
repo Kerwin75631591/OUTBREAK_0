@@ -48,7 +48,7 @@
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
-		window.open("RegCheckCL.jsp?Email="+email+"&check="+e);
+		window.open("CheckCL.jsp?Email="+email+"&check="+e);
 	}
 	function encrypt(){
 		//alert(typeof CHECK);
@@ -63,31 +63,18 @@
 <body>
    <canvas ></canvas>
    <form id="regForm" action="RegisterCL.jsp" method="POST">
+   <div id="RstTitle">OUTBREAK 云会议管理系统</div>
    <div id="RegistBox">
       <div>
-	     <span id="RegistIDLabel">帐号：</span>
-		 <span><input type="email" id="em" name="Email"></span>
+		 <span><input type="email" id="em" style="border:1px solid #999999;" placeholder="请输入邮箱" name="Email"></span>
 		 <span id="email_poster"><input id="email_button" type="button" value="发送验证码" onclick="postEmail()"></span>
       </div>
-      <div>
-	     <span id="RegistNameLabel">名字：</span>
-		 <span><input id="nm" type="text" name="Name"></span>
-	  </div>
-      <div>
-	     <span id="RegistPasswordLabel">密码：</span>
-		 <span><input id="pw" type="password" name="Password"></span>
-	  </div>
-	  <div>
-	     <span id="RegistPasswordAgaLabel">重复密码：</span>
-		 <span><input id="rpw" type="password" name="RePassword"></span>
-	  </div>
-	  <div>
-	     <span id="RegistVerifyCodeLabel">验证码：</span>
-		 <span><input id="chk" type="text" name="Check"></span>
-	  </div>
-	  <span><a id="RegistBack" href="Login.jsp">返回</a></span>
-	  <span><input id="RegistBtn" type="button" value="注册" onclick="subForm()"></span>
-	  
+	  <div><input id="nm" type="text" style="border:1px solid #999999;" placeholder="请输入姓名" name="Name"></div>
+	  <div><input id="pw" type="password" style="border:1px solid #999999;" placeholder="请输入密码" name="Password"></div>
+	  <div><input id="rpw" type="password" style="border:1px solid #999999;" placeholder="请再次输入密码" name="RePassword"></div>
+	  <div><input id="chk" type="text" style="border:1px solid #999999;" placeholder="请输入验证码" name="Check"></div>
+	  <a id="RegistBack" href="Login.jsp">返回</a>
+      <input id="RegistBtn" type="button" class="sendbutton" value="注 册" onclick="subForm()">
    </div>
    </form>
 </body>
