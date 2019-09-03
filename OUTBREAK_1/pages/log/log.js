@@ -7,7 +7,7 @@ Page({
   data: {
     email:'',
     password:'',
-    islogin:false
+    judge:false
   },
 
   /**
@@ -103,18 +103,15 @@ Page({
       success: function (res) {
         console.log(res.data)//打印到控制台
         // 获得来自后台的变量值
-        var islogin = res.data.islogin;
+        var judge = res.data.judge;
         // 将后台数据传至data中
         that.setData({
-          islogin: islogin
+          judge: judge
         })
         // 如果邮箱与密码匹配，登录成功
-        if(islogin == true) {
-          wx.navigateTo({
+        if (judge == true) {
+          wx.reLaunch({
             url: '/pages/home/home',
-            success: function (res) { },
-            fail: function (res) { },
-            complete: function (res) { },
           })
         } 
       }

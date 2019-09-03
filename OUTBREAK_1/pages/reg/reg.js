@@ -8,7 +8,7 @@ Page({
     email: '',
     password: '',
     name: '',
-    isregister: false
+    judge: false
   },
 
   /**
@@ -72,7 +72,7 @@ Page({
    */
   RegisterEmail: function (re) {
     this.setData({
-      emial: re.detail.value
+      email: re.detail.value
     })
   },
 
@@ -114,33 +114,18 @@ Page({
       success: function (res) {
         console.log(res.data)//打印到控制台
         // 获得来自后台的变量值
-        var isregister = res.data.isregister;
+        var judge = res.data.judge;
         // 将后台数据传至data中
         that.setData({
-          isregister: isregister
+          judge: judge
         })
         // 如果邮箱与密码匹配，登录成功
-        if (isregister == true) {
-          wx.navigateTo({
+        if (judge == true) {
+          wx.reLaunch({
             url: '/pages/home/home',
-            success: function (res) { },
-            fail: function (res) { },
-            complete: function (res) { },
           })
         }
       }
-    })
-  },
-
-  /**
-   * 用户点击退出按钮退出注册
-   */
-  CancelBtn: function () {
-    wx.navigateTo({
-      url: '/pages/log/log',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
     })
   }
 })

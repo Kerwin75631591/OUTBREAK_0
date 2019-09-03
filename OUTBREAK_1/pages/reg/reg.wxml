@@ -20,8 +20,5 @@
     <view class="button">
       <button class="button" form-type="submit" hover-class="afterClick" bindtap="RegsterBtn">注册</button>
     </view>
-    <view class="button">
-      <button class="button" hover-class="afterClick" bindtap="CancelBtn">退出</button>
-    </view>
   </form>
 </view>
