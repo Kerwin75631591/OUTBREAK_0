@@ -71,7 +71,7 @@ Page({
    */
   LoginEmail: function (lm) {
     this.setData({
-      emial: lm.detail.value
+      email: lm.detail.value
     })
   },
 
@@ -94,7 +94,7 @@ Page({
       url: 'http://localhost:443/Login',
       data: {
         email: that.data.email,
-        password: taht.data.password
+        password: that.data.password
       },
       method: 'GET',
       header: {

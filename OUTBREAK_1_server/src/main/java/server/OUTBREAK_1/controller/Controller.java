@@ -19,6 +19,7 @@ public class Controller {
 	public Map<String, Object> Login(String email, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		DBConnect db = new DBConnect();
+		System.out.println(email+"+"+password);
 		boolean message = false;
 		try {
 			db.connect();
