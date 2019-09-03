@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MeetingBean {
-	private Date begintime;//ï¿½ï¿½ï¿½é¿ªÊ¼Ê±ï¿½ï¿½
-	private Date endtime;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
-	private String place;//ï¿½ï¿½ï¿½ï¿½Øµï¿½
-	private String name;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	private String topic;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	private String content;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	private String host;//ï¿½ï¿½ï¿½ï¿½Ù°ì·½
-	private int state;//0.Î´ï¿½á½» 1.ï¿½ï¿½ï¿½ï¿½ï¿½ 2.ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ 3.ï¿½ï¿½ï¿½Î´Í¨ï¿½ï¿½ 4.ï¿½ï¿½ï¿½ï¿½ï¿½
-	private int PeopleNum;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	private int ArrivalNum;//ï¿½ï¿½ï¿½éµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	ArrayList<InvitedPeople> People;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½
-	private String FileUrl;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½
+	private Date begintime;//»áÒé¿ªÊ¼Ê±¼ä
+	private Date endtime;//»áÒé½áÊøÊ±¼ä
+	private String place;//»áÒéµØµã
+	private String name;//»áÒéÃû³Æ
+	private String topic;//»áÒéÖ÷Ìâ
+	private String content;//»áÒéÄÚÈİ
+	private String host;//»áÒé¾Ù°ì·½
+	private int state;//0.Î´Ìá½» 1.´ıÉóºË 2.ÉóºËÍ¨¹ı 3.ÉóºËÎ´Í¨¹ı 4.ÒÑÍê³É
+	private int PeopleNum;//»áÒéÑûÇëÈËÊı
+	private int ArrivalNum;//»áÒéµ½´ïÈËÊı
+	ArrayList<InvitedPeople> People;//µ½´ïÇé¿ö¼üÖµ¶Ô
+	private String FileUrl;//»áÒéÎÄ¼şÂ·¾¶
 
 	public MeetingBean() {
 		PeopleNum=0;
