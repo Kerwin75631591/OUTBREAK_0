@@ -1,0 +1,157 @@
+body{
+    background:url(../images/LgiRstBackground.jpg);
+    background-origin:content;
+    background-position:center 0;
+    background-size:cover; 
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+#ResetBox{
+	position:relative;
+    border: 1px solid #E2E3E5;
+    width: 570px;
+	height: 300px;
+	box-shadow: 10px 10px 30px #888888;
+	background:#FFFFCC;
+	margin:10% 35% auto auto;
+	
+}
+#ResetIDLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:100px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#em{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#email_button{
+	border: 1px solid #E2E3E5;
+	font: bold 15px Arial;
+	width:100px;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+	margin:10px;
+}
+#ResetNameLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:100px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#nm{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#ResetPasswordLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:100px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#pw{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#ResetPasswordAgaLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:40px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#rpw{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#ResetVerifyCodeLabel{
+	font:"Microsoft YaHei";
+	font-size:30px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:70px;
+    margin-bottom:10px;
+    margin-top:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#chk{
+	position:relative;
+	border: 1px solid #E2E3E5;
+	height:30px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:20px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+#ResetBack{
+	font:"Microsoft YaHei";
+	font-size:20px;
+	position:relative;
+	//border: 1px solid #E2E3E5;
+    margin-left:180px;
+    margin-bottom:10px;
+    margin-top:25px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#ResetBtn{
+	margin-left:20px;
+	border: 1px solid #E2E3E5;
+	font: bold 30px Arial;
+	width:100px;
+	height:40px;
+	display:inline-block;
+	vertical-align:middle;
+	background:#FFFFFF;
+	box-shadow: 0px 1px 3px rgba(34, 25, 25, 0.2);
+}

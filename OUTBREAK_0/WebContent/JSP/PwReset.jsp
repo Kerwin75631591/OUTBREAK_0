@@ -13,7 +13,6 @@
 		var rpw=document.getElementById("rpw").value;
 		var email=document.getElementById("em").value;
 		var check=document.getElementById("chk").value;	
-		var name=document.getElementById("nm").value;
 		if(email.length==0){
 			alert("请输入邮箱");
 		}else{
@@ -22,17 +21,13 @@
 			}else{
 				if(CHECK!=check){
 					alert("验证码错误！");
-				}else{
-					if(name.length==0){
-						alert("请输入名字");
+				}else{					
+					if(pw==rpw){
+						//alert("提交表单");
+						document.forms[0].submit();
 					}else{
-						if(pw==rpw){
-							//alert("提交表单");
-							document.forms[0].submit();
-						}else{
-							alert("两次密码输入不一致！");
-						}
-					}
+						alert("两次密码输入不一致！");
+					}					
 				}
 			}
 		}
@@ -48,7 +43,7 @@
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
-		window.open("RegCheckCL.jsp?Email="+email+"&check="+e);
+		window.open("PwResetCheckCL.jsp?Email="+email+"&check="+e);
 	}
 	function encrypt(){
 		//alert(typeof CHECK);
@@ -56,37 +51,33 @@
 		return enc;
 	}
 </script>
-<link type="text/css" rel="stylesheet" href="<%= path %>/CSS/Register.css">
+<link type="text/css" rel="stylesheet" href="<%= path %>/CSS/PwReset.css">
 <title>注册界面</title>
 </head>
 
 <body>
    <canvas ></canvas>
-   <form id="regForm" action="RegisterCL.jsp" method="POST">
-   <div id="RegistBox">
+   <form id="resetForm" action="PwResetCL.jsp" method="POST">
+   <div id="ResetBox">
       <div>
-	     <span id="RegistIDLabel">帐号：</span>
+	     <span id="ResetIDLabel">帐号：</span>
 		 <span><input type="email" id="em" name="Email"></span>
 		 <span id="email_poster"><input id="email_button" type="button" value="发送验证码" onclick="postEmail()"></span>
       </div>
       <div>
-	     <span id="RegistNameLabel">名字：</span>
-		 <span><input id="nm" type="text" name="Name"></span>
-	  </div>
-      <div>
-	     <span id="RegistPasswordLabel">密码：</span>
+	     <span id="ResetPasswordLabel">密码：</span>
 		 <span><input id="pw" type="password" name="Password"></span>
 	  </div>
 	  <div>
-	     <span id="RegistPasswordAgaLabel">重复密码：</span>
+	     <span id="ResetPasswordAgaLabel">重复密码：</span>
 		 <span><input id="rpw" type="password" name="RePassword"></span>
 	  </div>
 	  <div>
-	     <span id="RegistVerifyCodeLabel">验证码：</span>
+	     <span id="ResetVerifyCodeLabel">验证码：</span>
 		 <span><input id="chk" type="text" name="Check"></span>
 	  </div>
-	  <span><a id="RegistBack" href="Login.jsp">返回</a></span>
-	  <span><input id="RegistBtn" type="button" value="注册" onclick="subForm()"></span>
+	  <span><a id="ResetBack" href="Login.jsp">返回</a></span>
+	  <span><input id="ResetBtn" type="button" value="注册" onclick="subForm()"></span>
 	  
    </div>
    </form>
