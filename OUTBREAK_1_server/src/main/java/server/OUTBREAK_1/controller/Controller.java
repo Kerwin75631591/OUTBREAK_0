@@ -16,12 +16,12 @@ import server.OUTBREAK_1.util.DBConnect;
 @RestController
 @SpringBootApplication
 public class Controller {
-	//登录功能
+	// 登录功能
 	@RequestMapping("Login")
-	public Map<String, Object> Login(String email,String password){
+	public Map<String, Object> Login(String email, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
-		DBConnect db=new DBConnect();
+		DBConnect db = new DBConnect();
 		try {
 			db.connect();
 			System.out.println("数据库连接成功");
@@ -30,68 +30,24 @@ public class Controller {
 			e.printStackTrace();
 		}
 		try {
-			if(db.searchUser(true, email, password)==0)
-			{
-				ResultSet rs=db.searchPeople(email);
-				List<Integer> listtemp=new ArrayList<Integer>();
-				while(rs.next()) {
+			if (db.searchUser(true, email, password) == 0) {
+				ResultSet rs = db.searchPeople(email);
+				List<Integer> listtemp = new ArrayList<Integer>();
+				while (rs.next()) {
 					listtemp.add(rs.getInt("mid"));
 				}
 				for (int i = 0; i < listtemp.size(); i++) {
-					 rs=db.searchMeeting(listtemp.get(i));
-					 rs.next();
-					 list.add(rs.getString("name"));
-					 list.add(""+rs.getDate("begintime"));
-					 list.add(rs.getString("place"));
-					 list.add(""+rs.getInt("state"));
-					 map.put("list"+i,list);
-					 list.clear();
-					 }
-			}else {
-				String message="登录失败";
-				map.put("message", message);
-			}
-		} catch (SQLException e) {
-			System.out.println("登录搜索失败");
-			e.printStackTrace();
-		}
-		return map;
-	}
-	
-	//注册功能
-	@RequestMapping("Register")
-	public Map<String, Object> Register(String email,String password,String name){
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> list = new ArrayList<String>();
-		DBConnect db=new DBConnect();
-		try {
-			db.connect();
-			System.out.println("数据库连接成功");
-		} catch (SQLException e) {
-			System.out.println("数据库连接失败");
-			e.printStackTrace();
-		}
-		try {
-			if(db.searchUser(false, email, password)==0)
-			{
-				db.insertUser(email, password, null, name, null);
-				ResultSet rs=db.searchPeople(email);
-				List<Integer> listtemp=new ArrayList<Integer>();
-				while(rs.next()) {
-					listtemp.add(rs.getInt("mid"));
+					rs = db.searchMeeting(listtemp.get(i));
+					rs.next();
+					list.add(rs.getString("name"));
+					list.add("" + rs.getDate("begintime"));
+					list.add(rs.getString("place"));
+					list.add("" + rs.getInt("state"));
+					map.put("list" + i, list);
+					list.clear();
 				}
-				for (int i = 0; i < listtemp.size(); i++) {
-					 rs=db.searchMeeting(listtemp.get(i));
-					 rs.next();
-					 list.add(rs.getString("name"));
-					 list.add(""+rs.getDate("begintime"));
-					 list.add(rs.getString("place"));
-					 list.add(""+rs.getInt("state"));
-					 map.put("list"+i,list);
-					 list.clear();
-					 }
-			}else {
-				String message="注册失败";
+			} else {
+				String message = "登录失败";
 				map.put("message", message);
 			}
 		} catch (SQLException e) {
@@ -101,30 +57,73 @@ public class Controller {
 		return map;
 	}
 
-	//用户数据查询功能
-		@RequestMapping("UserData")
-		public Map<String, Object> UserData(String email){
-			Map<String, Object> map = new HashMap<String, Object>();
-			DBConnect db=new DBConnect();
-			try {
-				db.connect();
-				System.out.println("数据库连接成功");
-			} catch (SQLException e) {
-				System.out.println("数据库连接失败");
-				e.printStackTrace();
-			}
-			try {
-				ResultSet rs=db.searchUserData(email);
-				rs.next();
-				map.put("name",rs.getString("name"));
-				map.put("phoneNum",rs.getDate("phoneNum"));
-				map.put("duties",rs.getString("duties"));
-				map.put("address",rs.getString("address"));
-				map.put("email",rs.getString("email"));
-			} catch (SQLException e) {
-				System.out.println("登录搜索失败");
-				e.printStackTrace();
-			}
-			return map;
+	// 注册功能
+	@RequestMapping("Register")
+	public Map<String, Object> Register(String email, String password, String name) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<String> list = new ArrayList<String>();
+		DBConnect db = new DBConnect();
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
 		}
+		try {
+			if (db.searchUser(false, email, password) == 0) {
+				db.insertUser(email, password, null, name, null);
+				ResultSet rs = db.searchPeople(email);
+				List<Integer> listtemp = new ArrayList<Integer>();
+				while (rs.next()) {
+					listtemp.add(rs.getInt("mid"));
+				}
+				for (int i = 0; i < listtemp.size(); i++) {
+					rs = db.searchMeeting(listtemp.get(i));
+					rs.next();
+					list.add(rs.getString("name"));
+					list.add("" + rs.getDate("begintime"));
+					list.add(rs.getString("place"));
+					list.add("" + rs.getInt("state"));
+					map.put("list" + i, list);
+					list.clear();
+				}
+			} else {
+				String message = "注册失败";
+				map.put("message", message);
+			}
+		} catch (SQLException e) {
+			System.out.println("登录搜索失败");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	// 用户数据查询功能
+	@RequestMapping("UserData")
+	public Map<String, Object> UserData(String email) {
+		System.out.println("进入userdata");
+		Map<String, Object> map = new HashMap<String, Object>();
+		DBConnect db = new DBConnect();
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs = db.searchUserData(email);
+			rs.next();
+			map.put("name", rs.getString("name"));
+			map.put("phoneNum", rs.getDate("phoneNum"));
+			map.put("duties", rs.getString("duties"));
+			map.put("address", rs.getString("address"));
+			map.put("email", rs.getString("email"));
+		} catch (SQLException e) {
+			System.out.println("登录搜索失败");
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

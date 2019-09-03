@@ -28,8 +28,6 @@ public class DBConnect {
 		}
 	}
 
-	
-
 	// 连接数据库
 	public void connect() throws SQLException {
 		try {
@@ -78,6 +76,13 @@ public class DBConnect {
 		statement.execute(sql);
 	}
 
+	// UserTable修改密码
+	public void updateUserpassword(String email, String newPassword) throws SQLException {
+		String sql = "UPDATE UserTable SET password = " + newPassword + " WHERE   email = '" + email + "'";
+		System.out.println(sql);
+		rs = statement.executeQuery(sql);
+	}
+
 	// UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
 	public int searchUser(boolean judge, String email, String password) throws SQLException {
 		String sql = "SELECT*FROM UserTable";
@@ -103,8 +108,8 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public int insertMeeting(int state, Date begintime,Date endtime, String place, String name,String topic, String content, String host,
-			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
+	public int insertMeeting(int state, Date begintime, Date endtime, String place, String name, String topic,
+			String content, String host, int PeopleNum, int ArrivalNum, String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
 		rs = statement.executeQuery(sql);
 		int id = 0;
@@ -149,16 +154,16 @@ public class DBConnect {
 		return rs;
 	}
 
-	//MeetingTable搜索该id会议，返回resultset
-			public ResultSet searchMeeting(int id) throws SQLException {
-				String sql = "SELECT * FROM MeetingTable WHERE id = '"+id+"'";
-				rs = statement.executeQuery(sql);
-				return rs;
-			}
-			
+	// MeetingTable搜索该id会议，返回resultset
+	public ResultSet searchMeeting(int id) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE id = '" + id + "'";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
+
 	// MeetingTable搜索所有未提交的会议，返回resultset
 	public ResultSet searchChangableMeeting(String host) throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";
+		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '" + host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
@@ -166,8 +171,9 @@ public class DBConnect {
 	// MeetingTable搜索的同名同时会议
 	public boolean searchMeeting(Date time, String name) throws SQLException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		String sql = "SELECT * FROM MeetingTable WHERE begintime = '" + sdf.format(time) + "' AND name = '" + name + "'";
+
+		String sql = "SELECT * FROM MeetingTable WHERE begintime = '" + sdf.format(time) + "' AND name = '" + name
+				+ "'";
 		System.out.println(sql);
 		rs = statement.executeQuery(sql);
 		boolean judge = true;
@@ -190,9 +196,8 @@ public class DBConnect {
 		System.out.println("insertPeople已进入");
 		Iterator<InvitedPeople> it = people.iterator();
 		while (it.hasNext()) {
-			InvitedPeople p=it.next();
-			System.out.println(p.getName()+"+"+p.getEmail());
-			
+			InvitedPeople p = it.next();
+			System.out.println(p.getName() + "+" + p.getEmail());
 
 			String sql = "INSERT INTO PeopleTable(Mid,uid,TOF,Email,PhoneNum)values(?,?,?,?,?)";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -210,13 +215,12 @@ public class DBConnect {
 	}
 
 	// PeopleTable搜索所有该mid的会议，返回resultset
-		public ResultSet searchPeople(int mid) throws SQLException {
-			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
-			rs = statement.executeQuery(sql);
-			return rs;
-		}
-		
-		
+	public ResultSet searchPeople(int mid) throws SQLException {
+		String sql = "SELECT * FROM PeopleTable WHERE mid = '" + mid + "'";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
+
 	// 关闭数据库连接
 	public void close() {
 		try {
@@ -226,7 +230,5 @@ public class DBConnect {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 }

@@ -12,7 +12,7 @@ Page({
     phoneNum: '',
     duties: '',
     address: '',
-    email: ''
+    email: '75631591@qq.com'
   },
 
   /**
@@ -26,6 +26,9 @@ Page({
     // 发出请求
     wx.request({
       url: 'http://localhost:443/UserData',
+      data: {
+        email: email
+      },
       method: 'GET',
       header: {
         'content-type': 'application/json' // 默认值
@@ -33,6 +36,7 @@ Page({
       success: function (res) {
         console.log(res.data)//打印到控制台
         // 获得来自后台的变量值
+
         var name = res.data.name;
         var phoneNum = res.data.phoneNum;
         var duties = res.data.duties;

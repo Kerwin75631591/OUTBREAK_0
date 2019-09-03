@@ -1,65 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
 	pageEncoding="GBK"%>
-	<%@ page import="com.outbreak.dao.*"%>
-	<%@ page import="com.outbreak.util.*"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.text.SimpleDateFormat"%>
-
-<% 
-	String path = request.getContextPath(); 
-
-	String meetingid = request.getParameter("meetingid");
-	String meetingName = "";
-	String meetingTopic = "";
-	String meetingPlace = "";
-	int BeginH = 00;
-	int BeginM = 00;
-	int EndH = 00;
-	int EndM = 00;
-	String meetingData = "";
-	String begintime = "";
-	String endtime ="";
-	String meetingContent = "";
-	String Users = "";
-	
-	if(!(meetingid == null || "".equals(meetingid.trim())))
-	{
-		int mid = Integer.parseInt(meetingid);
-		
-		DBConnect db = new DBConnect();
-		db.connect();
-		ResultSet meeting = db.searchMeeting(mid);
-		
-		
-		if(meeting != null)
-		{
-			meeting.next();
-			meetingName = meeting.getString("name");
-		    meetingTopic = meeting.getString("topic");
-		    meetingPlace = meeting.getString("place");
-		    meetingContent = meeting.getString("content");
-		    begintime = meeting.getString("begintime");
-			endtime = meeting.getString("endtime");
-		    Date meetingBegintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(begintime);
-			Date meetingEndtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endtime);
-			meetingData = begintime.substring(0, 10);
-			BeginH = meetingBegintime.getHours();
-			BeginM = meetingBegintime.getMinutes();
-			EndH = meetingEndtime.getHours();
-			EndM = meetingEndtime.getMinutes();
-		}
-		
-		ResultSet people = db.searchPeople(mid);
-		while(people.next())
-		{
-			Users += (people.getString("Uid") + "-" + people.getString("PhoneNum") + "-" + people.getString("Email") + "-");
-		}
-		System.out.println(Users);
-		
-		db.close();
-	}
-%>
+<% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 
@@ -90,9 +31,9 @@
 		var meetingEndH = document.getElementById("EndH").value;
 		var meetingEndM = document.getElementById("EndM").value;
 		if (isNaN(meetingBeginH) || meetingBeginH < 0 || meetingBeginH > 24 ||
-			isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 59 ||	
+			isNaN(meetingBeginM) || meetingBeginM < 0 || meetingBeginM > 60 ||	
 			isNaN(meetingEndH) || meetingEndH < 0 || meetingEndH > 24 ||
-			isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 59 || meetingBeginH > meetingEndH) {
+			isNaN(meetingEndM) || meetingEndM < 0 || meetingEndM > 60 || meetingBeginH > meetingEndH) {
 		    alert("这不是一个有效的时间段");
 		    return;
 		}else{
@@ -104,17 +45,15 @@
 			}
 		}
 		
-		//时间格式转化为"HH:mm:ss"
-		meetingBegintime.value = meetingBeginH + ":" + meetingBeginM + ":00";
-		meetingEndtime.value = meetingEndH + ":" + meetingEndM + ":00";
+		//时间格式转化为"hh:mm"
+		document.getElementById("meetingBegintime").value = document.getElementById("BeginH").value + ":" + document.getElementById("BeginM").value;
+		document.getElementById("meetingEndtime").value = document.getElementById("EndH").value + ":" + document.getElementById("EndM").value;
 		
 		if(!(document.getElementById("uploadFile").value == "")){
-			alert("Release with file!");
 			document.meetingManageForm.enctype = "multipart/form-data" 
 			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
 	        document.meetingManageForm.submit();
 		}else{
-			alert("Release without file!");
 			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseWithoutFileServlet";
 	        document.meetingManageForm.submit();
 		}
@@ -182,7 +121,8 @@
         //添加到UsersTable中
 		var trObj = document.createElement("tr");
 		trObj.id = new Date().getTime();
-		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"+Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='删除' onclick='Delete(this)'></td>";
+		trObj.innerHTML = "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>"
+		                   +Name+"</td><td>"+Phone+"</td><td>"+Email+"</td><td><input type='button' value='删除' onclick='Delete(this)'></td>";
 		document.getElementById("UserTable").appendChild(trObj);
 		
 		//重置输入框
@@ -192,15 +132,6 @@
 	}
 	function Delete(obj){
 		var trId = obj.parentNode.parentNode.id;
-		
-		var rowIndex = obj.parentNode.parentNode.rowIndex;
-		var row = document.getElementById("UserTable").rows[rowIndex];
-		var move = row.cells[1] + "-" + row.cells[2] + "-" + row.cells[3] + "-";
-		//删除Users里面的指定内容
-		var temp = document.getElementById("Users").value;
-		temp.replace(move, "");
-        Users.value = temp;
-		
 		var trObj = document.getElementById(trId);
 		document.getElementById("UserTable").removeChild(trObj);
 	}
@@ -218,51 +149,48 @@
 
 <body>
 	<canvas></canvas>
+	<div id="CrtTitle">OUTBREAK 云会议管理系统</div>
 	<div id="CrtTopBox">
 	   <div id="CreateWelcome">您好，<%=request.getSession().getAttribute("sessionemail") %>！</div>
 	   <div id="CreateJump">
 	      <span><input type="button" id="CreateMeetingManageBtn" 
-	            value="管理会议" onclick="window.location.href='MeetingManage.jsp';"/></span>
+	            value="管 理 会 议" onclick="window.location.href='MeetingManage.jsp';"/></span>
 	      <span><input type="button" id="CreateLoginBtn" 
-	            value="退出登录" onclick="window.location.href='Login.jsp';"/></span>
+	            value="退 出 登 录" onclick="window.location.href='Login.jsp';"/></span>
 	   </div>
 	</div>
 	
 	<form action="" id="meetingManageForm" name="meetingManageForm" method="post">
-
-	
 	<div id="CrtLeftBox">
-	   <table width="100%" border="0" cellspacing="10" style="margin-top: 10px; margin-left: 20px">
+	   <table width="100%" border=0 cellspacing="10" style="margin-top: 10px; margin-left: 20px border-width:0 0 0 0">
 		  <tr>
 		     <td style="font-size: 20px">会议名称：</td>
-		     <td><input type="text" id="meetingName" name="meetingName" value="<%=meetingName%>"
+		     <td><input type="text" id="meetingName" name="meetingName"
 		         style="width: 500px; height: 30px; font-size: 30px;"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议主题：</td>
-			 <td><input id="meetingTopic" name="meetingTopic" type="text"  value="<%=meetingTopic%>"
-			 style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingTopic" name="meetingTopic" type="text"style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议日期：</td>
-			 <td><input id="meetingData" name="meetingData" type="date" value="<%=meetingData%>"
-			 style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingData" name="meetingData" type="date" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议时间：</td>
 			 <td>
 			    <table id="TimeTable">
 			       <tr>
-			          <td style="font-size: 20px;"><input id="BeginH" type="text" value="<%=BeginH%>"
+			          <td style="font-size: 20px;"><input id="BeginH" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
-			          <td style="font-size: 20px;"><input id="BeginM" type="text" value="<%=BeginM%>"
+			          <td style="font-size: 20px;"><input id="BeginM" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 80px;text-align:center;">至</td>
-			          <td style="font-size: 20px;"><input id="EndH" type="text" value="<%=EndH%>"
+			          <td style="font-size: 20px;"><input id="EndH" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
-			          <td style="font-size: 20px;"><input id="EndM" type="text" value="<%=EndM%>"
+			          <td style="font-size: 20px;"><input id="EndM" type="text" 
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			       </tr>
 			    </table>
@@ -270,12 +198,11 @@
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议地点：</td>
-			 <td><input id="meetingPlace" name="meetingPlace" type="text" value="<%=meetingPlace%>"
-			 style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingPlace" name="meetingPlace" type="text" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议内容：</td>
-			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"><%=meetingContent%></textarea></td>
+			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"></textarea></td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">上传资料：</td>
@@ -288,40 +215,25 @@
 	   <table id="UserTable" name="UserTable">
 	      <tr>
 		     <td style="font-size: 20px; margin-left: -400px; width:100px;">与会人员：</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">人员姓名</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">联系方式</td>
-			 <td style="font-size: 20px; width:250px; text-align:center;">邮箱地址</td>
+			 <td style="font-size: 20px; width:150px;height:40px;">人员姓名</td>
+			 <td style="font-size: 20px; width:150px;height:40px;">联系方式</td>
+			 <td style="font-size: 20px; width:250px;height:40px;">邮箱地址</td>
 			 <td style="font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		  </tr>
-		  <%
-		  	String[] guests = Users.split("-");
-		  	for(int i = 0; i<guests.length-2; i += 3)
-			{
-		  %>
-		  	<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-				<td><%=guests[i]%></td>
-				<td><%=guests[i+1]%></td>
-				<td><%=guests[i+2]%></td>
-				<td><input type="button" value="删除" onclick="Delete(this)"></td>
-			</tr>
-		  <%
-			}
-		  %>
 	   </table>
 	</div>
 	   <table id="InputTable">
 	      <tr>
-		     <td style="font-size: 20px; text-align:center;">输入信息：</td>
-			 <td style="font-size: 20px; text-align:center;">人员姓名</td>
-			 <td style="font-size: 20px; text-align:center;">联系方式</td>
-			 <td style="font-size: 20px; text-align:center;">邮箱地址</td>
+		     <td style="font-size: 20px; width:100px;">输入信息：</td>
+			 <td style="font-size: 20px; width:150px;height:40px;">人员姓名</td>
+			 <td style="font-size: 20px; width:150px;height:40px;">联系方式</td>
+			 <td style="font-size: 20px; width:250px;height:40px;">邮箱地址</td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">&nbsp;</td>
-			 <td><input type="text" id="Name" style="height: 20px; font-size: 20px"></td>
-			 <td><input type="text" id="Phone" style="height: 20px; font-size: 20px"></td>
-			 <td><input type="email" id="Email" style="height: 20px; font-size: 20px"></td>
+			 <td><input type="text" id="Name" style="width:150px;height:40px; font-size: 20px"></td>
+			 <td><input type="text" id="Phone" style="width:150px;height:40px; font-size: 20px"></td>
+			 <td><input type="email" id="Email" style="width:250px;height:40px; font-size: 20px"></td>
 			 <td><span><input type="button" id="CreateAdd" value="增  加" onclick="Add()"></span></td>
 		  </tr>
 	   </table>
@@ -330,36 +242,13 @@
 	   <input type="button" id="CreateRelease" value="发  布" onclick="Release()"> 
 	   <input type="button" id="CreateSave" value="保存草稿" onclick="Save()"> 
 	   <input type="reset" id="CreateReset" value="重  置" onclick="Reset()">
-	   <input type="text" id="Users" name="Users" style="display:none" value="<%=Users%>">
-	   <input type="text" id="meetingBegintime" name="meetingBegintime" style="display:none" value="<%=begintime%>">
-  	   <input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none" value="<%=endtime%>">
+	   <input type="text" id="Users" name="Users" style="display:none">
+	   <input type="text" id="meetingBegintime" name="meetingBegintime" style="display:none">
+  	 	<input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none">
 
 	</div>
+	
 	</form>
-<<<<<<< HEAD
 
 </body>
-=======
-</body>
-<script>
-	window.onload = function(){
-		<% 
-			String email = request.getParameter("email");
-			if(email == null || "".equals(email.trim()))
-			{
-				return;
-			}
-			
-			MeetingBeanCL mbcl = new MeetingBeanCL();
-			ResultSet meetings = mbcl.search(email);
-			
-			if(meetings == null)
-			{
-				return;
-			}
-		%>
-			
-	}
-</script>
->>>>>>> 69d91b7ec6ab008c3a3cc9ae1ab6825296fe4f09
 </html>

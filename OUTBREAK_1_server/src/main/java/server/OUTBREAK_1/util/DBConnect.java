@@ -24,13 +24,13 @@ public class DBConnect {
 			Class.forName("com.mysql.jdbc.Driver");
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("�޷��ҵ�������");
+			System.out.println("锟睫凤拷锟揭碉拷锟斤拷锟斤拷锟斤拷");
 		}
 	}
 
 	
 
-	// �������ݿ�
+	// 连接数据库
 	public void connect() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -38,16 +38,16 @@ public class DBConnect {
 					+ "UserDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false";
 			connection = DriverManager.getConnection(dbURL);
 			statement = connection.createStatement();
-			System.out.println("���ݿ�������");
+			System.out.println("数据库已连接");
 		} catch (ClassNotFoundException e) {
-			System.out.println("�޷��ҵ�������");
+			System.out.println("无法找到驱动类");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("���ݿ��޷�����");
+			System.out.println("数据库无法连接");
 		}
 	}
 
-	// ��UserTable�м����µ�����
+	// 在UserTable中加入新的数据
 	public void insertUser(String email, String password, String phoneNumber, String name, String address)
 			throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
@@ -72,17 +72,17 @@ public class DBConnect {
 		pstmt.clearBatch();
 	}
 
-	// ��UserTable��ɾ������
+	// 在UserTable中删除数据
 	public void deleteUser(String email) throws SQLException {
 		String sql = "DELETE * FROM UserTable WHERE email = " + email;
 		statement.execute(sql);
 	}
 
-	// UserTable��¼(true)&ע��(false)��� ����ֵ0Ϊͨ������¼��1Ϊ�������2Ϊ�˺Ų����ڣ�ע����1Ϊ��������ע��
+	//  UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
 	public int searchUser(boolean judge, String email, String password) throws SQLException {
 		String sql = "SELECT*FROM UserTable";
 		rs = statement.executeQuery(sql);
-		System.out.println("rs���Ѵ���");
+		System.out.println("rs表已创建");
 		if (judge) {
 			while (rs.next()) {
 				if (email.equals(rs.getString("email"))) {
@@ -102,14 +102,14 @@ public class DBConnect {
 		}
 	}
 
-	// UserTable用户数据查询
+	// UserTable查找该邮箱用户
 			public ResultSet searchUserData(String email) throws SQLException {
 				String sql = "SELECT*FROM UserTable where email = '"+email+"'";
 				rs = statement.executeQuery(sql);
 				return rs;
 			}
 	
-	// ��MeetingTable�м����µ�����
+	// 在MeetingTable中加入新的数据
 	public int insertMeeting(int state, Date begintime,Date endtime, String place, String name,String topic, String content, String host,
 			int PeopleNum, int ArrivalNum,String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
@@ -142,27 +142,27 @@ public class DBConnect {
 		return id;
 	}
 
-	// ��MeetingTable��ɾ������
+	// 在MeetingTable中删除数据
 	public void deleteMeeting(Date time, String name) throws SQLException {
 		String sql = "DELETE FROM MeetingTable WHERE begintime = " + time + " And name = " + name;
 		statement.execute(sql);
 	}
 
-	// MeetingTable����ĳ�˾ٰ�Ļ��飬����resultset
+	// MeetingTable搜索某人举办的会议，返回resultset
 	public ResultSet searchMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE host = '" + host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTable��������δ�ύ�Ļ��飬����resultset
+	// MeetingTable搜索所有未提交的会议，返回resultset
 	public ResultSet searchChangableMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '"+ host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTable������ͬ��ͬʱ����
+	// MeetingTable搜索的同名同时会议
 	public boolean searchMeeting(Date time, String name) throws SQLException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -175,14 +175,14 @@ public class DBConnect {
 
 	}
 	
-	// MeetingTable����mid
+	// MeetingTable搜索某mid的会议
 	public ResultSet searchMeeting(Integer integer) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE mid = '" + integer  + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTable�޸�ĳ�������״̬
+	// MeetingTable修改某个会议的状态
 	public void updateMeeting(int id, int state) throws SQLException {
 		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
@@ -190,9 +190,9 @@ public class DBConnect {
 
 	}
 
-	// ��PeopleTable�м����µ�����
+	// 在PeopleTable中加入新的数据
 	public void insertPeople(int id, ArrayList<InvitedPeople> people) throws SQLException {
-		System.out.println("insertPeople�ѽ���");
+		System.out.println("insertPeople已进入");
 		Iterator<InvitedPeople> it = people.iterator();
 		while (it.hasNext()) {
 			InvitedPeople p=it.next();
@@ -214,20 +214,20 @@ public class DBConnect {
 		}
 	}
 
-	// PeopleTable�������и�mid�Ļ��飬����resultset
+	// PeopleTable搜索所有该mid的会议，返回resultset
 		public ResultSet searchPeople(int mid) throws SQLException {
 			String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
 		}
-	// PeopleTable�������и�email�Ļ��飬����resultset
+	// PeopleTable搜索某email的所有会议，返回resultset
 		public ResultSet searchPeople(String email) throws SQLException {
 			String sql = "SELECT * FROM PeopleTable WHERE email = '"+email+"'";
 			rs = statement.executeQuery(sql);
 			return rs;
 		}
 		
-	// �ر����ݿ�����
+	// 关闭数据库连接
 	public void close() {
 		try {
 			statement.close();
