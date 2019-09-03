@@ -87,5 +87,221 @@ Page({
     wx.navigateTo({
       url: '../email/email?no=' + no,
     })
-  }
+  },
+
+  /**
+   * 动态改变name.value
+   */
+  bindinput_name: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  /**
+   * 当用户焦点离开name输入框时提交当前的value至数据库
+   */
+  bindblur_name: function () {
+    let parameterType = "name";
+    wx.request({
+      url: 'http://localhost:443/UserData',
+      data: {email, parameterType, name},
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        wx.showLoading({
+          title: '正在提交新的姓名，请稍等！',
+          duration: 500,
+          mask: true
+        })
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '提交失败，请重试！',
+          icon: 'none',
+          duration: 1000
+        })
+      },
+      complete: function(res) {
+        if(res.data.judge){
+          wx.showToast({
+            title: '姓名修改成功！',
+            duration: 1000,
+            mask: true
+          })
+        }else{
+          wx.showToast({
+            title: '姓名修改失败，请重试！',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
+      }
+    })
+  },
+
+  /**
+    * 动态改变phoneNum.value
+    */
+  bindinput_phoneNum: function (e) {
+    this.setData({
+      phoneNum: e.detail.value
+    })
+  },
+
+  /**
+   * 当用户焦点离开phoneNum输入框时提交当前的value至数据库
+   */
+  bindblur_phoneNum: function () {
+    let parameterType = "phoneNumber";
+    wx.request({
+      url: 'http://localhost:443/UserData',
+      data: {email, parameterType, phoneNum},
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        wx.showLoading({
+          title: '正在提交新的联系方式，请稍等！',
+          duration: 500,
+          mask: true
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '提交失败，请重试！',
+          icon: 'none',
+          duration: 1000
+        })
+      },
+      complete: function (res) {
+        if (res.data.judge) {
+          wx.showToast({
+            title: '联系方式修改成功！',
+            duration: 1000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '联系方式修改失败，请重试！',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
+      }
+    })
+  },
+
+  /**
+    * 动态改变duties.value
+    */
+  bindinput_duties: function (e) {
+    this.setData({
+      duties: e.detail.value
+    })
+  },
+
+  /**
+   * 当用户焦点离开duties输入框时提交当前的value至数据库
+   */
+  bindblur_duties: function () {
+    let parameterType = "duties";
+    wx.request({
+      url: 'http://localhost:443/UserData',
+      data: {email, parameterType, duties},
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        wx.showLoading({
+          title: '正在提交新的职务，请稍等！',
+          duration: 500,
+          mask: true
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '提交失败，请重试！',
+          icon: 'none',
+          duration: 1000
+        })
+      },
+      complete: function (res) {
+        if (res.data.judge) {
+          wx.showToast({
+            title: '职务修改成功！',
+            duration: 1000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '职务修改失败，请重试！',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
+      }
+    })
+  },
+
+  /**
+  * 动态改变address.value
+  */
+  bindinput_address: function (e) {
+    this.setData({
+      address: e.detail.value
+    })
+  },
+
+  /**
+   * 当用户焦点离开address输入框时提交当前的value至数据库
+   */
+  bindblur_address: function () {
+    let parameterType = "address";
+    wx.request({
+      url: 'http://localhost:443/UserData',
+      data: { email, parameterType, address},
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        wx.showLoading({
+          title: '正在提交新的地址，请稍等！',
+          duration: 500,
+          mask: true
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '提交失败，请重试！',
+          icon: 'none',
+          duration: 1000
+        })
+      },
+      complete: function (res) {
+        if (res.data.judge) {
+          wx.showToast({
+            title: '地址修改成功！',
+            duration: 1000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '地址修改失败，请重试！',
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+        }
+      }
+    })
+  },
 })
