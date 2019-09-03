@@ -1,6 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
 	pageEncoding="GBK"%>
-<% String path = request.getContextPath(); %>
+<%@ page import="com.outbreak.dao.*"%>
+<%@ page import="com.outbreak.util.*"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+
+<% 
+	String path = request.getContextPath(); 
+
+	String meetingid = request.getParameter("meetingid");
+	String meetingName = "";
+	String meetingTopic = "";
+	String meetingPlace = "";
+	int BeginH = 00;
+	int BeginM = 00;
+	int EndH = 00;
+	int EndM = 00;
+	String meetingData = "";
+	String begintime = "";
+	String endtime ="";
+	String meetingContent = "";
+	String Users = "";
+	
+	if(!(meetingid == null || "".equals(meetingid.trim())))
+	{
+		int mid = Integer.parseInt(meetingid);
+		
+		DBConnect db = new DBConnect();
+		db.connect();
+		ResultSet meeting = db.searchMeeting(mid);
+		
+		
+		if(meeting != null)
+		{
+			meeting.next();
+			meetingName = meeting.getString("name");
+		    meetingTopic = meeting.getString("topic");
+		    meetingPlace = meeting.getString("place");
+		    meetingContent = meeting.getString("content");
+		    begintime = meeting.getString("begintime");
+			endtime = meeting.getString("endtime");
+		    Date meetingBegintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(begintime);
+			Date meetingEndtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endtime);
+			meetingData = begintime.substring(0, 10);
+			BeginH = meetingBegintime.getHours();
+			BeginM = meetingBegintime.getMinutes();
+			EndH = meetingEndtime.getHours();
+			EndM = meetingEndtime.getMinutes();
+		}
+		
+		ResultSet people = db.searchPeople(mid);
+		while(people.next())
+		{
+			Users += (people.getString("Uid") + "-" + people.getString("PhoneNum") + "-" + people.getString("Email") + "-");
+		}
+		System.out.println(Users);
+		
+		db.close();
+	}
+%>
 <!DOCTYPE html>
 <html>
 
@@ -165,32 +224,33 @@
 	   <table width="100%" border=0 cellspacing="10" style="margin-top: 10px; margin-left: 20px border-width:0 0 0 0">
 		  <tr>
 		     <td style="font-size: 20px">会议名称：</td>
-		     <td><input type="text" id="meetingName" name="meetingName"
+		     <td><input type="text" id="meetingName" name="meetingName" value="<%=meetingName%>"
 		         style="width: 500px; height: 30px; font-size: 30px;"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议主题：</td>
-			 <td><input id="meetingTopic" name="meetingTopic" type="text"style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingTopic" name="meetingTopic" value="<%=meetingTopic%>"
+			 type="text"style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议日期：</td>
-			 <td><input id="meetingData" name="meetingData" type="date" style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingData" name="meetingData" value="<%=meetingData%>" type="date" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 		     <td style="font-size: 20px">会议时间：</td>
 			 <td>
 			    <table id="TimeTable">
 			       <tr>
-			          <td style="font-size: 20px;"><input id="BeginH" type="text" 
+			          <td style="font-size: 20px;"><input id="BeginH" type="text" value="<%=BeginH%>"
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
-			          <td style="font-size: 20px;"><input id="BeginM" type="text" 
+			          <td style="font-size: 20px;"><input id="BeginM" type="text" value="<%=BeginM%>"
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 80px;text-align:center;">至</td>
-			          <td style="font-size: 20px;"><input id="EndH" type="text" 
+			          <td style="font-size: 20px;"><input id="EndH" type="text" value="<%=EndH%>"
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			          <td style="font:bold;font-size: 20px; width: 50px;text-align:center;">:</td>
-			          <td style="font-size: 20px;"><input id="EndM" type="text" 
+			          <td style="font-size: 20px;"><input id="EndM" type="text" value="<%=EndM%>"
 			                                       style="width: 70px;height:30px; font-size: 30px;text-align:center;"></td>
 			       </tr>
 			    </table>
@@ -198,11 +258,11 @@
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议地点：</td>
-			 <td><input id="meetingPlace" name="meetingPlace" type="text" style="width: 500px; height: 30px; font-size: 30px"></td>
+			 <td><input id="meetingPlace" name="meetingPlace" value="<%=meetingPlace%>" type="text" style="width: 500px; height: 30px; font-size: 30px"></td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">会议内容：</td>
-			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"></textarea></td>
+			 <td><textarea id="meetingContent" name="meetingContent" style="line-height: 30px; width: 500px; height: 350px; font-size: 30px"><%=meetingContent%></textarea></td>
 		  </tr>
 		  <tr>
 			 <td style="font-size: 20px">上传资料：</td>
@@ -220,6 +280,21 @@
 			 <td style="font-size: 20px; width:250px;height:40px;">邮箱地址</td>
 			 <td style="font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		  </tr>
+		   <%
+		  	String[] guests = Users.split("-");
+		  	for(int i = 0; i<guests.length-2; i += 3)
+			{
+		  %>
+		  	<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%=guests[i]%></td>
+				<td><%=guests[i+1]%></td>
+				<td><%=guests[i+2]%></td>
+				<td><input type="button" value="删除" onclick="Delete(this)"></td>
+			</tr>
+		  <%
+			}
+		  %>
 	   </table>
 	</div>
 	   <table id="InputTable">
@@ -242,9 +317,9 @@
 	   <input type="button" id="CreateRelease" value="发  布" onclick="Release()"> 
 	   <input type="button" id="CreateSave" value="保存草稿" onclick="Save()"> 
 	   <input type="reset" id="CreateReset" value="重  置" onclick="Reset()">
-	   <input type="text" id="Users" name="Users" style="display:none">
-	   <input type="text" id="meetingBegintime" name="meetingBegintime" style="display:none">
-  	 	<input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none">
+	   <input type="text" id="Users" name="Users" style="display:none" value="<%=Users%>">
+	   <input type="text" id="meetingBegintime" name="meetingBegintime" style="display:none" value="<%=begintime%>">
+  	 	<input type="text" id="meetingEndtime" name="meetingEndtime" style="display:none" value="<%=endtime%>">
 
 	</div>
 	

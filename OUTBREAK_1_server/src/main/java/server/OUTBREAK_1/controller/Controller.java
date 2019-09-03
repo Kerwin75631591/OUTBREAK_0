@@ -2,9 +2,7 @@ package server.OUTBREAK_1.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,8 +18,8 @@ public class Controller {
 	@RequestMapping("Login")
 	public Map<String, Object> Login(String email, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> list = new ArrayList<String>();
 		DBConnect db = new DBConnect();
+		boolean message = false;
 		try {
 			db.connect();
 			System.out.println("数据库连接成功");
@@ -31,29 +29,15 @@ public class Controller {
 		}
 		try {
 			if (db.searchUser(true, email, password) == 0) {
-				ResultSet rs = db.searchPeople(email);
-				List<Integer> listtemp = new ArrayList<Integer>();
-				while (rs.next()) {
-					listtemp.add(rs.getInt("mid"));
-				}
-				for (int i = 0; i < listtemp.size(); i++) {
-					rs = db.searchMeeting(listtemp.get(i));
-					rs.next();
-					list.add(rs.getString("name"));
-					list.add("" + rs.getDate("begintime"));
-					list.add(rs.getString("place"));
-					list.add("" + rs.getInt("state"));
-					map.put("list" + i, list);
-					list.clear();
-				}
+				message = true;
 			} else {
-				String message = "登录失败";
-				map.put("message", message);
+				message = false;
 			}
 		} catch (SQLException e) {
 			System.out.println("登录搜索失败");
 			e.printStackTrace();
 		}
+		map.put("judge", message);
 		return map;
 	}
 
@@ -61,8 +45,8 @@ public class Controller {
 	@RequestMapping("Register")
 	public Map<String, Object> Register(String email, String password, String name) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> list = new ArrayList<String>();
 		DBConnect db = new DBConnect();
+		boolean message = false;
 		try {
 			db.connect();
 			System.out.println("数据库连接成功");
@@ -73,27 +57,90 @@ public class Controller {
 		try {
 			if (db.searchUser(false, email, password) == 0) {
 				db.insertUser(email, password, null, name, null);
-				ResultSet rs = db.searchPeople(email);
-				List<Integer> listtemp = new ArrayList<Integer>();
-				while (rs.next()) {
-					listtemp.add(rs.getInt("mid"));
-				}
-				for (int i = 0; i < listtemp.size(); i++) {
-					rs = db.searchMeeting(listtemp.get(i));
-					rs.next();
-					list.add(rs.getString("name"));
-					list.add("" + rs.getDate("begintime"));
-					list.add(rs.getString("place"));
-					list.add("" + rs.getInt("state"));
-					map.put("list" + i, list);
-					list.clear();
-				}
+				message = true;
 			} else {
-				String message = "注册失败";
-				map.put("message", message);
+				message = false;
 			}
 		} catch (SQLException e) {
-			System.out.println("登录搜索失败");
+			System.out.println("注册搜索失败");
+			e.printStackTrace();
+		}
+		map.put("judge", message);
+		return map;
+	}
+
+	// 简单会议信息功能
+	@RequestMapping("SimpleMeeting")
+	public Map<String, Object> SimpleMeeting(String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		DBConnect db = new DBConnect();
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs = db.searchPeople(email);
+			int[] mids = new int[100];
+			int i = 0;
+			while (rs.next()) {
+				mids[i] = rs.getInt("Mid");
+				i++;
+			}
+			rs.close();
+			map.put("Number", i + 1);
+			for (int j = 0; j < i; j++) {
+				rs = db.searchMeeting(mids[j]);
+				Map<String, Object> meetings = new HashMap<String, Object>();
+				meetings.put("name", rs.getString("name"));
+				meetings.put("time", rs.getString("time"));
+				meetings.put("place", rs.getString("place"));
+				meetings.put("state", rs.getInt("state"));
+				map.put(mids[j] + "", meetings);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("会议搜索失败");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	// 详细会议信息功能
+	@RequestMapping("ComplexMeeting")
+	public Map<String, Object> ComplexMeeting(int mid) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		DBConnect db = new DBConnect();
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs = db.searchMeeting(mid);
+			Map<String, Object> meetings = new HashMap<String, Object>();
+			meetings.put("name", rs.getString("name"));
+			meetings.put("topic", rs.getString("topic"));
+			meetings.put("time", rs.getString("time"));
+			meetings.put("place", rs.getString("place"));
+			meetings.put("state", rs.getInt("state"));
+			meetings.put("fileUrl", rs.getString("fileUrl"));
+			meetings.put("content", rs.getString("content"));
+			map.put("meeting", meetings);
+			rs.close();
+			rs=db.searchPeople(mid);
+			while(rs.next()) {
+				map.put(rs.getString("name"), rs.getInt("TOF"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("会议搜索失败");
 			e.printStackTrace();
 		}
 		return map;

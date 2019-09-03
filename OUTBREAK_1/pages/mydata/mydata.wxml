@@ -9,21 +9,32 @@
     </view>
   </view>
     <view class='item'>
-      <text class='left'>姓名：</text><text class='right'>{{name }}</text>
+      <text class='left'>姓名：</text>
+      <input type="text" class="right" placeholder-class="place-holder" name="name" wx:if="{{name==null|| name==''}}" placeholder="未设置"></input>
+      <input type="text" class="right" name="name" wx:else value="{{name}}"></input>
     </view>
     <view class='item'>
-      <text class='left'>联系方式：</text><text class='right'>{{phoneNum}}</text>
+      <text class='left'>联系方式：</text>
+      <input type="text"  class="right" placeholder-class="place-holder" name="phoneNum" wx:if="{{phoneNum==null|| phoneNum==''}}" placeholder="未设置"></input>
+      <input type="text"  class="right" name="phoneNum" wx:else value="{{phoneNum}}"></input>
     </view>
     <view class='item'>
-     <text class='left'> 职务：</text><text class='right'>{{duties}}</text>
+     <text class='left'> 职务：</text>
+     <input type="text" class="right" placeholder-class="place-holder" name="duties" wx:if="{{duties==null|| duties==''}}" placeholder="未设置" ></input>
+     <input type="text" class="right" name="duties" wx:else value="{{duties}}"></input>
     </view>
     <view class='item'>
-      <text class='left'>地址：</text><text class='right'>{{address}}</text>
+      <text class='left'>地址：</text>
+      <input type="text" class="right" placeholder-class="place-holder" name="address" wx:if="{{address==null|| address==''}}" placeholder="未设置"></input>
+      <input type="text" class="right" name="address" wx:else value="{{address}}"></input>
     </view>
-    <view class='item' bindtap='setemail'>
-     <text class='left'> 邮箱：</text><text class='right' wx:if="{{email==''|| email==null}}">未绑定</text><text class='right' wx:else>{{email}}</text>
+    <view class='item'>
+     <text class='left'> 邮箱：</text>
+     <text class='right' wx:if="{{email==''|| email==null}}">未绑定</text>
+     <text class='right' wx:else>{{email}}</text>
     </view>
-    <view class='item' bindtap='resetpwd'>
-     <text class='left'> 密码：</text><text class='right'>重置</text>
+    <view class='item'>
+     <text class='left'> 密码：</text>
+     <button class='right' bindtap='resetpwd'>重置密码</button>
     </view>
 </view>
