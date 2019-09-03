@@ -23,11 +23,12 @@ Page({
     //this.setData({ myinfo: stu });
 
     var that = this;
+    var email_ = wx.getStorageSync('email');
     // 发出请求
     wx.request({
       url: 'http://localhost:443/UserData',
       data: {
-        email: email
+        email_: email_
       },
       method: 'GET',
       header: {

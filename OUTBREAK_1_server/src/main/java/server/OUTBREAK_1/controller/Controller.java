@@ -105,6 +105,7 @@ public class Controller {
 		System.out.println("进入userdata");
 		Map<String, Object> map = new HashMap<String, Object>();
 		DBConnect db = new DBConnect();
+		System.out.println(email);
 		try {
 			db.connect();
 			System.out.println("数据库连接成功");

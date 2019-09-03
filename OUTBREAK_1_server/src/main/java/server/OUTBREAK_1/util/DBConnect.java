@@ -24,7 +24,7 @@ public class DBConnect {
 			Class.forName("com.mysql.jdbc.Driver");
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("锟睫凤拷锟揭碉拷锟斤拷锟斤拷锟斤拷");
+			System.out.println("数据库连接失败");
 		}
 	}
 
