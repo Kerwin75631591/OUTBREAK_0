@@ -61,6 +61,9 @@ public class EmailPoster {
     public static void sendRegCheck(String receiver, int check) {
     	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p>");
     }
+    public static void sendPwResetCheck(String receiver, int check) {
+    	new EmailPoster(receiver).sendEmail("重置密码", "<p>尊敬的用户您好！</p><p>您重置密码的验证码为"+check+"，请不要将验证码泄漏给他人</p>");
+    }
     public static void sendIfInvited(String receiver, String topic, boolean hasRegistered) {
     	String content="<p>尊敬的用户您好，</p><p>您在outbreak会议管理系统中受邀参加"+topic+"会议</p>";
     	if(hasRegistered) {
@@ -81,6 +84,7 @@ public class EmailPoster {
         //test();
         //EmailPoster.test();
     	//EmailPoster.testRegCheck();
-    	EmailPoster.sendIfInvited("383250208@qq.com", "加班", false);
+    	//EmailPoster.sendIfInvited("383250208@qq.com", "加班", false);
+    	EmailPoster.sendPwResetCheck("383250208@qq.com", 123456);
     }
 }
