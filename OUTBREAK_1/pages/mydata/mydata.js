@@ -36,21 +36,19 @@ Page({
       success: function (res) {
         console.log(res.data)//打印到控制台
         // 获得来自后台的变量值
-
         var name = res.data.name;
         var phoneNum = res.data.phoneNum;
         var duties = res.data.duties;
         var address = res.data.address;
         var email = res.data.email;
-          // 将后台数据传至data中
+        // 将后台数据传至data中
         that.setData({
           name: name,
           phoneNum: phoneNum,
           duties: duties,
           address: address,
           email: email
-        })
-        
+        }) 
       }
     })
   },

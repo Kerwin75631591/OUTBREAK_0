@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    email:'',
+    password:'',
+    islogin:false
   },
 
   /**
@@ -62,5 +64,80 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 获取邮箱
+   */
+  LoginEmail: function (lm) {
+    this.setData({
+      emial: lm.detail.value
+    })
+  },
+
+  /**
+   * 获取密码
+   */
+  LoginPassword: function (lp) {
+    this.setData({
+      password: lp.detail.value
+    })
+  },
+
+  /**
+   * 用户点击登录按钮进入小程序
+   */
+  LoginBtn: function() {
+    var that = this;
+    // 发出请求
+    wx.request({
+      url: 'http://localhost:443/Login',
+      data: {
+        email: that.data.email,
+        password: taht.data.password
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)//打印到控制台
+        // 获得来自后台的变量值
+        var islogin = res.data.islogin;
+        // 将后台数据传至data中
+        that.setData({
+          islogin: islogin
+        })
+        // 如果邮箱与密码匹配，登录成功
+        if(islogin == true) {
+          wx.navigateTo({
+            url: '/pages/home/home',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+        } 
+      }
+    })
+  },
+
+  /**
+   * 用户点击忘记密码可以对密码进行重置
+   */
+  FogetPwdBtn: function() {
+
+  },
+
+  /**
+  *用户点击注册按钮进入注册页面
+  */
+  RegisterBtn: function () {
+    wx.navigateTo({
+      url: '/pages/reg/reg',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
+
 })
