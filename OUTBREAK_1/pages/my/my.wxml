@@ -1,3 +1,4 @@
+<!--my.wxml  我的主页-->
 <image class="topimage" src="../../images/tubiao.jpg" mode="aspectFit"></image>
 <text class="welcometext">1111111111@xx.com,您好!</text>
 	<view class="my-list">
@@ -14,7 +15,7 @@
 			<image src="../../images/help.png" mode="aspectFit"></image>
 			<text>帮助</text>
 		</navigator>
-    <navigator class="my-item" url="../log/log" open-type="redirect" hover-class="other-navigator-hover">
+    <navigator class="my-item" url="../log/log" open-type="reLaunch">
 			<image src="../../images/logout.png" mode="aspectFit"></image>
 			<text>退出登录</text>
 		</navigator>

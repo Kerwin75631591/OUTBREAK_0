@@ -1,4 +1,4 @@
-
+<!--Tcard.wxml  有名片的名片墙-->
 <view class="my-reserve-list">
 		
 				<view class="my-reserve-text">

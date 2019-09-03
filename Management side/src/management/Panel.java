@@ -101,14 +101,27 @@ public class Panel extends JPanel {
 			String str="  id\t begintime\t\t endtime\t\t place\t name\t topic\t content\t host\t\t  PeopleNum\t ArrivalNum\t FileUrl\t \n";
 			try {
 				rs = db.searchMeeting();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
 				while(rs.next()) {
 					str=str+"  "+rs.getString("id")+"\t"+rs.getString("begintime")+"\t"+rs.getString("endtime")+"\t"+
 				rs.getString("place")+"\t"+rs.getString("name")+"\t"+rs.getString("topic")+"\t"+
 				rs.getString("content")+"\t"+rs.getString("host")+"\t"+rs.getInt("PeopleNum")+"\t"+
 				rs.getInt("ArrivalNum")+"\t"+rs.getString("FileUrl")+"\t"+"\n";
 				}
-				textArea.setText(str);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			textArea.setText(str);
+			try {
 				rs.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
 				sendEmail(int1,name);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -145,24 +158,13 @@ public class Panel extends JPanel {
 			textArea.setText(str);
 		}
 	}
-	@SuppressWarnings("null")
 	public void sendEmail(int mid,String name) throws SQLException {
-		ResultSet rs2=db.searchPeople(mid);
-		String[] Emails=new String[20];
-		String[] Uids=new String[20];
-		String[] PhoneNums=new String[20];
-		int j=0;
-		while(rs2.next()) {
-			Emails[j]=rs2.getString("Email");
-			Uids[j]=rs2.getString("Uid");
-			PhoneNums[j]=rs2.getString("PhoneNum");
-			j++;
+		ResultSet rs=db.searchPeople(mid);
+		while(rs.next()) {
+			
+			boolean hasRegistered=db.RegistUser(rs.getString("Email"),rs.getString("Uid") ,rs.getString("PhoneNum"));
+			EmailPoster.sendIfInvited(rs.getString("Email"), name, hasRegistered);
 		}
-		for(int i=0;i<j;i++) {
-			boolean hasRegistered=db.RegistUser(Emails[i],Uids[i],PhoneNums[i]);
-			EmailPoster.sendIfInvited(Emails[i], name, hasRegistered);
-		}
-		
 	}
 	
 }

@@ -16,7 +16,7 @@ import server.OUTBREAK_1.util.DBConnect;
 @RestController
 @SpringBootApplication
 public class Controller {
-	//µÇÂ¼¹¦ÄÜ
+	//ç™»å½•åŠŸèƒ½
 	@RequestMapping("Login")
 	public Map<String, Object> Login(String email,String password){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -24,9 +24,9 @@ public class Controller {
 		DBConnect db=new DBConnect();
 		try {
 			db.connect();
-			System.out.println("Êı¾İ¿âÁ¬½Ó³É¹¦");
+			System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸ");
 		} catch (SQLException e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
 			e.printStackTrace();
 		}
 		try {
@@ -48,17 +48,17 @@ public class Controller {
 					 list.clear();
 					 }
 			}else {
-				String message="µÇÂ¼Ê§°Ü";
+				String message="ç™»å½•å¤±è´¥";
 				map.put("message", message);
 			}
 		} catch (SQLException e) {
-			System.out.println("µÇÂ¼ËÑË÷Ê§°Ü");
+			System.out.println("ç™»å½•æœç´¢å¤±è´¥");
 			e.printStackTrace();
 		}
 		return map;
 	}
 	
-	//×¢²á¹¦ÄÜ
+	//æ³¨å†ŒåŠŸèƒ½
 	@RequestMapping("Register")
 	public Map<String, Object> Register(String email,String password,String name){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -66,9 +66,9 @@ public class Controller {
 		DBConnect db=new DBConnect();
 		try {
 			db.connect();
-			System.out.println("Êı¾İ¿âÁ¬½Ó³É¹¦");
+			System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸ");
 		} catch (SQLException e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
 			e.printStackTrace();
 		}
 		try {
@@ -91,14 +91,40 @@ public class Controller {
 					 list.clear();
 					 }
 			}else {
-				String message="×¢²áÊ§°Ü";
+				String message="æ³¨å†Œå¤±è´¥";
 				map.put("message", message);
 			}
 		} catch (SQLException e) {
-			System.out.println("µÇÂ¼ËÑË÷Ê§°Ü");
+			System.out.println("ç™»å½•æœç´¢å¤±è´¥");
 			e.printStackTrace();
 		}
 		return map;
 	}
 
+	//ç”¨æˆ·æ•°æ®æŸ¥è¯¢åŠŸèƒ½
+		@RequestMapping("UserData")
+		public Map<String, Object> UserData(String email){
+			Map<String, Object> map = new HashMap<String, Object>();
+			DBConnect db=new DBConnect();
+			try {
+				db.connect();
+				System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸ");
+			} catch (SQLException e) {
+				System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥");
+				e.printStackTrace();
+			}
+			try {
+				ResultSet rs=db.searchUserData(email);
+				rs.next();
+				map.put("name",rs.getString("name"));
+				map.put("phoneNum",rs.getDate("phoneNum"));
+				map.put("duties",rs.getString("duties"));
+				map.put("address",rs.getString("address"));
+				map.put("email",rs.getString("email"));
+			} catch (SQLException e) {
+				System.out.println("ç™»å½•æœç´¢å¤±è´¥");
+				e.printStackTrace();
+			}
+			return map;
+		}
 }
