@@ -59,20 +59,20 @@ public class EmailPoster {
         }
     }
     public static void sendRegCheck(String receiver, int check) {
-    	new EmailPoster(receiver).sendEmail("outbreak×¢ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½", "<p>ï¿½ğ¾´µï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ã£ï¿½</p><p>ï¿½ï¿½ï¿½ï¿½outbreakï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Îª"+check+"</p>");
+    	new EmailPoster(receiver).sendEmail("outbreak×¢²áÑéÖ¤Âë", "<p>×ğ¾´µÄÓÃ»§ÄúºÃ£¡</p><p>ÄúÔÚoutbreak»áÒé¹ÜÀíÏµÍ³×¢²áµÄÑéÖ¤ÂëÎª"+check+"</p>");
     }
     public static void sendIfInvited(String receiver, String topic, boolean hasRegistered) {
-    	String content="<p>ï¿½ğ¾´µï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ã£ï¿½</p><p>ï¿½ï¿½ï¿½ï¿½outbreakï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½"+topic+"ï¿½ï¿½ï¿½ï¿½</p>";
+    	String content="<p>×ğ¾´µÄÓÃ»§ÄúºÃ£¬</p><p>ÄúÔÚoutbreak»áÒé¹ÜÀíÏµÍ³ÖĞÊÜÑû²Î¼Ó"+topic+"»áÒé</p>";
     	if(hasRegistered) {
-    		content+="<p>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ğ²é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢</p>";
+    		content+="<p>Äú¿ÉÒÔÔÚÎ¢ĞÅĞ¡³ÌĞòÖĞ²é¿´»áÒéµÄÏêÏ¸ĞÅÏ¢</p>";
     	}else {
-    		content+="<p>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ğ²é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Êºï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªoutbreak123</p>";
+    		content+="<p>Äú¿ÉÒÔÔÚÎ¢ĞÅĞ¡³ÌĞòÖĞ²é¿´»áÒéµÄÏêÏ¸ĞÅÏ¢£¬ÕÊºÅÎªÄúµÄÓÊÏä£¬Ä¬ÈÏÃÜÂëÎªoutbreak123</p>";
     	}
-    	new EmailPoster(receiver).sendEmail("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", content);
+    	new EmailPoster(receiver).sendEmail("»áÒéÊÜÑû", content);
     }
     public static void test(){
         EmailPoster emailPoster=new EmailPoster("383250208@qq.com");
-        emailPoster.sendEmail("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","OUTBREAKï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½231ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½");
+        emailPoster.sendEmail("»áÒéÌáĞÑ","OUTBREAK»áÒé¹ÜÀíÏµÍ³ÌáĞÑÄú£º\nÄúÃ÷ÌìÔÚ231ÓĞÒ»¸ö»áÒé²Î¼Ó");
     }
     public static void testRegCheck() {
     	EmailPoster.sendRegCheck("383250208@qq.com", 154396);
@@ -81,6 +81,6 @@ public class EmailPoster {
         //test();
         //EmailPoster.test();
     	//EmailPoster.testRegCheck();
-    	EmailPoster.sendIfInvited("383250208@qq.com", "ï¿½Ó°ï¿½", false);
+    	EmailPoster.sendIfInvited("383250208@qq.com", "¼Ó°à", false);
     }
 }

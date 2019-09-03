@@ -193,13 +193,7 @@
 	function Delete(obj){
 		var trId = obj.parentNode.parentNode.id;
 		
-		var rowIndex = obj.parentNode.parentNode.rowIndex;
-		var row = document.getElementById("UserTable").rows[rowIndex];
-		var move = row.cells[1] + "-" + row.cells[2] + "-" + row.cells[3] + "-";
-		//删除Users里面的指定内容
-		var temp = document.getElementById("Users").value;
-		temp.replace(move, "");
-        Users.value = temp;
+
 		
 		var trObj = document.getElementById(trId);
 		document.getElementById("UserTable").removeChild(trObj);
@@ -336,30 +330,6 @@
 
 	</div>
 	</form>
-<<<<<<< HEAD
+</body>
 
-</body>
-=======
-</body>
-<script>
-	window.onload = function(){
-		<% 
-			String email = request.getParameter("email");
-			if(email == null || "".equals(email.trim()))
-			{
-				return;
-			}
-			
-			MeetingBeanCL mbcl = new MeetingBeanCL();
-			ResultSet meetings = mbcl.search(email);
-			
-			if(meetings == null)
-			{
-				return;
-			}
-		%>
-			
-	}
-</script>
->>>>>>> 69d91b7ec6ab008c3a3cc9ae1ab6825296fe4f09
 </html>
