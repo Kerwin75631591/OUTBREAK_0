@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=GBK"
 	pageEncoding="GBK"%>
 	<%@ page import="com.outbreak.dao.*"%>
+	<%@ page import="com.outbreak.util.*"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
