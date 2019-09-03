@@ -17,7 +17,7 @@
 	String pw=request.getParameter("Password");
 	UserBeanCL ubcl=new UserBeanCL();
 	try{
-		ubcl.db.updateUserPassword(Email,pw);
+		ubcl.db.updateUserpassword(Email,pw);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
