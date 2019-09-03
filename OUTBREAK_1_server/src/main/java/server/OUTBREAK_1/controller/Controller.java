@@ -139,7 +139,7 @@ public class Controller {
 			rs.close();
 			rs=db.searchPeople(mid);
 			while(rs.next()) {
-				
+				map.put(rs.getString("name"), rs.getInt("TOF"));
 			}
 			
 		} catch (SQLException e) {
