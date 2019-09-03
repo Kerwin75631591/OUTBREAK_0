@@ -39,7 +39,7 @@ body{
 	position:absolute;
     border: 1px solid #E2E3E5;
     width: 10%;
-	height: 200%;
+	height: 209%;
 	min-width:300px;
 	box-shadow: 10px 10px 30px #888888;
 	background:#FFFFFF;
@@ -94,6 +94,11 @@ input {outline:none;}
 	position:absolute;
 	margin-left:25%;
 	margin-top:93%;
+}
+#JumpToPwReset{
+	position:absolute;
+	margin-left:25%;
+	margin-top:100%;
 }
 #RegistText{
 	position:absolute;
