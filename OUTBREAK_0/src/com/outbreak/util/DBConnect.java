@@ -115,9 +115,10 @@ public class DBConnect {
 		sql = "INSERT INTO MeetingTable(id,begintime,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
+		System.out.println(new java.sql.Date(begintime.getTime()));
 		pstmt.setInt(1, id);
-		pstmt.setDate(2, new java.sql.Date(begintime.getTime()));
-		pstmt.setDate(3, new java.sql.Date(endtime.getTime()));
+		pstmt.setString(2, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(begintime));
+		pstmt.setString(3, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(endtime));
 		pstmt.setString(4, place);
 		pstmt.setString(5, name);
 		pstmt.setString(6, topic);

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: hh
-Build-Jdk: 11.0.2
+Built-By: Kerwin
+Build-Jdk: 10.0.2
 Implementation-Title: demoSpeak
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.bin
