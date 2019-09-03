@@ -23,12 +23,11 @@ Page({
     //this.setData({ myinfo: stu });
 
     var that = this;
-    var email_ = wx.getStorageSync('email');
     // 发出请求
     wx.request({
       url: 'http://localhost:443/UserData',
       data: {
-        email_: email_
+        email: that.data.email
       },
       method: 'GET',
       header: {
@@ -43,23 +42,15 @@ Page({
         var duties = res.data.duties;
         var address = res.data.address;
         var email = res.data.email;
-        if (list == null) {
-          var toastText = '数据获取失败';
-          wx.showToast({
-            title: toastText,
-            icon: '',
-            duration: 2000
-          });
-        } else {
           // 将后台数据传至data中
-          that.setData({
-            name: name,
-            phoneNum: phoneNum,
-            duties: duties,
-            address: address,
-            email: email
-          })
-        }
+        that.setData({
+          name: name,
+          phoneNum: phoneNum,
+          duties: duties,
+          address: address,
+          email: email
+        })
+        
       }
     })
   },

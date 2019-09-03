@@ -117,7 +117,7 @@ public class Controller {
 			ResultSet rs = db.searchUserData(email);
 			rs.next();
 			map.put("name", rs.getString("name"));
-			map.put("phoneNum", rs.getDate("phoneNum"));
+			map.put("phoneNum", rs.getString("phoneNumber"));
 			map.put("duties", rs.getString("duties"));
 			map.put("address", rs.getString("address"));
 			map.put("email", rs.getString("email"));
