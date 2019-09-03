@@ -19,10 +19,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var stu = wx.getStorageSync('student');
-    this.setData({ myinfo: stu });
+    //var stu = wx.getStorageSync('student');
+    //this.setData({ myinfo: stu });
 
     var that = this;
+    // 发出请求
     wx.request({
       url: 'http://localhost:443/UserData',
       method: 'GET',
@@ -31,7 +32,12 @@ Page({
       },
       success: function (res) {
         console.log(res.data)//打印到控制台
-        var list = res.data.list;
+        // 获得来自后台的变量值
+        var name = res.data.name;
+        var phoneNum = res.data.phoneNum;
+        var duties = res.data.duties;
+        var address = res.data.address;
+        var email = res.data.email;
         if (list == null) {
           var toastText = '数据获取失败';
           wx.showToast({
@@ -40,8 +46,13 @@ Page({
             duration: 2000
           });
         } else {
+          // 将后台数据传至data中
           that.setData({
-            list: list
+            name: name,
+            phoneNum: phoneNum,
+            duties: duties,
+            address: address,
+            email: email
           })
         }
       }
