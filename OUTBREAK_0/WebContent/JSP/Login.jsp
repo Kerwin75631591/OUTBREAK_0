@@ -29,28 +29,25 @@ System.out.println(basePath);%>
 					document.forms[0].submit();
 				}
 			}
+			
 		</script>
 		<link rel="stylesheet" href="<%=path %>/CSS/Login.css" >
 	</head>
 	<body>
 		<canvas ></canvas>
 		<form action="<%=path %>/JSP/LoginCL.jsp" method="post">
+        <div id="LoginSTitle">OUTBREAK</div>
+        <div id="LoginXTitle">云会议管理系统</div>
 		<div id="LoginBox">
-			<div>
-				<span id="LoginIDLabel">帐号：</span>
-				<span><input type="email" id="IDInput" name="LoginEmail"></span>
-            </div>
-			<div>
-				<span id="LoginPasswordLabel">密码：</span>
-				<span><input type="password" id="PasswordInput" name="LoginPassword"></span>
-			</div>
-			<div>
-				<span id="LoginVericodeLabel">验证码：</span>
-				<span><input type="text" id="VericodeInput" name="LoginVericode"></span>
+		   <span><input type="email" id="IDInput"  style="border:1px solid #999999;" placeholder="请输入邮箱" name="LoginEmail"></span>
+		   <span><input type="password" id="PasswordInput" style="border:1px solid #999999;" placeholder="请输入密码" name="LoginPassword"></span>
+			 <div>
+				<span><input type="text" id="VericodeInput" style="border:1px solid #999999;" placeholder="请输入验证码" name="LoginVericode"></span>
 				<span id="LoginVericodePic"></span>
-			</div>
-			<span><input type="button" id="RegistWant" value="注册" onclick="window.location.href='<%=path %>/JSP/Register.jsp'"></span>
-			<span><input type="button" id="LoginInput" value="登录" onclick="checkL()"></span>
+			 </div>
+			<input type="button" id="LoginInput" class="logbutton ripple" data-ripple-color="white" value="登  录"  onclick="checkL()">
+			<text id="JumpText" style="color:#808080">还没有账号？请</text><a id="RegistText" href="Register.jsp">注册</a>
+			<text id="JumpToPwReset" style="color:#808080">忘记密码？<a href="PwReset.jsp">点击这里！</a></text>
 		</div>
 		</form>
 	</body>
