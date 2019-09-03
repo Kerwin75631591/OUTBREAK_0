@@ -66,8 +66,8 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		mb.setTopic(request.getParameter("meetingTopic"));
 		//合成会议时间
 		try {
-			System.out.println(request.getParameter("meetingBegintime"));
-			System.out.println(request.getParameter("meetingEndtime"));
+			System.out.println(meetingData + " " + request.getParameter("meetingBegintime"));
+			System.out.println(meetingData + " " + request.getParameter("meetingEndtime"));
 			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingBegintime"));
 			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingEndtime"));
 			mb.setBegintime(begintime);
@@ -79,7 +79,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		mb.setPlace(request.getParameter("meetingPlace"));
 		//制作会议邀请名单
 		String[] guests = request.getParameter("Users").split("-");
-		for(int i = 0; i<guests.length/3; i+=3)
+		for(int i = 0; i<guests.length-2; i+=3)
 		{
 			mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
 		}

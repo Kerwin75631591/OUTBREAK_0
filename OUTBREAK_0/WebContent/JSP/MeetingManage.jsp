@@ -70,11 +70,12 @@ charset=GBK"
 					while (meetings.next()) {
 						int meetingid = meetings.getInt("id");
 						String name = meetings.getString("name");
-						Date startDate = (Date) meetings.getObject("begintime");
-						Date endDate = (Date) meetings.getObject("endtime");
+						String startDate = meetings.getString("begintime");
+						String endDate = meetings.getString("endtime");
 						String dateString = startDate + "---" + endDate;
 						String loc = meetings.getString("place");
 						String topic = meetings.getString("topic");
+						String content = meetings.getString("content");
 						int arr = meetings.getInt("ArrivalNum");
 						int total = meetings.getInt("peopleNum");
 						String numString = arr + "//" + total;
@@ -102,7 +103,7 @@ charset=GBK"
 				<td id=<%="name" + counter%>><%=name%></td>
 				<td id=<%="date" + counter%>><%=dateString%></td>
 				<td id=<%="loc" + counter%>><%=loc%></td>
-				<td id=<%="content" + counter%>><%=topic%></td>
+				<td id=<%="content" + counter%>><%=content%></td>
 
 				<%
 					String s = "InvitedPeople.jsp?meetingName=" + name + "&meetingId=" + meetingid;

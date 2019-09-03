@@ -78,7 +78,7 @@ public class SaveServlet extends HttpServlet {
 		if(!request.getParameter("Users").isEmpty()){
 			//制作会议邀请名单
 			String[] guests = request.getParameter("Users").split("-");
-			for(int i = 0; i<guests.length/3; i+=3)
+			for(int i = 0; i<guests.length-2; i+=3)
 			{
 				mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
 			}
