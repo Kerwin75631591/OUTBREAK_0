@@ -76,12 +76,13 @@ public class DBConnect {
 		statement.execute(sql);
 	}
 
+	
 	// UserTable修改密码
-	public void updateUserpassword(String email, String newPassword) throws SQLException {
-		String sql = "UPDATE UserTable SET password = " + newPassword + " WHERE   email = '" + email + "'";
-		System.out.println(sql);
-		rs = statement.executeQuery(sql);
-	}
+		public void updateUserpassword(String email, String newPassword) throws SQLException {
+			String sql = "UPDATE UserTable SET password = " + newPassword + " WHERE   email = '" + email + "'";
+			System.out.println(sql);
+			rs = statement.executeQuery(sql);
+		}
 
 	// UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
 	public int searchUser(boolean judge, String email, String password) throws SQLException {
