@@ -3,6 +3,7 @@
     "pages/log/log",
     "pages/reg/reg",
     "pages/home/home",
+    "pages/pwforget/pwforget",
     "pages/mydata/mydata",
     "pages/index/index",
     "pages/Tcard/Tcard",

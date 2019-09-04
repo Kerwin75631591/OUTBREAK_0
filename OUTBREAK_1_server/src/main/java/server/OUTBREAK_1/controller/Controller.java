@@ -175,4 +175,30 @@ public class Controller {
 		}
 		return map;
 	}
+	// 用户修改资料
+		@RequestMapping("changeData")
+		public Map<String, Object> changeData(String email,String name,String value) {
+			System.out.println("进入changedata");
+			Map<String, Object> map = new HashMap<String, Object>();
+			DBConnect db = new DBConnect();
+			boolean judge =false;
+			System.out.println(email);
+			try {
+				db.connect();
+				System.out.println("数据库连接成功");
+			} catch (SQLException e) {
+				System.out.println("数据库连接失败");
+				e.printStackTrace();
+			}
+			try {
+				db.updateUser(email, name, value);
+				judge=true;
+				
+			} catch (SQLException e) {
+				System.out.println("登录搜索失败");
+				e.printStackTrace();
+			}
+			map.put("judge", judge);
+			return map;
+		}
 }
