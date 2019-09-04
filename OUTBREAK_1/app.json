@@ -5,6 +5,7 @@
     "pages/home/home",
     "pages/index/index",
     "pages/reg/reg",
+    "pages/pwforget/pwforget",
     "pages/mydata/mydata",
     "pages/Tcard/Tcard",
     "pages/meetingdetail/meetingdetail",
