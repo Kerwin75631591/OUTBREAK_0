@@ -4,24 +4,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // onPullDownRefresh: function () {
-    //   wx.stopPullDownRefresh()
-    // },
-    myinfo: null,
     name: '',
     phoneNum: '',
     duties: '',
     address: '',
-    email: '75631591@qq.com'
+    email: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //var stu = wx.getStorageSync('student');
-    //this.setData({ myinfo: stu });
-
+    var app = getApp();
+    this.setData({
+      email: app.globalData.email
+    })
     var that = this;
     // 发出请求
     wx.request({

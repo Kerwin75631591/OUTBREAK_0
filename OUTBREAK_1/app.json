@@ -1,11 +1,10 @@
 {
   "pages": [
-
     "pages/log/log",
-    "pages/home/home",
-    "pages/index/index",
     "pages/reg/reg",
+    "pages/home/home",
     "pages/mydata/mydata",
+    "pages/index/index",
     "pages/Tcard/Tcard",
     "pages/meetingdetail/meetingdetail",
     "pages/info/info",

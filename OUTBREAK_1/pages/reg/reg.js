@@ -112,7 +112,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        console.log(res.data)//打印到控制台
+        console.log(res.data)// 将从后台获得的数据打印到控制台
         // 获得来自后台的变量值
         var judge = res.data.judge;
         // 将后台数据传至data中
@@ -121,6 +121,11 @@ Page({
         })
         // 如果邮箱与密码匹配，登录成功
         if (judge == true) {
+          // 将邮箱给到app.js，作为全局变量
+          var app = getApp();
+          app.globalData.email = that.data.email;
+          // 打印全局邮箱值到控制台
+          console.log(app.globalData.email);
           wx.reLaunch({
             url: '/pages/home/home',
           })
