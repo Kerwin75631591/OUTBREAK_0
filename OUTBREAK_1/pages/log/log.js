@@ -122,7 +122,9 @@ Page({
    * 用户点击忘记密码可以对密码进行重置
    */
   FogetPwdBtn: function() {
-
+    wx.navigateTo({
+      url: '../pwforget/pwforget',
+    })
   },
 
   /**
