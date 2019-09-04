@@ -182,7 +182,7 @@ public class DBConnect {
 
 	// MeetingTable搜索某mid的会议
 	public ResultSet searchMeeting(Integer integer) throws SQLException {
-		String sql = "SELECT * FROM MeetingTable WHERE mid = '" + integer + "'";
+		String sql = "SELECT * FROM MeetingTable WHERE id = '" + integer + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}

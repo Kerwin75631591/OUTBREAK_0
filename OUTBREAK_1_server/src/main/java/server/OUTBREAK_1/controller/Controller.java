@@ -95,15 +95,17 @@ public class Controller {
 				i++;
 			}
 			rs.close();
-			map.put("Number", i + 1);
+			map.put("Number", i);
 			for (int j = 0; j < i; j++) {
 				rs = db.searchMeeting(mids[j]);
+				rs.next();
 				Map<String, Object> meetings = new HashMap<String, Object>();
 				meetings.put("name", rs.getString("name"));
-				meetings.put("time", rs.getString("time"));
+				meetings.put("time", rs.getString("begintime"));
 				meetings.put("place", rs.getString("place"));
 				meetings.put("state", rs.getInt("state"));
 				meetings.put("mid", mids[j]);
+				System.out.println(mids[j]);
 				list.add(meetings);
 			}
 
@@ -119,7 +121,8 @@ public class Controller {
 	@RequestMapping("ComplexMeeting")
 	public Map<String, Object> ComplexMeeting(int mid) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		@SuppressWarnings("rawtypes")
+		ArrayList<Map>list=new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
 			db.connect();
@@ -146,10 +149,11 @@ public class Controller {
 				Map<String, Object> people = new HashMap<String, Object>();
 				people.put("name",rs.getString("name"));
 				people.put("TOF", rs.getInt("TOF"));
-				map.put("people"+i, people);
+				list.add(people);
 				i++;
 			}
-			map.put("number", i-1);
+			map.put("number", i);
+			map.put("list", list);
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
