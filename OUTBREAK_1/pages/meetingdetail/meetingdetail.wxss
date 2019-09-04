@@ -1,1 +1,20 @@
 /* pages/meetingdetail/meetingdetail.wxss */
+.body{
+  margin:10px 8px 10px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tr{
+  display: flex;
+  flex-direction: none;
+}
+.th{
+  display: flex;
+  margin-right: 15px;
+}
+.td{
+  display: flex;
+  word-break: break-all;
+  width: 70%;
+}

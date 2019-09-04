@@ -6,7 +6,16 @@ Page({
    */
   data: {
     email:'',
-    mid:''
+    mid:'123',
+    //saved in meeting
+    meetingname:'123',
+    topic:'123',
+    time:'123',
+    place:'231',
+    state:0,
+    files:'123.txt',
+    content:'123ajfajjakjfdasjfklasdfdasklfjkasfjasdfciwafaksljcfclndja',
+
   },
 
   /**
@@ -16,7 +25,29 @@ Page({
     var app = getApp();
     this.setData({
       email: app.globalData.email
-    })
+    })/*
+    wx.request({
+      url: 'https://localhost:443/ComplexMeeting',
+      data:{
+        mid:this.data.mid
+      },
+      method:"GET",
+      header:{
+        'content-type':'application/json'
+      },
+      success: function(res){
+        console.log(res.data);
+        this.setData({
+          meetingname:res.data.meeting.name,
+          topic:res.data.meeting.topic,
+          time:res.data.meeting.time,
+          place:res.data.meeting.place,
+          state:res.data.meeting.state,
+          files:res.data.meeting.fileUrl,
+          content:res.data.meeting.content
+        });
+      }
+    });*/
   },
 
   /**
