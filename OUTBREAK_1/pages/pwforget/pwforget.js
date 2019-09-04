@@ -97,7 +97,7 @@ Page({
       data:{
         email:that.data.email
       },
-      method:'POST',
+      method:'GET',
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -120,9 +120,29 @@ Page({
             name:'password',
             value:that.data.pw
           },
-          method:'POST',
+          method:'GET',
           header: {
             'content-type':'application/json'
+          },
+          success: function(res){
+            var judge=res.data.judge;
+            if(judge){
+              wx.showModal({
+                title: '重置密码成功',
+                content: '重置密码成功',
+                success:function(res){
+                  if(res.confirm){
+                    wx.navigateBack({
+                      //
+                    })
+                    /*
+                    wx.redirectTo({
+                      url: '../log/log',
+                    })*/
+                  }
+                }
+              })
+            }
           }
         })
       }else{

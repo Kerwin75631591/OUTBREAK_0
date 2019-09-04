@@ -180,7 +180,7 @@ public class Controller {
 	// 用户验证邮件
 	@RequestMapping("sendEmail")
 	public Map<String, Object> sendEmail(String email) {
-		System.out.println("进入sendEmail");
+		System.out.println("进入sendEmail"+email);
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = 0;
 		while (true) {
