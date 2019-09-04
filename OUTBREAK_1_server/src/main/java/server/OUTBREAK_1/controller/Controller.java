@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import server.OUTBREAK_1.entity.EmailPoster;
 import server.OUTBREAK_1.util.DBConnect;
 
 @RestController
@@ -19,7 +20,7 @@ public class Controller {
 	public Map<String, Object> Login(String email, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		DBConnect db = new DBConnect();
-		System.out.println(email+"+"+password);
+		System.out.println(email + "+" + password);
 		boolean message = false;
 		try {
 			db.connect();
@@ -135,11 +136,11 @@ public class Controller {
 			meetings.put("content", rs.getString("content"));
 			map.put("meeting", meetings);
 			rs.close();
-			rs=db.searchPeople(mid);
-			while(rs.next()) {
+			rs = db.searchPeople(mid);
+			while (rs.next()) {
 				map.put(rs.getString("name"), rs.getInt("TOF"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
@@ -175,30 +176,47 @@ public class Controller {
 		}
 		return map;
 	}
-	// 用户修改资料
-		@RequestMapping("changeData")
-		public Map<String, Object> changeData(String email,String name,String value) {
-			System.out.println("进入changedata");
-			Map<String, Object> map = new HashMap<String, Object>();
-			DBConnect db = new DBConnect();
-			boolean judge =false;
-			System.out.println(email);
-			try {
-				db.connect();
-				System.out.println("数据库连接成功");
-			} catch (SQLException e) {
-				System.out.println("数据库连接失败");
-				e.printStackTrace();
-			}
-			try {
-				db.updateUser(email, name, value);
-				judge=true;
-				
-			} catch (SQLException e) {
-				System.out.println("登录搜索失败");
-				e.printStackTrace();
-			}
-			map.put("judge", judge);
-			return map;
+
+	// 用户验证邮件
+	@RequestMapping("sendEmail")
+	public Map<String, Object> sendEmail(String email) {
+		System.out.println("进入sendEmail");
+		Map<String, Object> map = new HashMap<String, Object>();
+		int code = 0;
+		while (true) {
+			code = (int) Math.floor(Math.random() * 1000000);
+			if (code > 99999)
+				break;
 		}
+		EmailPoster.sendCodeCheck(email, code);
+		map.put("code", code);
+		return map;
+	}
+
+	// 用户修改资料
+	@RequestMapping("changeData")
+	public Map<String, Object> changeData(String email, String name, String value) {
+		System.out.println("进入changedata");
+		Map<String, Object> map = new HashMap<String, Object>();
+		DBConnect db = new DBConnect();
+		boolean judge = false;
+		System.out.println(email);
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			db.updateUser(email, name, value);
+			judge = true;
+
+		} catch (SQLException e) {
+			System.out.println("登录搜索失败");
+			e.printStackTrace();
+		}
+		map.put("judge", judge);
+		return map;
+	}
 }

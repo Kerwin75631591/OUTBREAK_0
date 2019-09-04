@@ -61,6 +61,9 @@ public class EmailPoster {
     public static void sendRegCheck(String receiver, int check) {
     	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p>");
     }
+    public static void sendCodeCheck(String receiver, int check) {
+    	new EmailPoster(receiver).sendEmail("outbreak邮箱验证码", "<p>尊敬的用户您好！</p><p>您在outbreak会议管理系统的验证码为"+check+"</p>");
+    }
     public static void sendIfInvited(String receiver, String topic, boolean hasRegistered) {
     	String content="<p>尊敬的用户您好，</p><p>您在outbreak会议管理系统中受邀参加"+topic+"会议</p>";
     	if(hasRegistered) {
