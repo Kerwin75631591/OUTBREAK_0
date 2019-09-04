@@ -1,2 +1,35 @@
 <!--pages/meetingdetail/meetingdetail.wxml  会议信息页-->
-<text>pages/meetingdetail/meetingdetail.wxml</text>
+
+<view class="body">
+  <view class="tr">
+    <view id="name" class="th">会议名称</view>
+    <view class="td" enable-flex>{{meetingname}}</view>
+  </view>
+  <view id="topic" class="tr">
+    <view class="th">会议主题</view>
+    <view class="td">{{topic}}</view>
+  </view>
+  <view id="time" class="tr">
+    <view class="th">会议时间</view>
+    <view class="td">{{time}}</view>
+  </view>
+  <view id="place" class="tr">
+    <view class="th">会议地点</view>
+    <view class="td">{{place}}</view>
+  </view>
+  <view id="files" class="tr">
+    <view class="th">会议资料</view>
+    <view class="td">{{files}}</view>
+  </view>
+  <view id="content" class="tr">
+    <view class="th">会议内容</view>
+    <view class="td">{{content}}</view>
+  </view>
+  <view id="people" class="tr">
+    <view class="th">会议名单</view>
+    <view class="td">23121</view>
+  </view>
+  <view>
+    <button bindtap="resetPeople">testButton</button>
+  </view>
+</view>

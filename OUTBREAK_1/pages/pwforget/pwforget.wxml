@@ -1,5 +1,5 @@
 <!--忘记密码-->
-<view class="container">
+<view class="cantainer">
   <view id="title">
     <view>OUTBREAK</view>
     <view>多客户端云会议管理系统</view>
