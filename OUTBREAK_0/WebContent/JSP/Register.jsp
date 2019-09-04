@@ -48,7 +48,7 @@
 		document.getElementById("email_button").disabled=true;
 		var e=encrypt();
 		//alert(e);
-		window.open("CheckCL.jsp?Email="+email+"&check="+e);
+		window.open("./RegCheckCL.jsp?Email="+email+"&check="+e);
 	}
 	function encrypt(){
 		//alert(typeof CHECK);

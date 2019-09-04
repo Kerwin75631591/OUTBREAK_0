@@ -6,15 +6,8 @@ Page({
    */
   data: {
     email:'',
-    meetings: {
-      name: '',
-      time: '',
-      place: '',
-      state: '',
-      mid: '',
-      
-    },
-    num: '10',
+    Number: 0,
+    list: ''
   },
 
   /**
@@ -25,6 +18,7 @@ Page({
     this.setData({
       email: app.globalData.email
     })
+    
     var that = this;
     wx.request({
       url: 'http://localhost:443/SimpleMeeting',
@@ -36,10 +30,19 @@ Page({
         'content-type': "applicaton/json"
       },
       success: function (res) {
-        console.log(res.data);
+        console.log(res.data); // 将后台得到的数据打印到控制台
+        var list = res.data.list;
+        if(list != null) {
+          that.setData({
+            Number: res.data.Number,
+            list: res.data.list
+          })
+        } else {
+          // 此处用处理该用户无有关会议的情况
+        }
       }
-
     })
+    console.log(that.data);
   },
 
   /**
@@ -89,5 +92,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 用户点击详细信息进入该会议详细信息界面
+   */
+  MeetingDetail: function () {
+    wx.navigateTo({
+      url: '/pages/meetingdetail/meetingdetail?mid=item.mid',
+    })
   }
 })

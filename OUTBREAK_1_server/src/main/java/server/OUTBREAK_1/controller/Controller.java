@@ -2,6 +2,7 @@ package server.OUTBREAK_1.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,7 +76,8 @@ public class Controller {
 	@RequestMapping("SimpleMeeting")
 	public Map<String, Object> SimpleMeeting(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		@SuppressWarnings("rawtypes")
+		ArrayList<Map>list=new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
 			db.connect();
@@ -101,13 +103,15 @@ public class Controller {
 				meetings.put("time", rs.getString("time"));
 				meetings.put("place", rs.getString("place"));
 				meetings.put("state", rs.getInt("state"));
-				map.put(mids[j] + "", meetings);
+				meetings.put("mid", mids[j]);
+				list.add(meetings);
 			}
 
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
 		}
+		map.put("list", list);
 		return map;
 	}
 
@@ -137,10 +141,15 @@ public class Controller {
 			map.put("meeting", meetings);
 			rs.close();
 			rs = db.searchPeople(mid);
+			int i=0;
 			while (rs.next()) {
-				map.put(rs.getString("name"), rs.getInt("TOF"));
+				Map<String, Object> people = new HashMap<String, Object>();
+				people.put("name",rs.getString("name"));
+				people.put("TOF", rs.getInt("TOF"));
+				map.put("people"+i, people);
+				i++;
 			}
-
+			map.put("number", i-1);
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
@@ -180,7 +189,7 @@ public class Controller {
 	// 用户验证邮件
 	@RequestMapping("sendEmail")
 	public Map<String, Object> sendEmail(String email) {
-		System.out.println("进入sendEmail"+email);
+		System.out.println("进入sendEmail");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = 0;
 		while (true) {

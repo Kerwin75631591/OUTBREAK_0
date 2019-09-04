@@ -3,9 +3,6 @@ package com.outbreak.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -51,9 +48,8 @@ public class ReleaseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("GBK");
-		response.setContentType("text/html;charset=GBK");
+		response.setContentType("GBK");
 		response.setCharacterEncoding("GBK");
-
 		// 检测是否为多媒体上传
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
@@ -102,6 +98,7 @@ public class ReleaseServlet extends HttpServlet {
                 	{
                 		String name = item.getFieldName(); 
                 		String value = item.getString(); 
+                		System.out.println(name+"+"+value);
                 		map.put(name, value); 
                 	}
                     // 处理不在表单中的字段（文件内容）
@@ -132,27 +129,21 @@ public class ReleaseServlet extends HttpServlet {
 		//新建会议实体
 		MeetingBean mb = new MeetingBean();
 		
-		//合成会议时间
-		try {
-			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(map.get("meetingData") + " " + map.get("meetingBegintime"));
-			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(map.get("meetingData") + " " + map.get("meetingBegintime"));
-			mb.setBegintime(begintime);
-			mb.setEndtime(endtime);
-		} catch (ParseException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		String begintime = map.get("meetingData") + " " + map.get("meetingBegintime");
+		String endtime = map.get("meetingData") + " " + map.get("meetingBegintime");
+		mb.setBegintime(begintime);
+		mb.setEndtime(endtime);
 
 		//设置会议内容
-		mb.setName(map.get("meetingName"));
-		mb.setTopic(map.get("meetingTopic"));
-		mb.setContent(map.get("meetingContent"));
-		mb.setPlace(map.get("meetingPlace"));
+		mb.setName(new String(map.get("meetingName").getBytes("iso-8859-1"), "GBK"));
+		mb.setTopic(new String(map.get("meetingTopic").getBytes("iso-8859-1"), "GBK"));
+		mb.setContent(new String(map.get("meetingContent").getBytes("iso-8859-1"), "GBK"));
+		mb.setPlace(new String(map.get("meetingPlace").getBytes("iso-8859-1"), "GBK"));
 		mb.setFileUrl(filePath);
 		mb.setHost((String) request.getSession().getAttribute("sessionemail"));
 		
 		//制作会议邀请名单
-		String[] guests = map.get("Users").split("-");
+		String[] guests = (new String(map.get("Users").getBytes("iso-8859-1"), "GBK")).split("-");
 		for(int i = 0; i<guests.length-2; i+=3)
 		{
 			mb.addpeople(guests[i], guests[i+2],guests[i+1]);;
