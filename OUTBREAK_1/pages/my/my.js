@@ -2,7 +2,8 @@
 Page({
   data: {
     modalHidden: true,
-    modalHidden2: true
+    modalHidden2: true,
+    email:''
   },
   modalTap: function (e) {
     this.setData({
@@ -28,6 +29,10 @@ Page({
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    var app = getApp();
+    this.setData({
+      email: app.globalData.email
+    })
   },
   onReady: function () {
     // 页面渲染完成

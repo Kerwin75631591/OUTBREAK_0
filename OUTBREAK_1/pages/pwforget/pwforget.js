@@ -4,7 +4,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    email:'',
+    pw:'',
+    rpw:'',
+    CHECK:0
   },
 
   /**
@@ -61,5 +64,52 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  setCheck: function(){
+    var check=0;
+    while(check<99999){
+      check=Math.floor(Math.random()*1000000);
+    }
+    this.setData({
+      CHECK:check
+    });
+  },
+
+  inputEmail:function(e){
+    this.setData({
+      email:e.detail.value
+    })
+  },
+  inputnpw: function(e){
+    this.setData({
+      pw:e.detail.value
+    })
+  },
+  inputrpw:function(e){
+    this.setData({
+      rpw:e.detail.value
+    })
+  },
+  getCheck: function(){
+    var that=this;
+    that.setCheck();
+    wx.request({
+      url: 'http://localhost:443/???',
+      data:{
+        email:that.data.email,
+        check:that.data.CHECK
+      },
+      method:'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function(res){
+        console.log(res.data);
+      }
+    })
+  },
+  resetpw: function(){
+    //
   }
 })

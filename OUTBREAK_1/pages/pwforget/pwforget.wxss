@@ -1,0 +1,27 @@
+.container{
+  display:flex;
+  flex-direction: column;
+}
+
+#title{
+  text-align: center;
+}
+
+form{
+  margin-left:11%;
+}
+
+.section{
+  display: flex;
+  margin-top: 30rpx;
+}
+
+.button{
+  margin-top: 30px;
+  width: 61.8%;
+  margin-left: 8.1%;
+  background-color: #1296db;
+  color: white;
+  border-radius: 98rpx;
+  background: bg_red;
+}

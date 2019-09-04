@@ -5,14 +5,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    email:'',
+    meetings: {
+      name: '',
+      time: '',
+      place: '',
+      state: '',
+      mid: '',
+      
+    },
+    num: '10',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app = getApp();
+    this.setData({
+      email: app.globalData.email
+    })
+    var that = this;
+    wx.request({
+      url: 'http://localhost:443/SimpleMeeting',
+      data: {
+        email: that.data.email
+      },
+      method: 'GET',
+      header: {
+        'content-type': "applicaton/json"
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
 
+    })
   },
 
   /**

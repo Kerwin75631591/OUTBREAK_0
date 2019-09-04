@@ -1,6 +1,6 @@
 <!--my.wxml  我的主页-->
 <image class="topimage" src="../../images/tubiao.jpg" mode="aspectFit"></image>
-<text class="welcometext">1111111111@xx.com,您好!</text>
+<text class="welcometext">{{email}},您好!</text>
 	<view class="my-list">
   	<navigator class="my-sitem"></navigator>
 		<navigator class="my-item" url="../mydata/mydata">

@@ -101,7 +101,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        console.log(res.data)// 将从后台获得的数据打印到控制台
+        console.log(res.data); // 将从后台获得的数据打印到控制台
         // 获得来自后台的变量值
         var judge = res.data.judge;
         // 将后台数据传至data中

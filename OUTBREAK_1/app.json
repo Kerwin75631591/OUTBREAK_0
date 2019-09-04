@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/my",
     "pages/log/log",
     "pages/reg/reg",
     "pages/home/home",
@@ -9,7 +10,7 @@
     "pages/Tcard/Tcard",
     "pages/meetingdetail/meetingdetail",
     "pages/info/info",
-    "pages/my/my",
+    
     "pages/logs/logs",
     "pages/help/help",
     "pages/kefu/kefu"
