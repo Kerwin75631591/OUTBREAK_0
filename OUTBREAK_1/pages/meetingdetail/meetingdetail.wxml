@@ -29,4 +29,7 @@
     <view class="th">会议名单</view>
     <view class="td">23121</view>
   </view>
+  <view>
+    <button bindtap="resetPeople">testButton</button>
+  </view>
 </view>
