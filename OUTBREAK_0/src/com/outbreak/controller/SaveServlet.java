@@ -2,6 +2,7 @@ package com.outbreak.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -63,8 +64,8 @@ public class SaveServlet extends HttpServlet {
 			mb.setEndtime(endtime);
 		}
 		else {
-			mb.setBegintime(new Date().toString());
-			mb.setEndtime(new Date().toString());
+			mb.setBegintime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			mb.setEndtime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		}
 		mb.setContent(request.getParameter("meetingContent"));
 		mb.setPlace(request.getParameter("meetingPlace"));
