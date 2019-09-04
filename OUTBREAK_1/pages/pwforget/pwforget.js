@@ -7,58 +7,51 @@ Page({
     email:'',
     pw:'',
     rpw:'',
-    CHECK:0
+    CHECK:0,
+    check:0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
     
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+   
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
     
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
     
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -91,14 +84,18 @@ Page({
       rpw:e.detail.value
     })
   },
+  inputCheck: function(e){
+    this.setData({
+      check:e.detail.value
+    })
+  },
+
   getCheck: function(){
     var that=this;
-    that.setCheck();
     wx.request({
-      url: 'http://localhost:443/???',
+      url: 'http://localhost:443/sendEmail',
       data:{
-        email:that.data.email,
-        check:that.data.CHECK
+        email:that.data.email
       },
       method:'POST',
       header: {
@@ -106,10 +103,40 @@ Page({
       },
       success: function(res){
         console.log(res.data);
+        that.setData({
+          CHECK:res.data.code
+        });
       }
     })
   },
   resetpw: function(){
-    //
+    var that=this;
+    if(that.data.pw==that.data.rpw){
+      if(that.data.CHECK==that.data.check){
+        wx.request({
+          url: 'http://localhost:443/changeData',
+          data: {
+            email:that.data.email,
+            name:'password',
+            value:that.data.pw
+          },
+          method:'POST',
+          header: {
+            'content-type':'application/json'
+          }
+        })
+      }else{
+        wx.showModal({
+          title: '重置密码失败',
+          content: '验证码错误',
+        })
+      }
+    }else{
+      wx.showModal({
+        title: '重置密码失败',
+        content: '两次输入密码不一致',
+      })
+    }
+    console.log(that.data);
   }
 })
