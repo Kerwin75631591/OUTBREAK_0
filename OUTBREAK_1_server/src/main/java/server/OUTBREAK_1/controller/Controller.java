@@ -76,6 +76,7 @@ public class Controller {
 	@RequestMapping("SimpleMeeting")
 	public Map<String, Object> SimpleMeeting(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		@SuppressWarnings("rawtypes")
 		ArrayList<Map>list=new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
