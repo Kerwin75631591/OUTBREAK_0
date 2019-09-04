@@ -109,7 +109,8 @@ Page({
       data: {
         email:that.data.email,
         name: parameterType,
-        value: that.data.name},
+        value: that.data.name
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
@@ -162,8 +163,12 @@ Page({
   bindblur_phoneNum: function () {
     let parameterType = "phoneNumber";
     wx.request({
-      url: 'http://localhost:443/UserData',
-      data: {email, parameterType, phoneNum},
+      url: 'http://localhost:443/changeData',
+      data: {
+        email: that.data.email,
+        name: parameterType,
+        value: that.data.phoneNum
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
@@ -216,8 +221,12 @@ Page({
   bindblur_duties: function () {
     let parameterType = "duties";
     wx.request({
-      url: 'http://localhost:443/UserData',
-      data: {email, parameterType, duties},
+      url: 'http://localhost:443/changeData',
+      data: {
+        email: that.data.email,
+        name: parameterType,
+        value: that.data.duties
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
@@ -270,8 +279,12 @@ Page({
   bindblur_address: function () {
     let parameterType = "address";
     wx.request({
-      url: 'http://localhost:443/UserData',
-      data: { email, parameterType, address},
+      url: 'http://localhost:443/changeData',
+      data: {
+        email: that.data.email,
+        name: parameterType,
+        value: that.data.address
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
