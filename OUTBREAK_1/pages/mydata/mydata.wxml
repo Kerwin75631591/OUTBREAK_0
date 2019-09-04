@@ -38,7 +38,7 @@
      <button class='right' bindtap='resetPwd'>重置密码</button>
     </view>
 </view>
-<modal id="resetPwdModal" hidden="{{hiddenmodalput}}" title="修改密码" confirm-text="提交" cancel-text="取消" bindcancel="resetCancel" bindconfirm="resetConfirm">
+<modal id="resetPwdModal" hidden="{{hideResetPwdModal}}" title="修改密码" confirm-text="提交" cancel-text="取消" bindcancel="resetCancel" bindconfirm="resetConfirm">
   <input type='text' id="newPwd" placeholder="新的密码" bindinput="bindinput_newPwd" value="{{newPwd}}" auto-focus/>
   <input type='text' id="repeatNewPwd" placeholder="重复新的密码" bindinput="bindinput_repeatNewPwd" value="{{repeatNewPwd}}" auto-focus/>
 </modal>
