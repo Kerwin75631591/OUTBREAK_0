@@ -28,6 +28,8 @@ charset=GBK"
 		String sessionEmail = (String) request.getSession().getAttribute("sessionemail");
 	%>
 
+<div id="MngTitle">OUTBREAK 云会议管理系统</div>
+
 	<div id="MngTopBox">
 		<div id="MngWelcome">
 			您好，<span id="email"><%=request.getSession().getAttribute("sessionemail")%></span>！
@@ -43,8 +45,8 @@ charset=GBK"
 	<div id="ManageBox">
 		<table>
 			<tr>
-				<th id="name" style="font-size: 20px; width: 300px">会议名称</th>
-				<th id="date" style="font-size: 20px; width: 700px">会议日期</th>
+				<th id="name" style="font-size: 20px; width: 300px; height:30px;">会议名称</th>
+				<th id="date" style="font-size: 20px; width: 1400px">会议日期</th>
 				<th id="loc" style="font-size: 20px; width: 300px">会议地点</th>
 				<th id="content" style="font-size: 20px; width: 300px">会议内容</th>
 				<th id="users" style="font-size: 20px; width: 350px">与会者名单确认</th>
@@ -100,18 +102,18 @@ charset=GBK"
 						}
 			%>
 			<tr>
-				<td id=<%="name" + counter%>><%=name%></td>
-				<td id=<%="date" + counter%>><%=dateString%></td>
-				<td id=<%="loc" + counter%>><%=loc%></td>
-				<td id=<%="content" + counter%>><%=content%></td>
+				<td id=<%="name" + counter%> style="text-align:center;font-size: 18px;height:30px;"><%=name%></td>
+				<td id=<%="date" + counter%> style="text-align:center;font-size: 18px;"><%=dateString%></td>
+				<td id=<%="loc" + counter%> style="text-align:center;font-size: 18px;"><%=loc%></td>
+				<td id=<%="content" + counter%> style="text-align:center;font-size: 18px;"><%=content%></td>
 
 				<%
 					String s = "InvitedPeople.jsp?meetingName=" + name + "&meetingId=" + meetingid;
 							System.out.println("发送"+s);
 				%>
-				<td id=<%="num" + counter%>><a href=<%=s%> title=
+				<td id=<%="num" + counter%>  style="text-align:center;font-size: 18px;"><a href=<%=s%> title=
 					"点击查看被邀请者的状态" target="_blank"><%=numString%></a></td>
-				<td id=<%="state" + counter%>><%=stateString%></td>
+				<td id=<%="state" + counter%> style="text-align:center;font-size: 18px;"><%=stateString%></td>
 				<td><input type="button" value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>'"
 				<%if (state != 3 && state != 0){%> style="display:none" <%} %>></td>
 			</tr>
