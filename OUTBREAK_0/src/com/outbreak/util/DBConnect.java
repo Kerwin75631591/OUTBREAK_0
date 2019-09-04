@@ -108,7 +108,7 @@ public class DBConnect {
 	}
 
 	// 在MeetingTable中加入新的数据
-	public int insertMeeting(int state, Date begintime, Date endtime, String place, String name, String topic,
+	public int insertMeeting(int state, String begintime, String endtime, String place, String name, String topic,
 			String content, String host, int PeopleNum, int ArrivalNum, String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
 		rs = statement.executeQuery(sql);
@@ -120,10 +120,9 @@ public class DBConnect {
 		sql = "INSERT INTO MeetingTable(id,begintime,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
-		System.out.println(new java.sql.Date(begintime.getTime()));
 		pstmt.setInt(1, id);
-		pstmt.setString(2, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(begintime));
-		pstmt.setString(3, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(endtime));
+		pstmt.setString(2,begintime);
+		pstmt.setString(3,endtime);
 		pstmt.setString(4, place);
 		pstmt.setString(5, name);
 		pstmt.setString(6, topic);

@@ -46,7 +46,7 @@ System.out.println(basePath);%>
 				<span id="LoginVericodePic"></span>
 			 </div>
 			<input type="button" id="LoginInput" class="logbutton ripple" data-ripple-color="white" value="登  录"  onclick="checkL()">
-			<text id="JumpText" style="color:#808080">还没有账号？请</text><a id="RegistText" href="Register.jsp">注册</a>
+			<text id="JumpText" style="color:#808080">还没有账号？请</text><a id="RegistText" href="./JSP/Register.jsp">注册</a>
 			<text id="JumpToPwReset" style="color:#808080">忘记密码？<a href="PwReset.jsp">点击这里！</a></text>
 		</div>
 		</form>

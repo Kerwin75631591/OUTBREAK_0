@@ -21,11 +21,11 @@ public class MeetingBeanCL {
 	public boolean create(MeetingBean mb,boolean j) {
 		boolean judge = true;
 		int state=99;
-		try {
+		/*try {
 			judge = db.searchMeeting(mb.getBegintime(),mb.getName());
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		if (!judge) {
 			return false;
 		}
