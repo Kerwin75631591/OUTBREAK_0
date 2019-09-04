@@ -106,6 +106,12 @@ public class DBConnect {
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
+	// UserTable修改某个用户的状态
+		public void updateUser(String email,String name,String value) throws SQLException {
+			String sql = "UPDATE UserTable SET "+name+" = '" + value + "' WHERE   email = '" + email + "'";
+			System.out.println(sql);
+			statement.executeUpdate(sql);
+		}
 
 	// 在MeetingTable中加入新的数据
 	public int insertMeeting(int state, Date begintime, Date endtime, String place, String name, String topic,

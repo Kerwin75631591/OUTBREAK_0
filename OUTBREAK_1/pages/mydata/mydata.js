@@ -103,9 +103,13 @@ Page({
    */
   bindblur_name: function () {
     let parameterType = "name";
+    var that=this;
     wx.request({
-      url: 'http://localhost:443/UserData',
-      data: {email, parameterType, name},
+      url: 'http://localhost:443/changeData',
+      data: {
+        email:that.data.email,
+        name: parameterType,
+        value: that.data.name},
       header: {},
       method: 'GET',
       dataType: 'json',
