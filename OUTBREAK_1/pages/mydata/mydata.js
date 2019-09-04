@@ -8,7 +8,10 @@ Page({
     phoneNum: '',
     duties: '',
     address: '',
-    email: ''
+    email: '',
+    hideResetPwdModal: true,
+    newPwd: null,
+    repeatNewPwd: null,
   },
 
   /**
@@ -72,17 +75,126 @@ Page({
   /**
    * 重置密码函数
    */
-  resetpwd: function (e) {
-    var no = this.data.myinfo.no;
-    wx.navigateTo({
-      url: '../password/password?no=' + no,
+  resetPwd: function (e) {
+    this.setData({
+      hideResetPwdModal: !this.data.hideResetPwdModal
     })
   },
 
+  /**
+    * 动态改变newPwd.value
+    */
+  bindinput_newPwd: function (e) {
+    this.setData({
+      newPwd: e.detail.value
+    })
+  },
+
+  /**
+    * 动态改变repeatNewPwd.value
+    */
+  bindinput_repeatNewPwd: function (e) {
+    this.setData({
+      repeatNewPwd: e.detail.value
+    })
+  },    
+
+  /**
+   * 修改密码框的取消函数
+   */
+  resetCancel: function(){
+    this.setData({
+      hideResetPwdModal: true,
+      newPwd: null,
+      repeatNewPwd: null,
+    })
+  },
+
+  /**
+   * 修改密码框的确认函数
+   */
+  resetConfirm: function (e) {
+    if(this.data.newPwd == this.data.repeatNewPwd){
+      if(this.data.newPwd != '' && this.data.newPwd != null){
+        let parameterType = "password";
+        var that = this;
+        wx.request({
+          url: 'http://localhost:443/changeData',
+          data: {
+            email: that.data.email,
+            name: parameterType,
+            value: that.data.newPwd,
+          },
+          header: {},
+          method: 'GET',
+          dataType: 'json',
+          responseType: 'text',
+          success: function (res) {
+            wx.showLoading({
+              title: '正在提交新的密码，请稍等！',
+              duration: 500,
+              mask: true
+            })
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '提交失败，请重试！',
+              icon: 'none',
+              duration: 1000
+            })
+          },
+          complete: function (res) {
+            if (res.data.judge) {
+              wx.showToast({
+                title: '密码修改成功！',
+                duration: 1000,
+                mask: true
+              })
+            } else {
+              wx.showToast({
+                title: '密码修改失败，请重试！',
+                icon: 'none',
+                duration: 1000,
+                mask: true
+              })
+            }
+          },
+        })
+        this.setData({
+          hideResetPwdModal: true,
+          newPwd: null,
+          repeatNewPwd: null,
+        });
+      }
+      else{
+        wx.showToast({
+          title: '密码不能为空！',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+      }
+    }
+    else{
+      wx.showToast({
+        title: '两次输入的密码不一致！',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+    }
+    
+  },
+
+  /**
+   * 提示邮箱不可修改
+   */
   setemail: function (e) {
-    var no = this.data.myinfo.no;
-    wx.navigateTo({
-      url: '../email/email?no=' + no,
+    wx.showToast({
+      title: '邮箱不可修改！',
+      icon: 'none',
+      duration: 1000,
+      mask: true
     })
   },
 
