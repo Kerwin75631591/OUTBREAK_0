@@ -97,7 +97,7 @@
 		    return;
 		}else{
 			if(meetingBeginH == meetingEndH){
-				if(meetingBeginM > meetingEndM){
+				if(meetingBeginM >= meetingEndM){
 					alert("这不是一个有效的时间段");
 				    return;
 				}

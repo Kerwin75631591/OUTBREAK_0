@@ -2,10 +2,6 @@ package com.outbreak.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +39,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("GBK");
 		response.setContentType("text/html;charset=GBK");
+		response.setCharacterEncoding("GBK");
 		
 		String meetingName = request.getParameter("meetingName");
 		String meetingTopic = request.getParameter("meetingTopic");
@@ -64,17 +61,12 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		//设置会议信息
 		mb.setName(request.getParameter("meetingName"));
 		mb.setTopic(request.getParameter("meetingTopic"));
-		//合成会议时间
-		try {
-			System.out.println(meetingData + " " + request.getParameter("meetingBegintime"));
-			System.out.println(meetingData + " " + request.getParameter("meetingEndtime"));
-			Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingBegintime"));
-			Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(meetingData + " " + request.getParameter("meetingEndtime"));
-			mb.setBegintime(begintime);
-			mb.setEndtime(endtime);
-		} catch (ParseException e2) {
-			e2.printStackTrace();
-		}
+		System.out.println(meetingData + " " + request.getParameter("meetingBegintime"));
+		System.out.println(meetingData + " " + request.getParameter("meetingEndtime"));
+		String begintime = meetingData + " " + request.getParameter("meetingBegintime");
+		String endtime = meetingData + " " + request.getParameter("meetingEndtime");
+		mb.setBegintime(begintime);
+		mb.setEndtime(endtime);
 		mb.setContent(request.getParameter("meetingContent"));
 		mb.setPlace(request.getParameter("meetingPlace"));
 		//制作会议邀请名单
@@ -120,7 +112,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.getWriter().print("<script type=\"text/javascript\">alert('Release completed!');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
+		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成!');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
 	}
 
 }

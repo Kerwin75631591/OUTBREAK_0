@@ -2,7 +2,6 @@ package com.outbreak.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -59,19 +58,14 @@ public class SaveServlet extends HttpServlet {
 		System.out.println(request.getParameter("meetingEndtime"));
 		if(!request.getParameter("meetingBegintime").equals("") && !request.getParameter("meetingEndtime").equals(""))
 		{
-			//合成会议时间
-			try {
-				Date begintime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime"));
-				Date endtime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("meetingData") + " " + request.getParameter("meetingEndtime"));
-				mb.setBegintime(begintime);
-				mb.setEndtime(endtime);
-			} catch (ParseException e2) {
-				e2.printStackTrace();
-			}
+			String begintime =request.getParameter("meetingData") + " " + request.getParameter("meetingBegintime");
+			String endtime =request.getParameter("meetingData") + " " + request.getParameter("meetingEndtime");
+			mb.setBegintime(begintime);
+			mb.setEndtime(endtime);
 		}
 		else {
-			mb.setBegintime(new Date());
-			mb.setEndtime(new Date());
+			mb.setBegintime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			mb.setEndtime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		}
 		mb.setContent(request.getParameter("meetingContent"));
 		mb.setPlace(request.getParameter("meetingPlace"));

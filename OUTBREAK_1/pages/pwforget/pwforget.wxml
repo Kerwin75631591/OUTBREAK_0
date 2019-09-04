@@ -22,9 +22,8 @@
       <input id="check_input" type="number" bindinput="inputCheck" placeholder="请输入验证码"></input>
     </view>
     <view>
-      <button class="button" bindtap="getCheck">获取验证码</button>
-      <button class="button" bindtap="resetpw">重置密码</button>
-      <button class="button">{{CHECK}}</button>
+      <button size='mini' class="button" bindtap="getCheck">获取验证码</button>
+      <button size='mini' class="button" bindtap="resetpw">重置密码</button>
     </view>
   </form>
 </view>

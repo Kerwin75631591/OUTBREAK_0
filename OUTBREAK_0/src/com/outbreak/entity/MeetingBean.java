@@ -1,11 +1,10 @@
 package com.outbreak.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MeetingBean {
-	private Date begintime;//会议开始时间
-	private Date endtime;//会议结束时间
+	private String begintime;//会议开始时间
+	private String endtime;//会议结束时间
 	private String place;//会议地点
 	private String name;//会议名称
 	private String topic;//会议主题
@@ -103,21 +102,23 @@ public class MeetingBean {
 		this.state = state;
 	}
 
-	public Date getEndtime() {
-		return endtime;
-	}
-
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
-	}
-
-	public Date getBegintime() {
+	public String getBegintime() {
 		return begintime;
 	}
 
-	public void setBegintime(Date begintime) {
+	public void setBegintime(String begintime) {
 		this.begintime = begintime;
 	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
+	
 
 	
 }
