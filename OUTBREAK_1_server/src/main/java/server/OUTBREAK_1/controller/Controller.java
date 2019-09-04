@@ -2,6 +2,7 @@ package server.OUTBREAK_1.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,7 +76,7 @@ public class Controller {
 	@RequestMapping("SimpleMeeting")
 	public Map<String, Object> SimpleMeeting(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		ArrayList<Map>list=new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
 			db.connect();
@@ -101,13 +102,15 @@ public class Controller {
 				meetings.put("time", rs.getString("time"));
 				meetings.put("place", rs.getString("place"));
 				meetings.put("state", rs.getInt("state"));
-				map.put(mids[j] + "", meetings);
+				meetings.put("mid", mids[j]);
+				list.add(meetings);
 			}
 
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
 		}
+		map.put("list", list);
 		return map;
 	}
 
