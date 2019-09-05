@@ -19,7 +19,8 @@
   </view>
   <view id="files" class="tr">
     <view class="th">会议资料</view>
-    <view class="td">{{files}}</view>
+    <view class="td" wx:if="{{files!=null}}" bindtap="download">点击下载</view>
+    <view class="td" wx:else>无</view>
   </view>
   <view id="content" class="tr">
     <view class="th">会议内容</view>

@@ -15,7 +15,7 @@ Page({
     time:'',
     place:'',
     state:0,
-    files:'',
+    files:null,
     content:'',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
@@ -108,6 +108,14 @@ Page({
   },
 
   //functions
+  download: function(){
+    wx.downloadFile({
+      url:this.data.files,
+      success: function(res){
+        console.log('success');
+      }
+    });
+  },
 
   //testing functions
   printPeople: function(){
