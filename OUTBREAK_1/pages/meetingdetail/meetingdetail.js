@@ -9,19 +9,17 @@ Page({
     mid:0,
     //saved in data
     num:0,//number of invited people
-    meeting:null,
-    peopleList:null
-  /*
-    meetingname:'123',
-    topic:'123',
-    time:'123',
-    place:'231',
+  
+    meetingname:'',
+    topic:'',
+    time:'',
+    place:'',
     state:0,
-    files:'123.txt',
-    content:'123ajfajjakjfdasjfklasdfdasklfjkasfjasdfciwafaksljcfclndja',
+    files:'',
+    content:'',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
-    people:[{name:'Harry',TOF:'参加'},{name:'Hermoine',TOF:'参加'}]*/
+    people:''
   },
 
   /**
@@ -44,14 +42,31 @@ Page({
       },
       success: function(res){
         console.log(res.data);
+        console.log(res.data.number);
+        console.log(res.data.meeting.name);
+        console.log(res.data.meeting.topic);
+        console.log(res.data.meeting.time);
+        console.log(res.data.meeting.place);
+        console.log(res.data.meeting.state);
+        console.log(res.data.meeting.fileUrl);
+        console.log(res.data.meeting.content);
+        console.log(res.data.list);
+        
         this.setData({
           num:res.data.number,
-          meeting:res.data.meeting,
-          peopleList:res.data.list
+          meetingname:res.data.meeting.name,
+          topic:res.data.meeting.topic,
+          time:res.data.meeting.time,
+          place:res.data.meeting.place,
+          state:res.data.meeting.state,
+          files:res.data.meeting.fileUrl,
+          content:res.data.meeting.content,
+          people:res.data.list
         });
+        console.log(this.data);
       }
     })
-    console.log(this.data);
+    //console.log(this.data);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
