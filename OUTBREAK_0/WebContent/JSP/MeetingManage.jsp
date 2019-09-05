@@ -3,7 +3,7 @@ charset=GBK"
 	pageEncoding="GBK"%>
 <%@ page import="com.outbreak.dao.*"%>
 <%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.util.Date"%>
+<%@ page import="com.outbreak.util.*"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -19,6 +19,15 @@ charset=GBK"
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
 		window.close();
+	}
+	function endMeeting(mid){
+		if(confirm("是否是要对会议有效性进行评估？")){
+			document.getElementById("isAssessment").value = "true";
+		}else{
+			document.getElementById("isAssessment").value = "false";
+		}
+		document.getElementById("mid").value = mid;
+		document.hiddenForm.submit();
 	}
 </script>
 </head>
@@ -96,7 +105,7 @@ charset=GBK"
 						case 3:
 							stateString = new String("审核失败");
 							break;
-						case 5:
+						case 4:
 							stateString = new String("会议结束");
 							break;
 						}
@@ -114,8 +123,17 @@ charset=GBK"
 				<td id=<%="num" + counter%>  style="text-align:center;font-size: 18px;"><a href=<%=s%> title=
 					"点击查看被邀请者的状态" target="_blank"><%=numString%></a></td>
 				<td id=<%="state" + counter%> style="text-align:center;font-size: 18px;"><%=stateString%></td>
-				<td><input type="button" value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>'"
-				<%if (state != 3 && state != 0){%> style="display:none" <%} %>></td>
+				<td><input type="button" 
+				<%if (state == 3 || state == 0){%> 
+				value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>'"
+				<%}else{%>
+					<%if (state == 2){%> 
+				 	 value="结束会议" onclick="endMeeting(<%=meetingid%>)"
+				 	<%}else{%>
+				 	style="display:none"
+				 	<%}%>
+				 <%}%>
+				 ></td>
 			</tr>
 			<%
 				counter++;
@@ -125,6 +143,9 @@ charset=GBK"
 			%>
 		</table>
 	</div>
-
+	<form name="hiddenForm" action="/OUTBREAK_0/EndMeetingServlet" style="display:none">
+		<input type="text" id="mid" name="mid" style="display:none" value="">
+	    <input type="text" id="isAssessment" name="isAssessment" style="display:none" value="">
+	</form>
 </body>
 </html>
