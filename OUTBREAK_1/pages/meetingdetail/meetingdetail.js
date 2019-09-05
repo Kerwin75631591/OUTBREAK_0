@@ -9,7 +9,9 @@ Page({
     mid:0,
     //saved in data
     num:0,//number of invited people
-    //saved in data.meeting
+    meeting:null,
+    peopleList:null
+  /*
     meetingname:'123',
     topic:'123',
     time:'123',
@@ -19,7 +21,7 @@ Page({
     content:'123ajfajjakjfdasjfklasdfdasklfjkasfjasdfciwafaksljcfclndja',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
-    people:[{name:'Harry',TOF:'参加'},{name:'Hermoine',TOF:'参加'}]
+    people:[{name:'Harry',TOF:'参加'},{name:'Hermoine',TOF:'参加'}]*/
   },
 
   /**
@@ -31,8 +33,25 @@ Page({
       email: app.globalData.email,
       mid:options.mid
     });
+    wx.request({
+      url: 'http://localhost:443/ComplexMeeting',
+      data:{
+        mid:this.data.mid
+      },
+      method:"GET",
+      header: {
+        'content-type': "applicaton/json"
+      },
+      success: function(res){
+        console.log(res.data);
+        this.setData({
+          num:res.data.number,
+          meeting:res.data.meeting,
+          peopleList:res.data.list
+        });
+      }
+    })
     console.log(this.data);
-    //this.refreshData();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -71,45 +90,6 @@ Page({
   },
 
   //functions
-  refreshData:function(){
-    wx.request({
-      url: 'http://localhost:443/ComplexMeeting',
-      data:{
-        mid:this.data.mid
-      },
-      method:'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res){
-        console.log(res.data);
-        this.setData({
-          num:res.data.number,
-          meetingname:res.data.meeting.name,
-          topic:res.data.meeting.topic,
-          time:res.data.meeting.time,
-          place:res.data.meeting.place,
-          state:res.data.meeting.state,
-          files:res.data.meeting.fileUrl,
-          content:res.data.meeting.content,
-          people:[]
-        });
-        var n='';
-        var T='';
-        var peoplelist=res.data.list;
-        console.log(peoplelist)
-        for(var i=0;i<this.data.num;i++){
-          n=peoplelist[i].name;
-          if(peoplelist[i].TOF==0){
-            T='未确定';
-          }else{
-            T='参加'
-          }
-          this.data.people.push({name:n,TOF:T});
-        }
-      }
-    })
-  },
 
   //testing functions
   printPeople: function(){
