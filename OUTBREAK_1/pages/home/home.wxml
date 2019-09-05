@@ -1,6 +1,6 @@
 <!--home.wxml  主页-->
 <!--显示出会议简介-->
-  <view wx:for="{{list}}" bindtap="wx.navigateTo({url:'/pages/meetingdetail/meetingdetail?mid={{item.mid}}'})">
+  <view wx:for="{{list}}" bindtap="jumpToDetail">
     <text>会议名称:{{item.name}}</text>
     <text>会议时间:{{item.time}}</text>
     <text>会议地点:{{item.place}}</text>

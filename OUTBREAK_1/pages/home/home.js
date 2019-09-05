@@ -96,9 +96,9 @@ Page({
   /**
    * 用户点击详细信息进入该会议详细信息界面
    */
-  MeetingDetail: function () {
-    wx.navigateTo({
-      url: '/pages/meetingdetail/meetingdetail?mid=item.mid',
+  jumpToDetail: function () {
+    wx.navigateTo ( { 
+      url: '/pages/meetingdetail/meetingdetail?mid={{item.mid}}' 
     })
   }
 })
