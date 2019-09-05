@@ -11,6 +11,7 @@
     "pages/Tcard/Tcard",
     "pages/meetingdetail/meetingdetail",
     "pages/info/info",
+    "pages/qrcode/qr",
     
     "pages/logs/logs",
     "pages/help/help",
