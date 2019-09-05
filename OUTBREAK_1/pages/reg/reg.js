@@ -7,8 +7,21 @@ Page({
   data: {
     email: '',
     password: '',
+    agpassword: '',
     name: '',
-    judge: false
+    judge: false,
+    modalHidden2: true
+  },
+
+  modalTap2: function (e) {
+    this.setData({
+      modalHidden2: false
+    })
+  },
+  modalChange2: function (e) {
+    this.setData({
+      modalHidden2: true
+    })
   },
 
   /**
@@ -93,6 +106,14 @@ Page({
       password: rp.detail.value
     })
   },
+  /**
+   * 获取第二次输入的密码
+   */
+  RegisterAgaPassword: function (rap) {
+    this.setData({
+      agpassword: rap.detail.value
+    })
+  },
 
   /**
    * 用户点击注册按钮完成注册
@@ -100,37 +121,43 @@ Page({
   RegsterBtn: function () {
     var that = this;
     // 发出请求
-    wx.request({
-      url: 'http://localhost:443/Register',
-      data: {
-        email: that.data.email,
-        name: that.data.name,
-        password: that.data.password
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        console.log(res.data);// 将从后台获得的数据打印到控制台
-        // 获得来自后台的变量值
-        var judge = res.data.judge; 
-        // 将后台数据传至data中
-        that.setData({
-          judge: judge
-        })
-        // 如果改邮箱尚未注册，注册成功
-        if (judge == true) {
-          // 将邮箱给到app.js，作为全局变量
-          var app = getApp();
-          app.globalData.email = that.data.email;
-          // 打印全局邮箱值到控制台
-          console.log(app.globalData.email);
-          wx.reLaunch({
-            url: '/pages/home/home',
+    if (password == agpassword) {
+      wx.request({
+        url: 'http://localhost:443/Register',
+        data: {
+          email: that.data.email,
+          name: that.data.name,
+          password: that.data.password
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          console.log(res.data);// 将从后台获得的数据打印到控制台
+          // 获得来自后台的变量值
+          var judge = res.data.judge;
+          // 将后台数据传至data中
+          that.setData({
+            judge: judge
           })
+          // 如果改邮箱尚未注册，注册成功
+          if (judge == true) {
+            // 将邮箱给到app.js，作为全局变量
+            var app = getApp();
+            app.globalData.email = that.data.email;
+            // 打印全局邮箱值到控制台
+            console.log(app.globalData.email);
+            wx.reLaunch({
+              url: '/pages/home/home',
+            })
+          }
         }
-      }
-    })
+      })
+    } else {
+      // 此处用于两次输入密码不匹配的处理
+      modalTap2()
+    }
   }
+
 })

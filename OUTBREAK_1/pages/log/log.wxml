@@ -12,13 +12,17 @@
       <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入密码" class="LoginPassword" bindinput="LoginPassword"></input>
     </view>
    <view>
-      <button class="button" id="logbutton" form-type="submit" hover-class="afterClick" bindtap="LoginBtn" border="solid">登录</button>
+      <button class="button" id="logbutton" form-type="submit" hover-class="afterClick" bindtap="LoginBtn" border="solid">登录 </button>
       <button class="button" id="regbutton" hover-class="afterClick" bindtap="RegisterBtn">注册</button>
    </view>
+
+   <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
+      <view> 密码错误 </view>
+    </modal>
      
    
-    <view id="fgtps">
-    <navigator url="../pwforget/pwforget" style="font-size:30rpx;color:grey;width:150rpx;">忘记密码？</navigator>
-    </view>
+  <view id="fgtps">
+     <navigator url="../pwforget/pwforget" style="font-size:30rpx;color:grey;width:150rpx;">忘记密码？</navigator>
+  </view>
   </form>
 </view>

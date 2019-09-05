@@ -7,9 +7,20 @@ Page({
   data: {
     email:'',
     password:'',
-    judge:false
+    judge:false,
+    modalHidden2: true
   },
 
+  modalTap2: function (e) {
+    this.setData({
+      modalHidden2: false
+    })
+  },
+  modalChange2: function (e) {
+    this.setData({
+      modalHidden2: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -118,7 +129,10 @@ Page({
           wx.reLaunch({
             url: '/pages/home/home',
           })
-        } 
+        } else {
+          // 此处用于处理登录密码错误的情况
+          modalTap2()
+        }
       }
     })
   },

@@ -25,5 +25,8 @@
       <button size='mini' class="button" bindtap="getCheck">获取验证码</button>
       <button size='mini' class="button" bindtap="resetpw">重置密码</button>
     </view>
+       <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
+      <view> 两次密码不一致 </view>
+    </modal>
   </form>
 </view>
