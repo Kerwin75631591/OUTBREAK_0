@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Built-By: Kerwin
-Build-Jdk: 10.0.2
 Implementation-Title: demoSpeak
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: ￩ﾒﾊ￥ﾄ﾿
 Implementation-Vendor-Id: com.bin
-Implementation-Vendor: Pivotal Software, Inc.
+Build-Jdk: 1.8.0_181
 Implementation-URL: http://projects.spring.io/spring-boot/demoSpeak/
 Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
 
