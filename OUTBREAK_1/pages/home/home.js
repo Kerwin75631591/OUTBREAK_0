@@ -101,7 +101,6 @@ Page({
     console.log(v.currentTarget.id);
     wx.navigateTo({
       url: '/pages/meetingdetail/meetingdetail?mid=' + v.currentTarget.id
-    }
-    )
+    })
   },
 })
