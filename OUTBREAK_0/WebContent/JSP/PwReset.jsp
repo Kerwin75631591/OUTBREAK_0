@@ -52,33 +52,23 @@
 	}
 </script>
 <link type="text/css" rel="stylesheet" href="<%= path %>/CSS/PwReset.css">
-<title>注册界面</title>
+<title>重置密码</title>
 </head>
 
 <body>
    <canvas ></canvas>
    <form id="resetForm" action="PwResetCL.jsp" method="POST">
+   <div id="PsRTitle">OUTBREAK 云会议管理系统</div>
    <div id="ResetBox">
       <div>
-	     <span id="ResetIDLabel">帐号：</span>
-		 <span><input type="email" id="em" name="Email"></span>
+		 <span><input type="email" id="em" style="border:1px solid #999999;" placeholder="请输入邮箱" name="Email"></span>
 		 <span id="email_poster"><input id="email_button" type="button" value="发送验证码" onclick="postEmail()"></span>
       </div>
-      <div>
-	     <span id="ResetPasswordLabel">密码：</span>
-		 <span><input id="pw" type="password" name="Password"></span>
-	  </div>
-	  <div>
-	     <span id="ResetPasswordAgaLabel">重复密码：</span>
-		 <span><input id="rpw" type="password" name="RePassword"></span>
-	  </div>
-	  <div>
-	     <span id="ResetVerifyCodeLabel">验证码：</span>
-		 <span><input id="chk" type="text" name="Check"></span>
-	  </div>
-	  <span><a id="ResetBack" href="Login.jsp">返回</a></span>
-	  <span><input id="ResetBtn" type="button" value="注册" onclick="subForm()"></span>
-	  
+	  <div><input id="pw" type="password" style="border:1px solid #999999;" placeholder="请输入密码" name="Password"></div>
+	  <div><input id="rpw" type="password" style="border:1px solid #999999;" placeholder="请再次输入密码" name="RePassword"></div>
+	  <div><input id="chk" type="text" style="border:1px solid #999999;" placeholder="请输入验证码" name="Check"></div>
+	  <a id="ResetBack" href="Login.jsp">返回</a>
+      <input id="ResetBtn" type="button" class="sendbutton" value="重 置" onclick="subForm()">
    </div>
    </form>
 </body>
