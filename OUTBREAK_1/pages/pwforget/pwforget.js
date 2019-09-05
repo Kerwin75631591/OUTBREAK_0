@@ -8,7 +8,18 @@ Page({
     pw:'',
     rpw:'',
     CHECK:0,
-    check:0
+    check:0,
+    modalHidden2: true
+  },
+  modalTap2: function (e) {
+    this.setData({
+      modalHidden2: false
+    })
+  },
+  modalChange2: function (e) {
+    this.setData({
+      modalHidden2: true
+    })
   },
   /**
    * 生命周期函数--监听页面加载
