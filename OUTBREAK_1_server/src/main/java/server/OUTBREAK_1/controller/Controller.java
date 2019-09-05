@@ -133,10 +133,11 @@ public class Controller {
 		}
 		try {
 			ResultSet rs = db.searchMeeting(mid);
+			rs.next();
 			Map<String, Object> meetings = new HashMap<String, Object>();
 			meetings.put("name", rs.getString("name"));
 			meetings.put("topic", rs.getString("topic"));
-			meetings.put("time", rs.getString("time"));
+			meetings.put("time", rs.getString("Begintime"));
 			meetings.put("place", rs.getString("place"));
 			meetings.put("state", rs.getInt("state"));
 			meetings.put("fileUrl", rs.getString("fileUrl"));
@@ -147,7 +148,7 @@ public class Controller {
 			int i = 0;
 			while (rs.next()) {
 				Map<String, Object> people = new HashMap<String, Object>();
-				people.put("name", rs.getString("name"));
+				people.put("name", rs.getString("Uid"));
 				people.put("TOF", rs.getInt("TOF"));
 				list.add(people);
 				i++;
