@@ -7,14 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    email:'383250208@qq.com',
-    mid:123456
+    email:'',
+    mid:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    that.setData({
+      email:options.email,
+      mid:options.mid
+    });
     wxbarcode.qrcode('qrcode',this.data.email+' '+this.data.mid,400,400);
   },
 

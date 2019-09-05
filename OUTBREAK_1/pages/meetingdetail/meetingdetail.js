@@ -161,6 +161,12 @@ Page({
       }
     })
   },
+  showQr:function(){
+    var that=this;
+    wx.navigateTo({
+      url: '/pages/qrcode/qr?email='+that.data.email+'&mid='+that.data.mid,
+    });
+  },
 
   //testing functions
   printPeople: function(){
