@@ -112,7 +112,7 @@ public class ReleaseWithoutFileServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成!');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
+		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成!');window.location='./JSP/MeetingManage.jsp'</script>");
 	}
 
 }

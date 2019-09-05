@@ -54,7 +54,7 @@ public class ReleaseServlet extends HttpServlet {
         if (!ServletFileUpload.isMultipartContent(request)) {
             // 如果不是则停止
         	System.out.println("1");
-        	response.getWriter().print("<script type=\"text/javascript\">alert('错误信息: Error: 表单必须包含 enctype=multipart/form-data');window.location='/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
+        	response.getWriter().print("<script type=\"text/javascript\">alert('错误信息: Error: 表单必须包含 enctype=multipart/form-data');window.location='./JSP/MeetingCreate.jsp'</script>");
         }
  
         // 配置上传参数
@@ -115,7 +115,7 @@ public class ReleaseServlet extends HttpServlet {
             }
         } catch (Exception ex) {
         	System.out.println("2");
-        	response.getWriter().print("<script type=\"text/javascript\">alert(错误信息:" + ex.getMessage() + ");window.location='/OUTBREAK_0/JSP/MeetingCreate.jsp'</script>");
+        	response.getWriter().print("<script type=\"text/javascript\">alert(错误信息:" + ex.getMessage() + ");window.location='./JSP/MeetingCreate.jsp'</script>");
         }
         
         //在控制台迭代输出文本内容
@@ -177,7 +177,7 @@ public class ReleaseServlet extends HttpServlet {
 		db.close();
 		
         // 跳转到 会议管理页面
-		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成！');window.location='/OUTBREAK_0/JSP/MeetingManage.jsp'</script>");
+		response.getWriter().print("<script type=\"text/javascript\">alert('发布完成！');window.location='./JSP/MeetingManage.jsp'</script>");
 	}
 
 }

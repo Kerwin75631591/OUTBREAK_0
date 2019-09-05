@@ -18,7 +18,7 @@ charset=GBK"
 	function jumpToCreate(){
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
-		window.close();
+		closeWin();
 	}
 	function endMeeting(mid){
 		if(confirm("是否是要对会议有效性进行评估？")){
