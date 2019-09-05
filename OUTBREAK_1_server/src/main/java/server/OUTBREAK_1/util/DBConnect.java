@@ -191,7 +191,7 @@ public class DBConnect {
 	public void updateMeeting(int id, int state) throws SQLException {
 		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
-		rs = statement.executeQuery(sql);
+		statement.executeUpdate(sql);
 
 	}
 
@@ -231,7 +231,16 @@ public class DBConnect {
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
+	
+	// PeopleTable修改参会人员的状态
+		public void updatePeople(String email,int mid) throws SQLException {
+			String sql = "UPDATE PeopleTable SET TOF = 1 WHERE   mid = '" + mid + "' AND email = '"+email+"'";
+			System.out.println(sql);
+			statement.executeUpdate(sql);
 
+		}
+	
+	//搜索系统通知
 	public ResultSet searchMessage() throws SQLException {
 		String sql = "SELECT * FROM messageTable ";
 		rs = statement.executeQuery(sql);

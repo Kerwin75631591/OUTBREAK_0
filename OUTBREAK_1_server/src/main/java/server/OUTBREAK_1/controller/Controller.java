@@ -161,6 +161,31 @@ public class Controller {
 		return map;
 	}
 
+	//确定参加会议
+	@RequestMapping("setTOF")
+	public Map<String, Object> setTOF(String email,int mid) {
+		System.out.println("进入setTOF");
+		Map<String, Object> map = new HashMap<String, Object>();
+		DBConnect db = new DBConnect();
+		boolean judge=false;
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			db.updatePeople(email, mid);
+			judge=true;
+		} catch (SQLException e) {
+			System.out.println("登录搜索失败");
+			e.printStackTrace();
+		}
+		map.put("judge", judge);
+		return map;
+	}
+	
 	// 全局消息查询功能
 	@RequestMapping("getMessage")
 	public Map<String, Object> getMessage() {
