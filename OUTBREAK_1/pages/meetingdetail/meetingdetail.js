@@ -6,7 +6,7 @@ Page({
    */
   data: {
     email:'',
-    mid:'123',
+    mid:0,
     //saved in data
     num:0,//number of invited people
     //saved in data.meeting

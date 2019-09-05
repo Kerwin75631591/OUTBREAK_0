@@ -1,6 +1,6 @@
 <!--home.wxml  主页-->
 <!--显示出会议简介-->
-  <view wx:for="{{list}}" bindtap="jumpToDetail">
+  <view wx:for="{{list}}" id = "{{item.mid}}"bindtap="jumpToDetail" >
     <text>会议名称:{{item.name}}</text>
     <text>会议时间:{{item.time}}</text>
     <text>会议地点:{{item.place}}</text>

@@ -96,9 +96,12 @@ Page({
   /**
    * 用户点击详细信息进入该会议详细信息界面
    */
-  jumpToDetail: function () {
-    wx.navigateTo ( { 
-      url: '/pages/meetingdetail/meetingdetail?mid={{item.mid}}' 
-    })
-  }
+  // 跳转到详情页
+  jumpToDetail: function (v) {
+    console.log(v.currentTarget.id);
+    wx.navigateTo({
+      url: '/pages/meetingdetail/meetingdetail?mid=' + v.currentTarget.id
+    }
+    )
+  },
 })
