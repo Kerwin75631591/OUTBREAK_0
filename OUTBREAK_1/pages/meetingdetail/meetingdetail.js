@@ -15,11 +15,12 @@ Page({
     time:'',
     place:'',
     state:0,
-    files:'',
+    files:null,
     content:'',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
     people:''
+    //people:[{name:'Harry',TOF:1},{name:'Sirius',TOF:0}]
   },
 
   /**
@@ -31,16 +32,18 @@ Page({
       email: app.globalData.email,
       mid:options.mid
     });
+    var that=this;
     wx.request({
       url: 'http://localhost:443/ComplexMeeting',
       data:{
-        mid:this.data.mid
+        mid:that.data.mid
       },
       method:"GET",
       header: {
         'content-type': "applicaton/json"
       },
       success: function(res){
+        /*test code        
         console.log(res.data);
         console.log(res.data.number);
         console.log(res.data.meeting.name);
@@ -50,9 +53,9 @@ Page({
         console.log(res.data.meeting.state);
         console.log(res.data.meeting.fileUrl);
         console.log(res.data.meeting.content);
-        console.log(res.data.list);
+        console.log(res.data.list);*/
         
-        this.setData({
+        that.setData({
           num:res.data.number,
           meetingname:res.data.meeting.name,
           topic:res.data.meeting.topic,
@@ -63,9 +66,9 @@ Page({
           content:res.data.meeting.content,
           people:res.data.list
         });
-        console.log(this.data);
+        console.log(that.data);
       }
-    })
+    });
     //console.log(this.data);
   },
   /**
@@ -105,6 +108,14 @@ Page({
   },
 
   //functions
+  download: function(){
+    wx.downloadFile({
+      url:this.data.files,
+      success: function(res){
+        console.log('success');
+      }
+    });
+  },
 
   //testing functions
   printPeople: function(){
