@@ -5,22 +5,20 @@
     <text>多客户端云会议管理系统</text>
   </view>
   <form bindsubmit="formSubmit">
-    <view class="section">
-      <text>邮箱：</text>
-      <input type="text" placeholder="请输入邮箱" class="LoginEmail" bindinput="LoginEmail"></input>
+<view class="section">
+      <input type="text" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入邮箱" class="LoginEmail" bindinput="LoginEmail"></input>
     </view>
     <view class="section">
-      <text>密码：</text>
-      <input password="true" placeholder="请输入密码" class="LoginPassword" bindinput="LoginPassword"></input>
+      <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入密码" class="LoginPassword" bindinput="LoginPassword"></input>
     </view>
-    <view class="button">
-      <button class="button" form-type="submit" hover-class="afterClick" bindtap="LoginBtn">登录</button>
-    </view>
-     <view class="button">
-      <button class="button" hover-class="afterClick" bindtap="FogetPwdBtn">忘记密码</button>
-    </view>
-    <view class="button">
-      <button class="button" hover-class="afterClick" bindtap="RegisterBtn">注册</button>
+   <view>
+      <button class="button" id="logbutton" form-type="submit" hover-class="afterClick" bindtap="LoginBtn" border="solid">登录</button>
+      <button class="button" id="regbutton" hover-class="afterClick" bindtap="RegisterBtn">注册</button>
+   </view>
+     
+   
+    <view id="fgtps">
+    <navigator url="../pwforget/pwforget" style="font-size:30rpx;color:grey;width:150rpx;">忘记密码？</navigator>
     </view>
   </form>
 </view>
