@@ -110,10 +110,10 @@
 		
 		if(!(document.getElementById("uploadFile").value == "")){
 			document.meetingManageForm.enctype = "multipart/form-data" 
-			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseServlet";
+			document.meetingManageForm.action = "../ReleaseServlet";
 	        document.meetingManageForm.submit();
 		}else{
-			document.meetingManageForm.action = "/OUTBREAK_0/ReleaseWithoutFileServlet";
+			document.meetingManageForm.action = "../ReleaseWithoutFileServlet";
 	        document.meetingManageForm.submit();
 		}
 	}
@@ -151,7 +151,7 @@
 			document.getElementById("meetingEndtime").value = "";
 		}
 		
-        document.meetingManageForm.action = "/OUTBREAK_0/SaveServlet";
+        document.meetingManageForm.action = "../SaveServlet";
         document.meetingManageForm.submit();
  ¡¡¡¡}
 	function Add(){

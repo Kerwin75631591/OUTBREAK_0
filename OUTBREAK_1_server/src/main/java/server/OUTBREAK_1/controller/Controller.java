@@ -150,6 +150,7 @@ public class Controller {
 				Map<String, Object> people = new HashMap<String, Object>();
 				people.put("name", rs.getString("Uid"));
 				people.put("TOF", rs.getInt("TOF"));
+				people.put("email", rs.getString("email"));
 				list.add(people);
 				i++;
 			}

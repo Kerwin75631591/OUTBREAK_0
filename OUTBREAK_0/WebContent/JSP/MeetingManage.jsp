@@ -18,7 +18,7 @@ charset=GBK"
 	function jumpToCreate(){
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
-		window.close();
+		closeWin();
 	}
 </script>
 </head>
