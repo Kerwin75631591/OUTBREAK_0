@@ -37,6 +37,9 @@
     </view>
   </view>
   <view>
+    <button wx:if="{{TOF==0}}" bindtap="setTOF">确认参加</button>
+  </view>
+  <view>
     <button hidden="true" bindtap="resetPeople">testButton</button>
   </view>
 </view>

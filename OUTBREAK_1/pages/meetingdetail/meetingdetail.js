@@ -19,8 +19,9 @@ Page({
     content:'',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
-    people:''
-    //people:[{name:'Harry',TOF:1},{name:'Sirius',TOF:0}]
+    people:'',
+    TOF:0
+    //people:[{name:'Harry',TOF:1,email:'Harry@owl.com'},{name:'Sirius',TOF:0,email:'Sirius@owl.com'}]
   },
 
   /**
@@ -66,6 +67,12 @@ Page({
           content:res.data.meeting.content,
           people:res.data.list
         });
+        for(var i=0;i<num;i++){
+          if(that.data.email==people[i].email){
+            that.data.TOF=people[i].TOF;
+            break;
+          }
+        }
         console.log(that.data);
       }
     });
@@ -116,6 +123,42 @@ Page({
       }
     });
   },
+  setTOF:function(){
+    var that=this;
+    wx.showModal({
+      title: '确认参加会议',
+      content: '确认后将无法更改，您是否确认参加会议',
+      success:function(res){
+        if(res.confirm){
+          wx.request({
+            url: 'http://localhost:443/setTOF',
+            data:{
+              email:that.data.email,
+              mid:that.data.mid
+            },
+            method:'GET',
+            header: {
+              'content-type': 'application/json'
+            },
+            success:function(res){
+              var judge=res.data.judge;
+              if(judge){
+                wx.showModal({
+                  title: '确认参加会议',
+                  content: '确认成功',
+                })
+              }else{
+                wx.showModal({
+                  title: '确认参加会议',
+                  content: '确认失败',
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  },
 
   //testing functions
   printPeople: function(){
@@ -123,8 +166,8 @@ Page({
   },
   resetPeople:function(){
     this.data.people=[];
-    this.data.people.push({name:'Ronn',TOF:'参加'});
-    this.data.people.push({name:'George',TOF:'未确定'});
+    this.data.people.push({name:'Ronn',TOF:'参加',email:'Ronn@owl.com'});
+    this.data.people.push({name:'George',TOF:'未确定',email:'George@owl.com'});
     console.log(this.data.people);
   }
 })

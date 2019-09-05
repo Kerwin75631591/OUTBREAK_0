@@ -41,13 +41,9 @@
 		    meetingContent = meeting.getString("content");
 		    begintime = meeting.getString("begintime");
 			endtime = meeting.getString("endtime");
-		    Date meetingBegintime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(begintime);
-			Date meetingEndtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endtime);
+		    String meetingBegintime = begintime;
+			String meetingEndtime =endtime;
 			meetingData = begintime.substring(0, 10);
-			BeginH = meetingBegintime.getHours();
-			BeginM = meetingBegintime.getMinutes();
-			EndH = meetingEndtime.getHours();
-			EndM = meetingEndtime.getMinutes();
 		}
 		
 		ResultSet people = db.searchPeople(mid);

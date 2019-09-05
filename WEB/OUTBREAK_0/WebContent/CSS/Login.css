@@ -1,0 +1,124 @@
+@font-face{
+    font-family: 'HANYIXUEJUN';
+    src : url('../fonts/HANYIXUEJUN.TTF');
+}
+
+body{
+    background:url(../images/Background.jpg);
+    background-origin:content;
+    background-position:center 0;
+    background-size:cover; 
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    position:relative;
+    width:100%;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+    line-height: 0;
+    overflow: hidden;
+}
+#LoginSTitle{
+	font-family: 'HANYIXUEJUN';
+	font-size:150px;
+	color:white;
+	position:absolute;
+	margin-top:10%;
+	margin-left:20%;
+	min-width:200px;
+}
+#LoginXTitle{
+	font-family: 'HANYIXUEJUN';
+	font-size:150px;
+	color:white;
+	position:absolute;
+	margin-top:19%;
+	margin-left:8%;
+}
+#LoginBox{
+	position:absolute;
+    border: 1px solid #E2E3E5;
+    width: 10%;
+	height: 209%;
+	min-width:300px;
+	box-shadow: 10px 10px 30px #888888;
+	background:#FFFFFF;
+	margin-left:70%;
+	margin-top:7%;
+	opacity:0.85;
+}
+input {outline:none;}
+#IDInput{
+	position:absolute;
+	width:80%;
+	height:13%;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:120%;
+	margin-top:8%;
+	margin-left:10%;
+}
+#PasswordInput{
+	position:absolute;
+	width:80%;
+	height:13%;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:120%;
+	margin-top:28%;
+	margin-left:10%
+}
+#VericodeInput{
+	position:absolute;
+	width:50%;
+	height:13%;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:120%;
+	margin-top:48%;
+	margin-left:10%
+}
+#LoginVericodePic{
+	position:absolute;
+	background:url(../images/yanzhengma.jpg);
+	background-repeat:no-repeat;
+	border: 1px solid #E2E3E5;
+	width:69px;
+	height:30px;
+	margin-left:67%;
+	display:inline-block;
+	vertical-align:middle;
+	margin-top:50%;
+}
+#JumpText{
+	position:absolute;
+	margin-left:25%;
+	margin-top:93%;
+}
+#JumpToPwReset{
+	position:absolute;
+	margin-left:25%;
+	margin-top:100%;
+}
+#RegistText{
+	position:absolute;
+	margin-left:64%;
+	margin-top:93%;
+}
+.logbutton{
+	position:absolute;
+	background: #0cea06;
+    border: none;
+    color: white;
+    margin-top: 70%;
+    margin-left:15%;
+    font-family: "Montserrat", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    width:70%;
+    height:15%;
+    font-size:130%;
+}
+.logbutton:hover {
+    background: #2db618;
+}
