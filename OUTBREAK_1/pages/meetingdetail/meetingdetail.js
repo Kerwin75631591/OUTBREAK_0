@@ -31,16 +31,17 @@ Page({
       email: app.globalData.email,
       mid:options.mid
     });
+    var that=this;
     wx.request({
       url: 'http://localhost:443/ComplexMeeting',
       data:{
-        mid:this.data.mid
+        mid:that.data.mid
       },
       method:"GET",
       header: {
         'content-type': "applicaton/json"
       },
-      success: function(res){
+      success: function(res){        
         console.log(res.data);
         console.log(res.data.number);
         console.log(res.data.meeting.name);
@@ -52,7 +53,7 @@ Page({
         console.log(res.data.meeting.content);
         console.log(res.data.list);
         
-        this.setData({
+        that.setData({
           num:res.data.number,
           meetingname:res.data.meeting.name,
           topic:res.data.meeting.topic,
@@ -63,7 +64,7 @@ Page({
           content:res.data.meeting.content,
           people:res.data.list
         });
-        console.log(this.data);
+        console.log(that.data);
       }
     })
     //console.log(this.data);
