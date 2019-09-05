@@ -77,7 +77,7 @@ public class Controller {
 	public Map<String, Object> SimpleMeeting(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
-		ArrayList<Map>list=new ArrayList<Map>();
+		ArrayList<Map> list = new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
 			db.connect();
@@ -122,7 +122,7 @@ public class Controller {
 	public Map<String, Object> ComplexMeeting(int mid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		@SuppressWarnings("rawtypes")
-		ArrayList<Map>list=new ArrayList<Map>();
+		ArrayList<Map> list = new ArrayList<Map>();
 		DBConnect db = new DBConnect();
 		try {
 			db.connect();
@@ -144,10 +144,10 @@ public class Controller {
 			map.put("meeting", meetings);
 			rs.close();
 			rs = db.searchPeople(mid);
-			int i=0;
+			int i = 0;
 			while (rs.next()) {
 				Map<String, Object> people = new HashMap<String, Object>();
-				people.put("name",rs.getString("name"));
+				people.put("name", rs.getString("name"));
 				people.put("TOF", rs.getInt("TOF"));
 				list.add(people);
 				i++;
@@ -156,6 +156,42 @@ public class Controller {
 			map.put("list", list);
 		} catch (SQLException e) {
 			System.out.println("会议搜索失败");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	// 全局消息查询功能
+	@RequestMapping("getMessage")
+	public Map<String, Object> getMessage() {
+		System.out.println("进入getMessage");
+		Map<String, Object> map = new HashMap<String, Object>();
+		@SuppressWarnings("rawtypes")
+		ArrayList<Map> list = new ArrayList<Map>();
+		DBConnect db = new DBConnect();
+		int i = 0;
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs = db.searchMessage();
+
+			while (rs.next()) {
+				Map<String, Object> tempmap = new HashMap<String, Object>();
+				tempmap.put("message", rs.getString("message"));
+				tempmap.put("time", rs.getString("time"));
+				list.add(tempmap);
+				i++;
+			}
+
+			map.put("number", i);
+			map.put("list", list);
+		} catch (SQLException e) {
+			System.out.println("登录搜索失败");
 			e.printStackTrace();
 		}
 		return map;

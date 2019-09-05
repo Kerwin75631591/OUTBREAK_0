@@ -229,10 +229,19 @@ public class Panel extends JPanel {
 	}
 	public void sendEmail(int mid,String name) throws SQLException {
 		ResultSet rs=db.searchPeople(mid);
+		String[] email=new String[100];
+		String[] Uid=new String[100];
+		String[] PhoneNum=new String[100];
+		int i=0;
 		while(rs.next()) {
-			
-			boolean hasRegistered=db.RegistUser(rs.getString("Email"),rs.getString("Uid") ,rs.getString("PhoneNum"));
-			EmailPoster.sendIfInvited(rs.getString("Email"), name, hasRegistered);
+			email[i]=rs.getString("Email");
+			Uid[i]=rs.getString("Uid");
+			PhoneNum[i]=rs.getString("PhoneNum");
+			i++;
+		}
+		rs.close();
+		for(int j=0;j<i;j++) {
+			EmailPoster.sendIfInvited(email[j], name, db.RegistUser(email[i],Uid[i] ,PhoneNum[i]));
 		}
 	}
 	

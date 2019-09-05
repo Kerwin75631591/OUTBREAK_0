@@ -110,49 +110,49 @@ public class DBConnect {
 	}
 
 	// UserTable注册
-	public boolean RegistUser( String email, String name,String phoneNum) throws SQLException {
-		String sql = "SELECT*FROM UserTable";
+	public boolean RegistUser(String email, String name, String phoneNum) throws SQLException {
+		String sql = "SELECT*FROM UserTable WHERE email = '" + email + "'";
 		rs = statement.executeQuery(sql);
 		System.out.println("rs表已创建");
-			while (rs.next()) {
-				if (email.equals(rs.getString("email")))
-					return true;
-			}
-			insertUser(email,"outbreak123",phoneNum,name,null);
+		if(rs!=null)
+			return true;
+		else {
+			insertUser(email, "outbreak123", phoneNum, name, null);
 			return false;
+		}
 	}
-	
-	//MeetingTable搜索所有待审核的会议，返回resultset
+
+	// MeetingTable搜索所有待审核的会议，返回resultset
 	public ResultSet searchMeeting() throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 1";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	
-	//MeetingTable搜索该id会议，返回resultset
-		public ResultSet searchMeeting(int id) throws SQLException {
-			String sql = "SELECT * FROM MeetingTable WHERE id = '"+id+"'";
-			rs = statement.executeQuery(sql);
-			return rs;
-		}
+
+	// MeetingTable搜索该id会议，返回resultset
+	public ResultSet searchMeeting(int id) throws SQLException {
+		String sql = "SELECT * FROM MeetingTable WHERE id = '" + id + "'";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
 
 	// MeetingTable修改某个会议的状态
 	public void updateMeeting(int id, int state) throws SQLException {
-		String sql = "UPDATE MeetingTable SET state = "+state+" WHERE   id = '" + id + "'";
+		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
 		statement.executeUpdate(sql);
 
 	}
 
-	//PeopleTable搜索该mid会议，返回resultset
+	// PeopleTable搜索该mid会议，返回resultset
 	public ResultSet searchPeople(int mid) throws SQLException {
-		String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
+		String sql = "SELECT * FROM PeopleTable WHERE mid = '" + mid + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	
-	//MessageTable插入新消息
-	public void insertMessage(String message)throws SQLException {
+
+	// MessageTable插入新消息
+	public void insertMessage(String message) throws SQLException {
 		String sql = "INSERT INTO MessageTable(message ,time)values(?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setString(1, message);
@@ -162,7 +162,7 @@ public class DBConnect {
 		pstmt.executeBatch();
 		pstmt.clearBatch();
 	}
-	
+
 	// 关闭数据库连接
 	public void close() {
 		try {

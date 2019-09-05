@@ -232,6 +232,12 @@ public class DBConnect {
 		return rs;
 	}
 
+	public ResultSet searchMessage() throws SQLException {
+		String sql = "SELECT * FROM messageTable ";
+		rs = statement.executeQuery(sql);
+		return rs;
+	}
+	
 	// 关闭数据库连接
 	public void close() {
 		try {
