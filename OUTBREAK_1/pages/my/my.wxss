@@ -2,7 +2,9 @@
   width:750rpx;
   height: 250rpx;
   justify-content: center;
+
 }
+
 .welcometext{
   font-size: 40rpx;
   display: flex;
