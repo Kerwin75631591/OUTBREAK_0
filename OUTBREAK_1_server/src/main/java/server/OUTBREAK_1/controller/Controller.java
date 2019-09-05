@@ -41,6 +41,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		map.put("judge", message);
+		db.close();
 		return map;
 	}
 
@@ -69,6 +70,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		map.put("judge", message);
+		db.close();
 		return map;
 	}
 
@@ -107,6 +109,7 @@ public class Controller {
 				meetings.put("mid", mids[j]);
 				System.out.println(mids[j]);
 				list.add(meetings);
+				rs.close();
 			}
 
 		} catch (SQLException e) {
@@ -114,6 +117,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		map.put("list", list);
+		db.close();
 		return map;
 	}
 
@@ -160,6 +164,7 @@ public class Controller {
 			System.out.println("会议搜索失败");
 			e.printStackTrace();
 		}
+		db.close();
 		return map;
 	}
 
@@ -185,6 +190,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		map.put("judge", judge);
+		db.close();
 		return map;
 	}
 	
@@ -214,13 +220,14 @@ public class Controller {
 				list.add(tempmap);
 				i++;
 			}
-
+			rs.close();
 			map.put("number", i);
 			map.put("list", list);
 		} catch (SQLException e) {
 			System.out.println("登录搜索失败");
 			e.printStackTrace();
 		}
+		db.close();
 		return map;
 	}
 
@@ -246,10 +253,12 @@ public class Controller {
 			map.put("duties", rs.getString("duties"));
 			map.put("address", rs.getString("address"));
 			map.put("email", rs.getString("email"));
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("登录搜索失败");
 			e.printStackTrace();
 		}
+		db.close();
 		return map;
 	}
 
@@ -293,6 +302,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		map.put("judge", judge);
+		db.close();
 		return map;
 	}
 }
