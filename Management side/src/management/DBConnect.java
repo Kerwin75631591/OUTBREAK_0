@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class DBConnect {
 	public Connection connection = null;
@@ -148,6 +149,18 @@ public class DBConnect {
 		String sql = "SELECT * FROM PeopleTable WHERE mid = '"+mid+"'";
 		rs = statement.executeQuery(sql);
 		return rs;
+	}
+	
+	//MessageTable插入新消息
+	public void insertMessage(String message)throws SQLException {
+		String sql = "INSERT INTO MessageTable(message ,time)values(?,?)";
+		PreparedStatement pstmt = connection.prepareStatement(sql);
+		pstmt.setString(1, message);
+		pstmt.setString(2, new Date().toLocaleString());
+		pstmt.addBatch();
+		pstmt.clearParameters();
+		pstmt.executeBatch();
+		pstmt.clearBatch();
 	}
 	
 	// 关闭数据库连接

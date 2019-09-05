@@ -1,9 +1,12 @@
 package management;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,9 +23,9 @@ public class Panel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JButton RefreshButton, SubmitButton,RefuseButton;
+	JButton RefreshButton, SubmitButton,RefuseButton,SendButton;
 	JTextArea textArea;
-	JTextField textField;
+	JTextField textField,message;
 	DBConnect db;
 	JLabel jl;
 
@@ -42,8 +45,58 @@ public class Panel extends JPanel {
 		textArea = new JTextArea(40, 110);
 		textArea.setEditable(false);
 		textArea.setBorder(BasicBorders.getTextFieldBorder());
+		//会议id文本框
 		textField = new JTextField(24);
-		textField.setText("输入要修改审查情况的会议的id");
+		textField.setForeground(Color.GRAY);
+		String hintText="输入要修改审查情况的会议的id";
+		textField.setText(hintText);
+		textField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				//获取焦点时，清空提示内容
+				String temp = textField.getText();
+				if(temp.equals(hintText)) {
+					textField.setText("");
+					textField.setForeground(Color.BLACK);
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				//失去焦点时，没有输入内容，显示提示内容
+				String temp = textField.getText();
+				if(temp.equals("")) {
+					textField.setForeground(Color.GRAY);
+					textField.setText(hintText);
+				}
+			}
+		});
+		//消息文本框
+		message = new JTextField(24);
+		String hintText2="输入要发送的消息";
+		message.setText(hintText2);
+		message.setForeground(Color.GRAY);
+		message.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				//获取焦点时，清空提示内容
+				String temp = message.getText();
+				if(temp.equals(hintText2)) {
+					message.setText("");
+					message.setForeground(Color.BLACK);
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				//失去焦点时，没有输入内容，显示提示内容
+				String temp = message.getText();
+				if(temp.equals("")) {
+					message.setForeground(Color.GRAY);
+					message.setText(hintText2);
+				}
+			}
+		});
+		SendButton =new JButton("发送");
+		SendButton.addActionListener(new SendActionListener());
 		RefreshButton = new JButton("刷新");
 		RefreshButton.addActionListener(new RefreshActionListener());
 		SubmitButton = new JButton("允许");
@@ -58,10 +111,26 @@ public class Panel extends JPanel {
 		this.add(textField);
 		this.add(SubmitButton);
 		this.add(RefuseButton);
+		this.add(message);
+		this.add(SendButton);
 		this.add(sp);
 		this.add(RefreshButton);
 	}
-
+	//消息发送按钮
+	private class SendActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			String messageStr=message.getText();
+			try {
+				db.insertMessage(messageStr);
+				message.setForeground(Color.BLACK);
+				message.setText("消息发送成功");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	//刷新按钮
 	private class RefreshActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			ResultSet rs = null;
