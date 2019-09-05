@@ -1,2 +1,5 @@
 <!--pages/info/info.wxml  消息页-->
-<text>pages/info/info.wxml</text>
+<view wx:for="{{list}}">
+<text>{{item.time}}</text>
+<text>{{item.message}}</text>
+</view>

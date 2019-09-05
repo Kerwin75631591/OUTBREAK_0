@@ -1,5 +1,5 @@
 <!--login.wxml  登录页-->
-<view class="cantainer">
+<view class="container">
   <view class="title">
     <text>OUTBREAK</text>
     <text>多客户端云会议管理系统</text>

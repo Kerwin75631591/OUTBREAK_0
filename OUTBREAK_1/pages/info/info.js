@@ -5,14 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    number: 0,
+    list: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:443/getMessage',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          number: res.data.number,
+          list: res.data.list
+        })
+      }
 
+    })
   },
 
   /**

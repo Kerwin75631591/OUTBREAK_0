@@ -38,5 +38,5 @@ page{
 }
 #fgtps{
   margin-top:60rpx;
-  margin-left:40%;
+  margin-left:33%;
 }
