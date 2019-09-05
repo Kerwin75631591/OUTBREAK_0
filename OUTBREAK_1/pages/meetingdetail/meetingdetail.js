@@ -20,6 +20,7 @@ Page({
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
     people:''
+    //people:[{name:'Harry',TOF:1},{name:'Sirius',TOF:0}]
   },
 
   /**
@@ -41,7 +42,8 @@ Page({
       header: {
         'content-type': "applicaton/json"
       },
-      success: function(res){        
+      success: function(res){
+        /*test code        
         console.log(res.data);
         console.log(res.data.number);
         console.log(res.data.meeting.name);
@@ -51,7 +53,7 @@ Page({
         console.log(res.data.meeting.state);
         console.log(res.data.meeting.fileUrl);
         console.log(res.data.meeting.content);
-        console.log(res.data.list);
+        console.log(res.data.list);*/
         
         that.setData({
           num:res.data.number,
@@ -66,7 +68,7 @@ Page({
         });
         console.log(that.data);
       }
-    })
+    });
     //console.log(this.data);
   },
   /**

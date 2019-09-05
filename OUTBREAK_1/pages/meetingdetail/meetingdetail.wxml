@@ -28,8 +28,10 @@
   <view id="people" class="tr">
     <view class="th">会议名单</view>
     <view id="peoplemenu" class="td">
-      <view wx:for="{{people}}">
-        <view>{{item.name}} {{item.TOF}}</view>       
+      <view class="peopleItem" wx:for="{{people}}">
+        <view>{{item.name}} </view>
+        <view wx:if="{{item.TOF}}">确定参加</view>
+        <view wx:else>未确定参加</view>       
       </view>
     </view>
   </view>
