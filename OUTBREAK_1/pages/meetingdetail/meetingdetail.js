@@ -28,8 +28,10 @@ Page({
   onLoad: function (options) {
     var app = getApp();
     this.setData({
-      email: app.globalData.email
+      email: app.globalData.email,
+      mid:options.mid
     });
+    console.log(this.data);
     //this.refreshData();
   },
   /**
@@ -94,8 +96,10 @@ Page({
         });
         var name='';
         var TOF=0;
+        var peoplelist=res.data.list;
+        console.log(peoplelist)
         for(var i=0;i<this.data.num;i++){
-          //res.data.peoplei...
+          //name=peoplelist[i].name;
         }
       }
     })
