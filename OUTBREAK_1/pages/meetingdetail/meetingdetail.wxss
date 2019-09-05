@@ -8,6 +8,8 @@
 .tr{
   display: flex;
   flex-direction: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .th{
   display: flex;
@@ -17,4 +19,15 @@
   display: flex;
   word-break: break-all;
   width: 70%;
+  border: 1rpx solid rgb(153, 133, 133);
+}
+
+#peoplemenu{
+  display: flex;
+  flex-direction: column;
+}
+
+.peopleItem{
+  display: flex;
+  flex-direction: none;
 }

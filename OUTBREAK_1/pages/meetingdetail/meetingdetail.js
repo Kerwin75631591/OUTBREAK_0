@@ -19,7 +19,7 @@ Page({
     content:'123ajfajjakjfdasjfklasdfdasklfjkasfjasdfciwafaksljcfclndja',
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
-    people:[{name:'Harry',TOF:1},{name:'Hermoine',TOF:1}]
+    people:[{name:'Harry',TOF:'参加'},{name:'Hermoine',TOF:'参加'}]
   },
 
   /**
@@ -94,12 +94,18 @@ Page({
           content:res.data.meeting.content,
           people:[]
         });
-        var name='';
-        var TOF=0;
+        var n='';
+        var T='';
         var peoplelist=res.data.list;
         console.log(peoplelist)
         for(var i=0;i<this.data.num;i++){
-          //name=peoplelist[i].name;
+          n=peoplelist[i].name;
+          if(peoplelist[i].TOF==0){
+            T='未确定';
+          }else{
+            T='参加'
+          }
+          this.data.people.push({name:n,TOF:T});
         }
       }
     })
@@ -111,8 +117,8 @@ Page({
   },
   resetPeople:function(){
     this.data.people=[];
-    this.data.people.push({name:'Ronn',TOF:1});
-    this.data.people.push({name:'George',TOF:0});
+    this.data.people.push({name:'Ronn',TOF:'参加'});
+    this.data.people.push({name:'George',TOF:'未确定'});
     console.log(this.data.people);
   }
 })

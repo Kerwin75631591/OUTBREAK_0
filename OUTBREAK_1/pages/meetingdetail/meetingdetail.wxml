@@ -27,9 +27,13 @@
   </view>
   <view id="people" class="tr">
     <view class="th">会议名单</view>
-    <view class="td">23121</view>
+    <view id="peoplemenu" class="td">
+      <view wx:for="{{people}}">
+        <view>{{item.name}} {{item.TOF}}</view>       
+      </view>
+    </view>
   </view>
   <view>
-    <button bindtap="resetPeople">testButton</button>
+    <button hidden="true" bindtap="resetPeople">testButton</button>
   </view>
 </view>
