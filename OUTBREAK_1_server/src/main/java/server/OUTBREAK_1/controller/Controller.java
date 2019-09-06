@@ -307,7 +307,38 @@ public class Controller {
 		return map;
 	}
 	
-	// 注册功能
+	//用户评价查询功能
+	@RequestMapping("searchAssessment")
+	public Map<String, Object> searchAssessment(String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		@SuppressWarnings("rawtypes")
+		ArrayList<Map>list=new ArrayList<Map>();
+		DBConnect db = new DBConnect();
+		try {
+			db.connect();
+			System.out.println("数据库连接成功");
+		} catch (SQLException e) {
+			System.out.println("数据库连接失败");
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs=db.searchPeople(email);
+			while(rs.next()) {
+				Map<String, Object> tempmap = new HashMap<String, Object>();
+				tempmap.put("mid", rs.getInt("mid"));
+				tempmap.put("Assessment", rs.getInt("Assessment"));
+				list.add(tempmap);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("评价搜索失败");
+			e.printStackTrace();
+		}
+		map.put("list", list);
+		db.close();
+		return map;
+	}
+	//评价更新功能
 		@RequestMapping("Assessment")
 		public Map<String, Object> Assessment(String email,int mid,double grade1,double grade2,double grade3,double grade4,double grade5) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -356,7 +387,7 @@ public class Controller {
 					String result=grade5+"/1";
 					db.updateGrade(email,mid, time,environment,atmosphere,content,result);
 				}
-				
+				message=true;
 			} catch (SQLException e) {
 				System.out.println("评价更新失败");
 				e.printStackTrace();
