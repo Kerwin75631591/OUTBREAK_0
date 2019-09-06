@@ -6,6 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="GBK">
+<script type="text/javascript" src="encode.js"></script>
 <script>
 	var CHECK;
 	function subForm(){
@@ -28,6 +29,8 @@
 					}else{
 						if(pw==rpw){
 							//alert("提交表单");
+							var c=encode(pw);
+							document.getElementById("pw").value=c;
 							document.forms[0].submit();
 						}else{
 							alert("两次密码输入不一致！");
@@ -46,14 +49,9 @@
 		var email=document.getElementById("em").value;
 		//document.getElementById("show_check").innerHTML=CHECK;
 		document.getElementById("email_button").disabled=true;
-		var e=encrypt();
+		var e=encode(CHECK);
 		//alert(e);
 		window.open("./RegCheckCL.jsp?Email="+email+"&check="+e);
-	}
-	function encrypt(){
-		//alert(typeof CHECK);
-		var enc=CHECK;
-		return enc;
 	}
 </script>
 <link type="text/css" rel="stylesheet" href="<%= path %>/CSS/Register.css">
