@@ -120,7 +120,7 @@ Page({
           judge: judge
         })
         // 如果邮箱与密码匹配，登录成功
-        if (judge == true) {
+        if (that.data.judge == true) {
           // 将邮箱给到app.js，作为全局变量
           var app = getApp();
           app.globalData.email = that.data.email;
@@ -131,7 +131,7 @@ Page({
           })
         } else {
           // 此处用于处理登录密码错误的情况
-          modalTap2()
+          that.modalTap2();
         }
       }
     })
