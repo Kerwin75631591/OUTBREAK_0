@@ -1,4 +1,10 @@
 <!--pages/qrcode/qr.wxml-->
-<view>
-  <canvas id="qrcode" canvas-id="qrcode" />
+<view class="container page">
+  <view class="panel">
+    <view class="header">
+    </view>
+    <view class="qrcode">
+      <canvas canvas-id="qrcode" />
+    </view>
+  </view>
 </view>
