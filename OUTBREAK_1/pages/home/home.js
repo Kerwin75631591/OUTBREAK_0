@@ -8,6 +8,7 @@ Page({
     email:'',
     Number: 0,
     list: '',
+    userList: null,
     hiddenAssessmentModal: false,
     A1: null,
     A2: null,
@@ -49,7 +50,26 @@ Page({
       }
     })
     
-
+    wx.request({
+      url: 'http://www.outbreak.xyz:443/searchAssessment',
+      data: {
+        email: that.data.email
+      },
+      method: 'GET',
+      header: {
+        'content-type': "applicaton/json"
+      },
+      success: function (res) {
+        var temp = res.data.list;
+        if (temp != null) {
+          that.setData({
+            userList: res.data.list
+          })
+        } else {
+          // 此处用处理该用户不需要进行会议评估的情况
+        }
+      }
+    })
   },
 
   /**
@@ -226,10 +246,10 @@ Page({
   */
   resetConfirm: function (e) {
     wx.request({
-      url: 'http://localhost:443/???',
+      url: 'http://localhost:443/Assessment',
       data: {
-        mid: e,
         email: this.data.email,
+        mid: e,
         A1: this.data.A1,
         A2: this.data.A2,
         A3: this.data.A3,
