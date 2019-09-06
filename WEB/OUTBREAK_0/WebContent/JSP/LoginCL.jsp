@@ -2,6 +2,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ page import="com.outbreak.entity.UserBean"%>
 <%@ page import="com.outbreak.dao.UserBeanCL"%>
+<%@ page import="com.outbreak.entity.Decoder" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -29,7 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%
     	//接受用户名和密码
     	String uName=request.getParameter("LoginEmail");
-    	String pWd=request.getParameter("LoginPassword");
+    	String encPwd=request.getParameter("LoginPassword");
+    	String pWd=Decoder.decode(encPwd);
     	
     	System.out.println(uName+"==="+pWd);
     	
