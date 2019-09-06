@@ -60,6 +60,7 @@ Page({
         'content-type': "applicaton/json"
       },
       success: function (res) {
+        console.log(res.data);
         var temp = res.data.list;
         if (temp != null) {
           that.setData({
