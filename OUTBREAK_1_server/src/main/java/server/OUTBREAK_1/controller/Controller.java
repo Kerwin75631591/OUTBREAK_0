@@ -107,7 +107,8 @@ public class Controller {
 				meetings.put("place", rs.getString("place"));
 				meetings.put("state", rs.getInt("state"));
 				meetings.put("mid", mids[j]);
-				System.out.println(mids[j]);
+				meetings.put("Assessment", rs.getInt("Assessment"));
+				//System.out.println(mids[j]);
 				list.add(meetings);
 				rs.close();
 			}
@@ -305,4 +306,64 @@ public class Controller {
 		db.close();
 		return map;
 	}
+	
+	// 注册功能
+		@RequestMapping("Assessment")
+		public Map<String, Object> Assessment(String email,int mid,double grade1,double grade2,double grade3,double grade4,double grade5) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			DBConnect db = new DBConnect();
+			boolean message = false;
+			try {
+				db.connect();
+				System.out.println("数据库连接成功");
+			} catch (SQLException e) {
+				System.out.println("数据库连接失败");
+				e.printStackTrace();
+			}
+			try {
+				ResultSet rs=db.searchMeeting(mid);
+				rs.next();
+				String timetest=rs.getString("timeGrade");
+				if(!timetest.equals(null)) {
+					String[] time=timetest.split("/");
+					String[] environment=rs.getString("environmentGrade").split("/");
+					String[] atmosphere=rs.getString("atmosphereGrade").split("/");
+					String[] content=rs.getString("contentGrade").split("/");
+					String[] result=rs.getString("resultGrade").split("/");
+					time[0]=(Double.parseDouble(time[0])+grade1)+" ";
+					environment[0]=(Double.parseDouble(environment[0])+grade1)+" ";
+					atmosphere[0]=(Double.parseDouble(atmosphere[0])+grade1)+" ";
+					content[0]=(Double.parseDouble(content[0])+grade1)+" ";
+					result[0]=(Double.parseDouble(result[0])+grade1)+" ";
+					
+					time[1]=(Integer.parseInt(time[1])+1)+" ";
+					environment[1]=(Integer.parseInt(environment[1])+1)+" ";
+					atmosphere[1]=(Integer.parseInt(atmosphere[1])+1)+" ";
+					content[1]=(Integer.parseInt(content[1])+1)+" ";
+					result[1]=(Integer.parseInt(result[1])+1)+" ";
+					
+					String times=time[0]+"/"+time[1];
+					String environments=environment[0]+"/"+environment[1];
+					String atmospheres=atmosphere[0]+"/"+atmosphere[1];
+					String contents=content[0]+"/"+content[1];
+					String results=result[0]+"/"+result[1];
+					db.updateGrade(email,mid, times,environments,atmospheres,contents,results);
+				}else {
+					String time=grade1+"/1";
+					String environment=grade2+"/1";
+					String atmosphere=grade3+"/1";
+					String content=grade4+"/1";
+					String result=grade5+"/1";
+					db.updateGrade(email,mid, time,environment,atmosphere,content,result);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("评价更新失败");
+				e.printStackTrace();
+			}
+			map.put("judge", message);
+			db.close();
+			return map;
+		}
+	
 }

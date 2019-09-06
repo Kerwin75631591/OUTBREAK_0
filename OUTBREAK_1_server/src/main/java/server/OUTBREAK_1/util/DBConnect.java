@@ -257,4 +257,18 @@ public class DBConnect {
 		}
 	}
 
+	public void updateGrade(String email, int mid, String times, String environments, String atmospheres, String contents,
+			String results) throws SQLException {
+		String sql = "UPDATE PeopleTable SET Assessment = 1 WHERE   mid = '" + mid + "' AND email = '"+email+"'";
+		System.out.println(sql);
+		statement.executeUpdate(sql);
+		sql = "UPDATE MeetingTable SET timeGrade = '"+times+"' "
+				+ "environmentGrade = '"+environments+"'"
+				+ "atmosphereGrade = '"+atmospheres+"'"
+				+ "contentGrade = '"+contents+"'"
+				+ "resultGrade = '"+results+"'"
+				+ " WHERE   mid = '" + mid + "'";
+		statement.executeUpdate(sql);
+	}
+
 }
