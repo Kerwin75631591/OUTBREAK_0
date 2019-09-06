@@ -5,6 +5,7 @@
 <%@ page import="javax.script.ScriptEngineManager" %>
 <%@ page import="com.outbreak.entity.UserBean" %>
 <%@ page import="com.outbreak.dao.UserBeanCL" %>
+<%@ page import="com.outbreak.entity.Decoder" %>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,8 @@
 	request.setCharacterEncoding("GBK");
 	response.setContentType("text/html;charset=GBK");
 	String email=request.getParameter("Email");
-	String pw=request.getParameter("Password");
+	String PW=request.getParameter("Password");
+	String pw=Decoder.decode(PW);
 	String name=request.getParameter("Name");
 	UserBean ub=new UserBean();
 	Boolean success=false;
