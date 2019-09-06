@@ -35,7 +35,7 @@ Page({
     });
     var that=this;
     wx.request({
-      url: 'http://localhost:443/ComplexMeeting',
+      url: 'http://www.outbreak.xyz:443/ComplexMeeting',
       data:{
         mid:that.data.mid
       },
@@ -133,7 +133,7 @@ Page({
       success:function(res){
         if(res.confirm){
           wx.request({
-            url: 'http://localhost:443/setTOF',
+            url: 'http://www.outbreak.xyz:443/setTOF',
             data:{
               email:that.data.email,
               mid:that.data.mid

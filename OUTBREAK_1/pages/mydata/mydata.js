@@ -25,7 +25,7 @@ Page({
     var that = this;
     // 发出请求
     wx.request({
-      url: 'http://localhost:443/UserData',
+      url: 'http://www.outbreak.xyz:443/UserData',
       data: {
         email: that.data.email
       },
@@ -119,7 +119,7 @@ Page({
         let parameterType = "password";
         var that = this;
         wx.request({
-          url: 'http://localhost:443/changeData',
+          url: 'http://www.outbreak.xyz:443/changeData',
           data: {
             email: that.data.email,
             name: parameterType,
@@ -214,7 +214,7 @@ Page({
     let parameterType = "name";
     var that=this;
     wx.request({
-      url: 'http://localhost:443/changeData',
+      url: 'http://www.outbreak.xyz:443/changeData',
       data: {
         email:that.data.email,
         name: parameterType,
@@ -271,8 +271,9 @@ Page({
    */
   bindblur_phoneNum: function () {
     let parameterType = "phoneNumber";
+    var that = this;
     wx.request({
-      url: 'http://localhost:443/changeData',
+      url: 'http://www.outbreak.xyz:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,
@@ -329,8 +330,9 @@ Page({
    */
   bindblur_duties: function () {
     let parameterType = "duties";
+    var that = this;
     wx.request({
-      url: 'http://localhost:443/changeData',
+      url: 'http://www.outbreak.xyz:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,
@@ -387,8 +389,9 @@ Page({
    */
   bindblur_address: function () {
     let parameterType = "address";
+    var that = this;
     wx.request({
-      url: 'http://localhost:443/changeData',
+      url: 'http://www.outbreak.xyz:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,

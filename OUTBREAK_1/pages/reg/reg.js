@@ -121,9 +121,9 @@ Page({
   RegsterBtn: function () {
     var that = this;
     // 发出请求
-    if (password == agpassword) {
+    if (that.data.password == that.data.agpassword) {
       wx.request({
-        url: 'http://localhost:443/Register',
+        url: 'http://www.outbreak.xyz:443/Register',
         data: {
           email: that.data.email,
           name: that.data.name,
@@ -142,7 +142,7 @@ Page({
             judge: judge
           })
           // 如果改邮箱尚未注册，注册成功
-          if (judge == true) {
+          if (that.data.judge == true) {
             // 将邮箱给到app.js，作为全局变量
             var app = getApp();
             app.globalData.email = that.data.email;
@@ -156,7 +156,7 @@ Page({
       })
     } else {
       // 此处用于两次输入密码不匹配的处理
-      modalTap2()
+      that.modalTap2()
     }
   }
 

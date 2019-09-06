@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.outbreak.util.DBConnect"%>
 <%@ page import="com.outbreak.dao.UserBeanCL"%>
+<%@ page import="com.outbreak.entity.Decoder" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,8 @@
 	request.setCharacterEncoding("GBK");
 	response.setContentType("text/html;charset=GBK");
 	String Email=request.getParameter("Email");
-	String pw=request.getParameter("Password");
+	String PW=request.getParameter("Password");
+	String pw=Decoder.decode(PW);
 	UserBeanCL ubcl=new UserBeanCL();
 	try{
 		ubcl.db.updateUserpassword(Email,pw);

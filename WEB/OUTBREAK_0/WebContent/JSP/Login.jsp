@@ -13,6 +13,7 @@ System.out.println(basePath);%>
 	<head>
 		<meta charset="GBK">
 		<title>登录页面</title>
+		<script type="text/javascript" src="encode.js"></script>
 		<script>
 			function checkL() {
 				if(document.getElementById("VericodeInput").length == 0 || document.getElementById("VericodeInput").value != "7364"){
@@ -26,6 +27,8 @@ System.out.println(basePath);%>
 				} else if(pw.length == 0) {
 					alert("请输入密码！");
 				} else {
+					var encPw=encode(pw);
+					document.getElementById("PasswordInput").value=encPw;
 					document.forms[0].submit();
 				}
 			}

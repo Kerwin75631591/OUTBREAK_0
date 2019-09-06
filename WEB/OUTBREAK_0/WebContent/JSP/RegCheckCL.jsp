@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.outbreak.dao.EmailPosterCL" %>
+<%@ page import="com.outbreak.entity.Decoder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,8 @@
 <body>
 <%
 	String receiver=request.getParameter("Email");
-	String check=request.getParameter("check");
+	String c=request.getParameter("check");
+	String check=Decoder.decode(c);
 	EmailPosterCL.sendRegCheck(receiver, Integer.parseInt(check));
 %>
 <script>
