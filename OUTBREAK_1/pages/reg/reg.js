@@ -123,7 +123,7 @@ Page({
     // 发出请求
     if (password == agpassword) {
       wx.request({
-        url: 'http://localhost:443/Register',
+        url: 'http://www.outbreak.xyz:443/Register',
         data: {
           email: that.data.email,
           name: that.data.name,
