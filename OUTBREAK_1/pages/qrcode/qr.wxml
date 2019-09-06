@@ -1,2 +1,4 @@
 <!--pages/qrcode/qr.wxml-->
-<canvas canvas-id="qrcode" />
+<view>
+  <canvas id="qrcode" canvas-id="qrcode" />
+</view>

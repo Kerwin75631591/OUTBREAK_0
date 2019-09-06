@@ -20,7 +20,7 @@ Page({
       email:options.email,
       mid:options.mid
     });
-    wxbarcode.qrcode('qrcode',this.data.email+' '+this.data.mid,400,400);
+    wxbarcode.qrcode('qrcode',this.data.email+' '+this.data.mid,320,320);
   },
 
   /**

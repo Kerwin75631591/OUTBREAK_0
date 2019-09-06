@@ -67,16 +67,16 @@ Page({
           content:res.data.meeting.content,
           people:res.data.list
         });
-        for(var i=0;i<num;i++){
-          if(that.data.email==people[i].email){
-            that.data.TOF=people[i].TOF;
+        for(var i=0;i<that.data.num;i++){
+          if(that.data.email==that.data.people[i].email){
+            that.data.TOF=that.data.people[i].TOF;
             break;
           }
         }
-        console.log(that.data);
+        //console.log(that.data);
       }
     });
-    //console.log(this.data);
+    console.log(this.data);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

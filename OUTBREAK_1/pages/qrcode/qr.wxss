@@ -1,1 +1,7 @@
 /* pages/qrcode/qr.wxss */
+.qrcode{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700rpx;
+}

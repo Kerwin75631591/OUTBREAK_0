@@ -37,8 +37,12 @@
     </view>
   </view>
   <view>
-    <button wx:if="{{TOF==0}}" bindtap="setTOF">确认参加</button>
-    <button wx:else bindtap="showQr">打开二维码</button>
+    <view wx:if="{{TOF}}==1">
+      <button bindtap="showQr">打开二维码</button>
+    </view>
+    <view wx:else>
+      <button bindtap="setTOF">确认参加</button>
+    </view>
   </view>
   <view>
     <button hidden="true" bindtap="resetPeople">testButton</button>
