@@ -4,9 +4,8 @@
     <text class="typical">会议名称:{{meeting.name}}</text>
     <text class="typical">会议时间:{{meeting.time}}</text>
     <text class="typical">会议地点:{{meeting.place}}</text>
-    <block wx:if="{{meeting.Assessment == 1}}" wx:for="{{userList}}" wx:for-item="user">
-    <block wx:if="{{meeting.mid == user.mid}}">
-    <modal wx:if="{{user.Assessment == 1}}" hidden="{{hiddenAssessmentModal}}" title="会议有效性评估" confirm-text="提交" cancel-text="取消" bindcancel="assessmentCancel" bindconfirm="assessmentConfirm({{item.mid}})">
+    <block wx:if="{{meeting.Assessment == 1}}" wx:for="{{userList}}" wx:for-item="user" >
+    <modal wx:if="{{meeting.mid == user.mid}}" wx:if="{{user.Assessment == 1}}" hidden="{{hiddenAssessmentModal}}" title="会议有效性评估" confirm-text="提交" cancel-text="取消" bindcancel="assessmentCancel" bindconfirm="assessmentConfirm({{item.mid}})">
       <text class="typical">需要进行评估的会议的名称:{{item.name}}</text>
       <text class='left'> Q1: 请您为本场会议的时间安排（包括起止时间是否准时等）进行评分：</text>
       <input type='number' id="Q1" bindinput="bindinput_Q1" placeholder="Q1: 请输入0～10" value="A1" auto-focus/>
@@ -19,6 +18,5 @@
       <text class='left'> Q2: 请您为本场会议的结果（包括是否得出有效结论、决策等）进行评分：</text>
       <input type='number' id="Q5" bindinput="bindinput_Q5" placeholder="Q5: 请输入0～10" value="A5" auto-focus/>
     </modal>
-    </block>
     </block>
   </view>
