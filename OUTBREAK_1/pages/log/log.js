@@ -102,7 +102,7 @@ Page({
     var that = this;
     // 发出请求
     wx.request({
-      url: 'http://localhost:443/Login',
+      url: 'http://www.outbreak.xyz:443/Login',
       data: {
         email: that.data.email,
         password: that.data.password

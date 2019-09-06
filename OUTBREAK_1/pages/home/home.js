@@ -21,7 +21,7 @@ Page({
     
     var that = this;
     wx.request({
-      url: 'http://localhost:443/SimpleMeeting',
+      url: 'http://www.outbreak.xyz:443/SimpleMeeting',
       data: {
         email: that.data.email
       },
