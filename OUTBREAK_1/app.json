@@ -1,18 +1,18 @@
 {
   "pages": [
     
+    
     "pages/log/log",
     "pages/my/my",
     "pages/reg/reg",
     "pages/home/home",
     "pages/pwforget/pwforget",
-    "pages/mydata/mydata",
     "pages/index/index",
     "pages/Tcard/Tcard",
     "pages/meetingdetail/meetingdetail",
     "pages/info/info",
     "pages/qrcode/qr",
-    
+    "pages/mydata/mydata",
     "pages/logs/logs",
     "pages/help/help",
     "pages/kefu/kefu"

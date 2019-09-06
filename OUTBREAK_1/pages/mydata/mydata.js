@@ -271,6 +271,7 @@ Page({
    */
   bindblur_phoneNum: function () {
     let parameterType = "phoneNumber";
+    var that = this;
     wx.request({
       url: 'http://www.outbreak.xyz:443/changeData',
       data: {
@@ -329,6 +330,7 @@ Page({
    */
   bindblur_duties: function () {
     let parameterType = "duties";
+    var that = this;
     wx.request({
       url: 'http://www.outbreak.xyz:443/changeData',
       data: {
@@ -387,6 +389,7 @@ Page({
    */
   bindblur_address: function () {
     let parameterType = "address";
+    var that = this;
     wx.request({
       url: 'http://www.outbreak.xyz:443/changeData',
       data: {
