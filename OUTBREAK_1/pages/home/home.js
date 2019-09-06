@@ -7,7 +7,13 @@ Page({
   data: {
     email:'',
     Number: 0,
-    list: ''
+    list: '',
+    hiddenAssessmentModal: false,
+    A1: null,
+    A2: null,
+    A3: null,
+    A4: null,
+    A5: null,
   },
 
   /**
@@ -18,7 +24,7 @@ Page({
     this.setData({
       email: app.globalData.email
     })
-    
+  
     var that = this;
     wx.request({
       url: 'http://www.outbreak.xyz:443/SimpleMeeting',
@@ -42,7 +48,8 @@ Page({
         }
       }
     })
-    console.log(that.data);
+    
+
   },
 
   /**
@@ -93,6 +100,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+
   /**
    * 用户点击详细信息进入该会议详细信息界面
    */
@@ -103,4 +111,146 @@ Page({
       url: '/pages/meetingdetail/meetingdetail?mid=' + v.currentTarget.id
     })
   },
+
+  /**
+  * 动态改变A1.value
+  */
+  bindinput_Q1: function (e) {
+    this.setData({
+      A1: e.detail.value
+    })
+    if (this.A1 > 10 || this.A1 < 0) {
+      wx.showToast({
+        title: '请输入0～10',
+        duration: 1000,
+        mask: true,
+      })
+      this.setData({
+        A1: null
+      })
+    }
+  },
+
+  /**
+  * 动态改变A2.value
+  */
+  bindinput_Q2: function (e) {
+    this.setData({
+      A2: e.detail.value
+    })
+    if(this.A2 > 10 || this.A2 < 0){
+      wx.showToast({
+        title: '请输入0～10',
+        duration: 1000,
+        mask: true,
+      })
+      this.setData({
+        A2: null
+      })
+    }
+  },
+
+  /**
+  * 动态改变A3.value
+  */
+  bindinput_Q3: function (e) {
+    this.setData({
+      A3: e.detail.value
+    })
+    if (this.A3 > 10 || this.A3 < 0) {
+      wx.showToast({
+        title: '请输入0～10',
+        duration: 1000,
+        mask: true,
+      })
+      this.setData({
+        A3: null
+      })
+    }
+  },
+
+  /**
+  * 动态改变A4.value
+  */
+  bindinput_Q4: function (e) {
+    this.setData({
+      A4: e.detail.value
+    })
+    if (this.A4 > 10 || this.A4 < 0) {
+      wx.showToast({
+        title: '请输入0～10',
+        duration: 1000,
+        mask: true,
+      })
+      this.setData({
+        A4: null
+      })
+    }
+  },
+
+  /**
+  * 动态改变A5.value
+  */
+  bindinput_Q5: function (e) {
+    this.setData({
+      A5: e.detail.value
+    })
+    if (this.A5 > 10 || this.A5 < 0) {
+      wx.showToast({
+        title: '请输入0～10',
+        duration: 1000,
+        mask: true,
+      })
+      this.setData({
+        A5: null
+      })
+    }
+  },
+
+  /**
+  * 会议评估框的取消函数
+  */
+  assessmentCancel: function(){
+    wx.showToast({
+      title: '请您尽快完成会议评估',
+      duration: 1000,
+      mask: true,
+    });
+    this.setData({
+      hiddenAssessmentModal: true,
+    })
+  },
+
+  /**
+  * 会议评估框的确认函数
+  */
+  resetConfirm: function (e) {
+    wx.request({
+      url: 'http://localhost:443/???',
+      data: {
+        mid: e,
+        email: this.data.email,
+        A1: this.data.A1,
+        A2: this.data.A2,
+        A3: this.data.A3,
+        A4: this.data.A4,
+        A5: this.data.A5
+      },
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        wx.showLoading({
+          title: '正在提交会议评估表，请稍等！',
+          duration: 500,
+          mask: true
+        })
+      }
+    });
+    wx.redirectTo({
+      url: '/pages/home/home',
+    });
+  },
+
 })
