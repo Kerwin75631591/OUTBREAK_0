@@ -14,9 +14,7 @@
     "pages/qrcode/qr",
     "pages/mydata/mydata",
     "pages/logs/logs",
-    "pages/help/help",
-    "pages/kefu/kefu"
-
+    "pages/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",
