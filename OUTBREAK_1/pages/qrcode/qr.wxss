@@ -26,20 +26,6 @@ page {
     background-color: #fff;
 }
 
-.header {
-    height: 140rpx;
-    background-color: #f0f0f0;
-    border-radius: 10rpx 10rpx 0 0;
-}
-
-.barcode {
-    display: flex;
-    height: 320rpx;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .barnum {
     width: 670rpx;
     height: 100rpx;
