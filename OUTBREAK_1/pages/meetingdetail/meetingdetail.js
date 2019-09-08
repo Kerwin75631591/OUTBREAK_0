@@ -69,11 +69,15 @@ Page({
         });
         for(var i=0;i<that.data.num;i++){
           if(that.data.email==that.data.people[i].email){
+            that.setData({
+              TOF:that.data.people[i].TOF
+            });
+            /*
             if(that.data.people[i].TOF==1){
               that.data.TOF=true;
             }else{
               that.data.TOF=false;
-            }
+            }*/
             //that.data.TOF=that.data.people[i].TOF;
             break;
           }
