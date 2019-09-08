@@ -48,11 +48,19 @@ public class EndMeetingServlet extends HttpServlet {
 		try {
 			DBConnect db = new DBConnect();
 			db.connect();
+			System.out.print("here");
 			db.updateMeeting(mid, 4);
+			if(isAssessment)
+				db.updateAssessment(mid);
 			db.close();
+			response.getWriter().print("<script type=\"text/javascript\">alert('ª·“ÈΩ· ¯!');window.location='./JSP/MeetingManage.jsp'</script>");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
+
+	
 }

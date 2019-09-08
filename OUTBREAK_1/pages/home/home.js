@@ -28,7 +28,7 @@ Page({
   
     var that = this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/SimpleMeeting',
+      url: 'http://49.235.194.230:443/SimpleMeeting',
       data: {
         email: that.data.email
       },
@@ -51,7 +51,7 @@ Page({
     })
     
     wx.request({
-      url: 'http://www.outbreak.xyz:443/searchAssessment',
+      url: 'http://49.235.194.230:443/searchAssessment',
       data: {
         email: that.data.email
       },
@@ -247,7 +247,7 @@ Page({
   */
   resetConfirm: function (e) {
     wx.request({
-      url: 'http://localhost:443/Assessment',
+      url: 'http://49.235.194.230:443/Assessment',
       data: {
         email: this.data.email,
         mid: e,

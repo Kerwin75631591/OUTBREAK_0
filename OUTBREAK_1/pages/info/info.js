@@ -15,7 +15,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/getMessage',
+      url: 'http://49.235.194.230:443/getMessage',
       method: 'GET',
       header: {
         'content-type': 'application/json'

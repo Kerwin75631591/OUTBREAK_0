@@ -1,6 +1,6 @@
 <!--home.wxml  主页-->
 <!--显示出会议简介-->
-  <view wx:for="{{list}}" wx:for-item="meeting" wx:if="{{meeting.state == 2}}" id="{{meeting.mid}}" bindtap="jumpToDetail" class="part">
+  <view wx:for="{{list}}" wx:for-item="meeting" wx:if="{{meeting.state == 2 || meeting.state == 4}}" id="{{meeting.mid}}" bindtap="jumpToDetail" class="part">
     <text class="typical">会议名称:{{meeting.name}}</text>
     <text class="typical">会议时间:{{meeting.time}}</text>
     <text class="typical">会议地点:{{meeting.place}}</text>

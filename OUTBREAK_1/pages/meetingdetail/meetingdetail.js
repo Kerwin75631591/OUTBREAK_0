@@ -20,7 +20,7 @@ Page({
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
     people:'',
-    TOF:0
+    TOF:false
     //people:[{name:'Harry',TOF:1,email:'Harry@owl.com'},{name:'Sirius',TOF:0,email:'Sirius@owl.com'}]
   },
 
@@ -35,7 +35,7 @@ Page({
     });
     var that=this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/ComplexMeeting',
+      url: 'http://49.235.194.230:443/ComplexMeeting',
       data:{
         mid:that.data.mid
       },
@@ -69,7 +69,12 @@ Page({
         });
         for(var i=0;i<that.data.num;i++){
           if(that.data.email==that.data.people[i].email){
-            that.data.TOF=that.data.people[i].TOF;
+            if(that.data.people[i].TOF==1){
+              that.data.TOF=true;
+            }else{
+              that.data.TOF=false;
+            }
+            //that.data.TOF=that.data.people[i].TOF;
             break;
           }
         }
@@ -133,7 +138,7 @@ Page({
       success:function(res){
         if(res.confirm){
           wx.request({
-            url: 'http://www.outbreak.xyz:443/setTOF',
+            url: 'http://49.235.194.230:443/setTOF',
             data:{
               email:that.data.email,
               mid:that.data.mid

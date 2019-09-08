@@ -25,7 +25,7 @@ Page({
     var that = this;
     // 发出请求
     wx.request({
-      url: 'http://www.outbreak.xyz:443/UserData',
+      url: 'http://49.235.194.230:443/UserData',
       data: {
         email: that.data.email
       },
@@ -119,7 +119,7 @@ Page({
         let parameterType = "password";
         var that = this;
         wx.request({
-          url: 'http://www.outbreak.xyz:443/changeData',
+          url: 'http://49.235.194.230:443/changeData',
           data: {
             email: that.data.email,
             name: parameterType,
@@ -214,7 +214,7 @@ Page({
     let parameterType = "name";
     var that=this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/changeData',
+      url: 'http://49.235.194.230:443/changeData',
       data: {
         email:that.data.email,
         name: parameterType,
@@ -273,7 +273,7 @@ Page({
     let parameterType = "phoneNumber";
     var that = this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/changeData',
+      url: 'http://49.235.194.230:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,
@@ -332,7 +332,7 @@ Page({
     let parameterType = "duties";
     var that = this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/changeData',
+      url: 'http://49.235.194.230:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,
@@ -391,7 +391,7 @@ Page({
     let parameterType = "address";
     var that = this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/changeData',
+      url: 'http://49.235.194.230:443/changeData',
       data: {
         email: that.data.email,
         name: parameterType,

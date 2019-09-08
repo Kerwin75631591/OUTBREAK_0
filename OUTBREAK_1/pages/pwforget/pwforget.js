@@ -104,7 +104,7 @@ Page({
   getCheck: function(){
     var that=this;
     wx.request({
-      url: 'http://www.outbreak.xyz:443/sendEmail',
+      url: 'http://49.235.194.230:443/sendEmail',
       data:{
         email:that.data.email
       },
@@ -125,7 +125,7 @@ Page({
     if(that.data.pw==that.data.rpw){
       if(that.data.CHECK==that.data.check){
         wx.request({
-          url: 'http://www.outbreak.xyz:443/changeData',
+          url: 'http://49.235.194.230:443/changeData',
           data: {
             email:that.data.email,
             name:'password',

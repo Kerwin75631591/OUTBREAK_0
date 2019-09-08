@@ -33,7 +33,7 @@ public class DBConnect {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String dbURL = "jdbc:mysql://localhost:3306/"
-					+ "UserDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false";
+					+ "UserDB?user=root&password=749847569&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true";
 			connection = DriverManager.getConnection(dbURL);
 			statement = connection.createStatement();
 			System.out.println("数据库已连接");
@@ -80,7 +80,7 @@ public class DBConnect {
 	public void updateUserpassword(String email, String newPassword) throws SQLException {
 		String sql = "UPDATE UserTable SET password = " + newPassword + " WHERE   email = '" + email + "'";
 		System.out.println(sql);
-		rs = statement.executeQuery(sql);
+		statement.executeUpdate(sql);
 	}
 
 	// UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
@@ -117,8 +117,8 @@ public class DBConnect {
 			id = rs.getInt("id");
 		}
 		id = id + 1;
-		sql = "INSERT INTO MeetingTable(id,begintime,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl)"
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		sql = "INSERT INTO MeetingTable(id,begintime,endtime,place,name,topic,content,host,state,PeopleNum,ArrivalNum,FileUrl,Assessment)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setString(2,begintime);
@@ -132,6 +132,7 @@ public class DBConnect {
 		pstmt.setInt(10, PeopleNum);
 		pstmt.setInt(11, ArrivalNum);
 		pstmt.setString(12, FileUrl);
+		pstmt.setInt(13, 0);
 		pstmt.addBatch();
 		pstmt.clearParameters();
 		pstmt.executeBatch();
@@ -186,7 +187,14 @@ public class DBConnect {
 	public void updateMeeting(int id, int state) throws SQLException {
 		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
-		rs = statement.executeQuery(sql);
+		statement.executeUpdate(sql);
+
+	}
+	// MeetingTable修改某个会议的评估状态
+	public void updateAssessment(int id) throws SQLException {
+		String sql = "UPDATE MeetingTable SET Assessment = 1 WHERE   id = '" + id + "'";
+		System.out.println(sql);
+		statement.executeUpdate(sql);
 
 	}
 
