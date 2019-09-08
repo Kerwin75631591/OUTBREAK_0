@@ -20,7 +20,7 @@ Page({
     //saved in data.peoplei(0----n-1)
     //name saved in data.people.name,TOF saved in data.people.TOF
     people:'',
-    TOF:false
+    TOF:null
     //people:[{name:'Harry',TOF:1,email:'Harry@owl.com'},{name:'Sirius',TOF:0,email:'Sirius@owl.com'}]
   },
 
@@ -131,6 +131,7 @@ Page({
     });
   },
   setTOF:function(){
+    console.log(this.data.TOF);
     var that=this;
     wx.showModal({
       title: '确认参加会议',
@@ -150,6 +151,7 @@ Page({
             success:function(res){
               var judge=res.data.judge;
               if(judge){
+                that.setData({TOF:true});
                 wx.showModal({
                   title: '确认参加会议',
                   content: '确认成功',
@@ -167,6 +169,7 @@ Page({
     })
   },
   showQr:function(){
+    console.log(this.data.TOF);
     var that=this;
     wx.navigateTo({
       url: '/pages/qrcode/qr?email='+that.data.email+'&mid='+that.data.mid,

@@ -36,15 +36,15 @@
       </view>
     </view>
   </view>
-   <view>
-    
-    <button hidden="{{TOF}}" bindtap="showQr">显示二维码</button>
-    
-    
-    <button hidden="{{!TOF}}"bindtap="setTOF">确认参加</button>
-    
-  </view>
+    <view>
+      <view wx:if="{{TOF}}">
+        <button bindtap="showQr">显示二维码</button>
+      </view>
+      <view wx:else>
+        <button bindtap="setTOF">确认参加</button>
+      </view>
+    </view>
   <view>
-    <button hidden="true" bindtap="resetPeople">testButton</button>
+    <button hidden bindtap="resetPeople">testButton</button>
   </view>
 </view>
