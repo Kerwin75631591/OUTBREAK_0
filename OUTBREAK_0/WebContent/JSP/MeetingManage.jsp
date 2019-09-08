@@ -92,6 +92,7 @@ charset=GBK"
 						String numString = arr + "//" + total;
 						int state = meetings.getInt("state");
 						String stateString = null;
+						boolean assessment = meetings.getBoolean("assessment");
 						switch (state) {
 						case 0:
 							stateString = new String("未提交");
@@ -125,12 +126,16 @@ charset=GBK"
 				<td id=<%="state" + counter%> style="text-align:center;font-size: 18px;"><%=stateString%></td>
 				<td><input type="button" 
 				<%if (state == 3 || state == 0){%> 
-				value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>'"
+				value="修改" onclick="window.location.href='<%=path %>/JSP/MeetingCreate.jsp?meetingid=<%=meetingid%>&meetingName=<%=name%>'"
 				<%}else{%>
 					<%if (state == 2){%> 
 				 	 value="结束会议" onclick="endMeeting(<%=meetingid%>)"
-				 	<%}else{%>
-				 	style="display:none"
+				 	<%}else{
+				 		if(assessment == true){%>
+				 		value="查看结果" onclick="window.location.href='<%=path %>/JSP/AssessmentResult.jsp?meetingid=<%=meetingid%>'"
+				 		<%}else{%>
+				 		style="display:none"
+				 		<%}%>
 				 	<%}%>
 				 <%}%>
 				 ></td>

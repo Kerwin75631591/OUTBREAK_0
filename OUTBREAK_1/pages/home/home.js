@@ -246,32 +246,44 @@ Page({
   * 会议评估框的确认函数
   */
   resetConfirm: function (e) {
-    wx.request({
-      url: 'http://49.235.194.230:443/Assessment',
-      data: {
-        email: this.data.email,
-        mid: e,
-        A1: this.data.A1,
-        A2: this.data.A2,
-        A3: this.data.A3,
-        A4: this.data.A4,
-        A5: this.data.A5
-      },
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        wx.showLoading({
-          title: '正在提交会议评估表，请稍等！',
-          duration: 500,
-          mask: true
-        })
-      }
-    });
-    wx.redirectTo({
-      url: '/pages/home/home',
-    });
+    if (this.data.A1 == null || this.data.A1 == '' /
+        this.data.A2 == null || this.data.A2 == '' /
+        this.data.A3 == null || this.data.A3 == '' /
+        this.data.A4 == null || this.data.A4 == '' /
+        this.data.A5 == null || this.data.A5 == ''){
+      wx.showToast({
+        title: '请输入正确的分数！',
+        duration: 1000,
+        mask: true,
+      })
+    }else{
+      wx.request({
+        url: 'http://49.235.194.230:443/Assessment',
+        data: {
+          email: this.data.email,
+          mid: e,
+          A1: this.data.A1,
+          A2: this.data.A2,
+          A3: this.data.A3,
+          A4: this.data.A4,
+          A5: this.data.A5
+        },
+        header: {},
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+          wx.showLoading({
+            title: '正在提交会议评估表，请稍等！',
+            duration: 500,
+            mask: true
+          })
+        }
+      });
+      wx.redirectTo({
+        url: '/pages/home/home',
+      });
+    }
   },
 
 })
