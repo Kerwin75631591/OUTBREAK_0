@@ -25,6 +25,6 @@
     </view>
     <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
       <view> OUTBREAK开发团队项目经理 </view>
-      <view> 王嘉磊 11111111111 </view>
+      <view> 王嘉磊 15651693126 </view>
     </modal>
   </view>
