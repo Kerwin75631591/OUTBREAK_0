@@ -172,7 +172,7 @@ Page({
                   success (res) {
                     if (res.confirm) {
                       wx.reLaunch({
-                        url: '/pages/mydata/mydata',
+                        url: '/pages/my/my',
                       })
                     }else{
                       wx.reLaunch({
