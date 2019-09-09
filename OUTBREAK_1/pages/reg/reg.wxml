@@ -25,4 +25,5 @@
     </view>
     <image class="bottomimage" src="../../images/change.gif" mode="aspectFit"></image>
   </form>
+  <!--<view><button bindtap="testIsEmail">test</button></view>-->
 </view>

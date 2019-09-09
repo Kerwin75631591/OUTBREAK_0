@@ -115,49 +115,90 @@ Page({
     })
   },
 
+  /*判断是否为邮箱
+  */
+  isEmail:function(str){
+    if(str==null||str==''){
+      return false;
+    }
+    var reg = new RegExp(/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/);
+    return reg.test(str);
+  },
+  //test isEmail
+  testIsEmail:function(){
+    console.log(this.isEmail(this.data.email));
+  },
+
   /**
    * 用户点击注册按钮完成注册
    */
   RegsterBtn: function () {
     var that = this;
     // 发出请求
-    if (that.data.password == that.data.agpassword) {
-      wx.request({
-        url: 'http://49.235.194.230:443/Register',
-        data: {
-          email: that.data.email,
-          name: that.data.name,
-          password: that.data.password
-        },
-        method: 'GET',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success: function (res) {
-          console.log(res.data);// 将从后台获得的数据打印到控制台
-          // 获得来自后台的变量值
-          var judge = res.data.judge;
-          // 将后台数据传至data中
-          that.setData({
-            judge: judge
+    if(this.isEmail(this.data.email)){
+      if((that.data.name!=null)&&(that.data.name!='')){
+        if (that.data.password == that.data.agpassword&&that.data.password!='') {
+          wx.request({
+            url: 'http://49.235.194.230:443/Register',
+            data: {
+              email: that.data.email,
+              name: that.data.name,
+              password: that.data.password
+            },
+            method: 'GET',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+              console.log(res.data);// 将从后台获得的数据打印到控制台
+              // 获得来自后台的变量值
+              var judge = res.data.judge;
+              // 将后台数据传至data中
+              that.setData({
+                judge: judge
+              })
+              // 如果改邮箱尚未注册，注册成功
+              if (that.data.judge == true) {
+                // 将邮箱给到app.js，作为全局变量
+                var app = getApp();
+                app.globalData.email = that.data.email;
+                // 打印全局邮箱值到控制台
+                console.log(app.globalData.email);
+                //提醒用户尽快完善个人信息
+                wx.showModal({
+                  title: '友情提醒',
+                  content: '请尽快至「我的 - 编辑个人资料」完善个人信息，以便使用名片墙功能！',
+                  confirmText: '立即修改',
+                  success (res) {
+                    if (res.confirm) {
+                      wx.reLaunch({
+                        url: '/pages/mydata/mydata',
+                      })
+                    }else{
+                      wx.reLaunch({
+                        url: '/pages/home/home',
+                      })
+                    }
+                  },
+                })
+              }
+            }
           })
-          // 如果改邮箱尚未注册，注册成功
-          if (that.data.judge == true) {
-            // 将邮箱给到app.js，作为全局变量
-            var app = getApp();
-            app.globalData.email = that.data.email;
-            // 打印全局邮箱值到控制台
-            console.log(app.globalData.email);
-            wx.reLaunch({
-              url: '/pages/home/home',
-            })
-          }
+        } else {
+          // 此处用于两次输入密码不匹配的处理
+          that.modalTap2()
         }
+      }else{
+        wx.showModal({
+          title: '注册失败',
+          content: '请输入姓名',
+        })
+      }
+    }else{
+      wx.showModal({
+        title: '注册失败',
+        content: '请输入正确的邮箱',
       })
-    } else {
-      // 此处用于两次输入密码不匹配的处理
-      that.modalTap2()
     }
   }
-
 })
