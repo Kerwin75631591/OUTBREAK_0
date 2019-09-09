@@ -17,7 +17,13 @@ public class DBConnect {
 	public Connection connection = null;
 	public Statement statement = null;
 	public ResultSet rs = null;
-
+	/*
+	*名称：数据库驱动函数
+	*描述：初始化数据库驱动
+	*参数：void
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public DBConnect() {
 
 		try {
@@ -28,7 +34,13 @@ public class DBConnect {
 		}
 	}
 
-	// 连接数据库
+	/*
+	*名称：数据库连接函数
+	*描述：连接数据库
+	*参数：void
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void connect() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -45,7 +57,13 @@ public class DBConnect {
 		}
 	}
 
-	// 在UserTable中加入新的数据
+	/*
+	*名称：新建用户函数
+	*描述：将新用户插入数据库
+	*参数：String email, String password, String phoneNumber, String name, String address
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void insertUser(String email, String password, String phoneNumber, String name, String address)
 			throws SQLException {
 		String sql = "SELECT id FROM UserTable ";
@@ -70,13 +88,25 @@ public class DBConnect {
 		pstmt.clearBatch();
 	}
 
-	// 在UserTable中删除数据
+	/*
+	*名称：用户删除函数
+	*描述：删除用户
+	*参数：String email
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void deleteUser(String email) throws SQLException {
 		String sql = "DELETE * FROM UserTable WHERE email = " + email;
 		statement.execute(sql);
 	}
 
-	// UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
+	/*
+	*名称：用户登录注册函数
+	*描述：登录注册判断，UserTable登录(true)&注册(false)检测 返回值0为通过，登录中1为密码错误，2为账号不存在，注册中1为该邮箱已注册
+	*参数：boolean judge, String email, String password
+	*返回类型：int
+	*作者：周于楷
+	*/
 	public int searchUser(boolean judge, String email, String password) throws SQLException {
 		String sql = "SELECT*FROM UserTable";
 		rs = statement.executeQuery(sql);
@@ -100,20 +130,39 @@ public class DBConnect {
 		}
 	}
 
-	// UserTable查找该邮箱用户
+	/*
+	*名称：用户信息查找函数
+	*描述：查找用户信息
+	*参数：String email
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchUserData(String email) throws SQLException {
 		String sql = "SELECT*FROM UserTable where email = '" + email + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	// UserTable修改某个用户的状态
+	/*
+	*名称：用户信息更新函数
+	*描述：更新用户信息
+	*参数：String email,String name,String value
+	*返回类型：void
+	*作者：周于楷
+	*/
 		public void updateUser(String email,String name,String value) throws SQLException {
 			String sql = "UPDATE UserTable SET "+name+" = '" + value + "' WHERE   email = '" + email + "'";
 			System.out.println(sql);
 			statement.executeUpdate(sql);
 		}
 
-	// 在MeetingTable中加入新的数据
+		/*
+		*名称：会议新建函数
+		*描述：新建会议
+		*参数：int state, String begintime, String endtime, String place, String name, String topic,
+				String content, String host, int PeopleNum, int ArrivalNum, String FileUrl
+		*返回类型：int
+		*作者：周于楷
+		*/
 	public int insertMeeting(int state, Date begintime, Date endtime, String place, String name, String topic,
 			String content, String host, int PeopleNum, int ArrivalNum, String FileUrl) throws SQLException {
 		String sql = "SELECT id FROM MeetingTable ";
@@ -146,27 +195,49 @@ public class DBConnect {
 		return id;
 	}
 
-	// 在MeetingTable中删除数据
+	/*
+	*名称：会议删除函数
+	*描述：会议删除
+	*参数：Date time, String name
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void deleteMeeting(Date time, String name) throws SQLException {
 		String sql = "DELETE FROM MeetingTable WHERE begintime = " + time + " And name = " + name;
 		statement.execute(sql);
 	}
 
-	// MeetingTable搜索某人举办的会议，返回resultset
+	/*
+	*名称：会议搜索函数
+	*描述：搜索某人主办的会议
+	*参数：String host
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE host = '" + host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-
-	// MeetingTable搜索所有未提交的会议，返回resultset
+	/*
+	*名称：未提交会议搜索函数
+	*描述：搜索某人主办的未提交会议
+	*参数：String host
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchChangableMeeting(String host) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE state = 0  And host = '" + host + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-
-	// MeetingTable搜索的同名同时会议
+	/*
+	*名称：相同会议判断函数
+	*描述：判断是否有相同的会议
+	*参数：Date time, String name
+	*返回类型：boolean
+	*作者：周于楷
+	*/
 	public boolean searchMeeting(Date time, String name) throws SQLException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -180,14 +251,26 @@ public class DBConnect {
 
 	}
 
-	// MeetingTable搜索某mid的会议
+	/*
+	*名称：会议搜索函数
+	*描述：搜索某id的会议
+	*参数：Integer integer
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchMeeting(Integer integer) throws SQLException {
 		String sql = "SELECT * FROM MeetingTable WHERE id = '" + integer + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// MeetingTable修改某个会议的状态
+	/*
+	*名称：会议状态更新函数
+	*描述：更新会议状态
+	*参数：int id, int state
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void updateMeeting(int id, int state) throws SQLException {
 		String sql = "UPDATE MeetingTable SET state = " + state + " WHERE   id = '" + id + "'";
 		System.out.println(sql);
@@ -195,7 +278,13 @@ public class DBConnect {
 
 	}
 
-	// 在PeopleTable中加入新的数据
+	/*
+	*名称：参会人员新建函数	
+	*描述：新建参会人员
+	*参数：int id, ArrayList<InvitedPeople> people
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void insertPeople(int id, ArrayList<InvitedPeople> people) throws SQLException {
 		System.out.println("insertPeople已进入");
 		Iterator<InvitedPeople> it = people.iterator();
@@ -218,36 +307,63 @@ public class DBConnect {
 		}
 	}
 
-	// PeopleTable搜索所有该mid的会议，返回resultset
+	/*
+	*名称：参会人员搜索函数	
+	*描述：搜索某id会议的参会人员
+	*参数：int mid
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchPeople(int mid) throws SQLException {
 		String sql = "SELECT * FROM PeopleTable WHERE mid = '" + mid + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
 
-	// PeopleTable搜索某email的所有会议，返回resultset
+	/*
+	*名称：参会搜索函数	
+	*描述：搜索某用户参加的会议
+	*参数：String email
+	*返回类型：ResultSet
+	*作者：周于楷
+	*/
 	public ResultSet searchPeople(String email) throws SQLException {
 		String sql = "SELECT * FROM PeopleTable WHERE email = '" + email + "'";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	
-	// PeopleTable修改参会人员的状态
+	/*
+	*名称：参会状态更新函数	
+	*描述：更新用户参会状态
+	*参数：String email,int mid
+	*返回类型：void
+	*作者：周于楷
+	*/
 		public void updatePeople(String email,int mid) throws SQLException {
 			String sql = "UPDATE PeopleTable SET TOF = 1 WHERE   mid = '" + mid + "' AND email = '"+email+"'";
 			System.out.println(sql);
 			statement.executeUpdate(sql);
 
 		}
-	
-	//搜索系统通知
+		/*
+		*名称：全局信息接收函数
+		*描述：接收全局消息
+		*参数：void
+		*返回类型：void
+		*作者：周于楷
+		*/
 	public ResultSet searchMessage() throws SQLException {
 		String sql = "SELECT * FROM messageTable ";
 		rs = statement.executeQuery(sql);
 		return rs;
 	}
-	
-	// 关闭数据库连接
+	/*
+	*名称：数据库连接关闭函数
+	*描述：关闭数据库连接
+	*参数：void
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void close() {
 		try {
 			statement.close();
@@ -256,7 +372,14 @@ public class DBConnect {
 			e.printStackTrace();
 		}
 	}
-
+	/*
+	*名称：评估提交函数
+	*描述：更新会议评估
+	*参数：String email, int mid, String times, String environments, String atmospheres, String contents,
+			String results
+	*返回类型：void
+	*作者：周于楷
+	*/
 	public void updateGrade(String email, int mid, String times, String environments, String atmospheres, String contents,
 			String results) throws SQLException {
 		String sql = "UPDATE PeopleTable SET Assessment = 1 WHERE   mid = '" + mid + "' AND email = '"+email+"'";

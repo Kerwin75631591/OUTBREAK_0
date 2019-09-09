@@ -116,7 +116,13 @@ public class Panel extends JPanel {
 		this.add(sp);
 		this.add(RefreshButton);
 	}
-	//消息发送按钮
+	/*
+	*名称：数据库连接关闭函数
+	*描述：关闭数据库连接
+	*参数：void
+	*返回类型：void
+	*作者：周于楷
+	*/
 	private class SendActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			String messageStr=message.getText();

@@ -19,7 +19,7 @@
   display: flex;
   word-break: break-all;
   width: 70%;
-  border: 1rpx solid rgb(153, 133, 133);
+
 }
 
 #peoplemenu{
@@ -30,4 +30,26 @@
 .peopleItem{
   display: flex;
   flex-direction: none;
+}
+.sbutton{
+  margin-top: 100rpx;
+  width: 61.8%;
+  margin-left: 19.1%;
+  background-color: #1296db;
+  color: white;
+  border-radius: 98rpx;
+  background: bg_red;
+}
+.sbutton::after{
+  border: none;
+}
+.afterClick{
+   background:  #1295dbdb;
+}
+.bottomimage{
+  width:750rpx;
+  height: 230rpx;
+  justify-content: center;
+  margin-top: 20%;
+  margin-left: -2%
 }

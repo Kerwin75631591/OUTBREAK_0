@@ -6,22 +6,23 @@
   </view>
   <form bindsubmit="formSubmit">
     <view class="section"> 
-      <input type="text" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入邮箱" class="RegisterEmail" bindinput="RegisterEmail"></input>
+      <input type="text" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center;min-height:60rpx;margin-top:-3%" placeholder="请输入邮箱" class="RegisterEmail" bindinput="RegisterEmail"></input>
     </view>
     <view class="section">
-      <input type="text" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入姓名" class="RegisterName" bindinput="RegisterName"></input>
+      <input type="text" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center;min-height:60rpx;margin-top:5%" placeholder="请输入姓名" class="RegisterName" bindinput="RegisterName"></input>
     </view>
     <view class="section">
-      <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="请输入密码" class="RegisterPassword" bindinput="RegisterPassword"></input>
+      <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center;min-height:60rpx;margin-top:5%" placeholder="请输入密码" class="RegisterPassword" bindinput="RegisterPassword"></input>
     </view>
     <view class="section">
-      <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center" placeholder="再次输入密码" class="RegisterAgaPassword" bindinput="RegisterAgaPassword"></input>
+      <input password="true" style="font-size:40rpx; border-bottom-left-radius: 10px;border-top-left-radius: 10px; border-bottom-right-radius: 10px;border-top-right-radius: 10px;background-color: gainsboro;text-align:center;min-height:60rpx;margin-top:5%" placeholder="再次输入密码" class="RegisterAgaPassword" bindinput="RegisterAgaPassword"></input>
     </view>
        <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
       <view> 两次密码不一致 </view>
     </modal>
     <view class="button">
-      <button class="button" form-type="submit" hover-class="afterClick" bindtap="RegsterBtn">注册</button>
+      <button class="button" form-type="submit" hover-class="afterClick" bindtap="RegsterBtn">注 册</button>
     </view>
+    <image class="bottomimage" src="../../images/change.gif" mode="aspectFit"></image>
   </form>
 </view>

@@ -7,7 +7,7 @@ page{
   flex-direction: column;
 }
 .title{
-  margin-top: 15%;
+  margin-top: -20%;
   margin-bottom: 15%;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,12 @@ page{
    background:  #1295dbdb;
 }
 #fgtps{
+  position: relative;
   margin-top:60rpx;
-  margin-left:33%;
+  margin-left:40%;
+}
+.bottomimage{
+  width:750rpx;
+  height: 230rpx;
+  justify-content: center;
 }

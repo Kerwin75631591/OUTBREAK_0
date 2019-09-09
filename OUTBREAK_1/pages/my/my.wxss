@@ -2,7 +2,6 @@
   width:750rpx;
   height: 250rpx;
   justify-content: center;
-
 }
 
 .welcometext{

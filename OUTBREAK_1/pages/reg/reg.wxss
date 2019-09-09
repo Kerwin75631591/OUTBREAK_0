@@ -6,7 +6,7 @@ page{
   flex-direction: column;
 }
 .title{
-  margin-top: -5%;
+  margin-top: -15%;
   margin-bottom: 5%;
   display: flex;
   flex-direction: column;
@@ -21,9 +21,9 @@ page{
   margin-top: 30rpx;
 }
 .button{
-  margin-top: 30%;
-  width: 61.8%;
-  margin-left: 19.1%;
+  margin-top: 10%;
+  width: 55%;
+  margin-left: 23%;
   background-color: #1296db;
   color: white;
   border-radius: 98rpx;
@@ -34,4 +34,10 @@ page{
 }
 .afterClick{
    background:  #1295dbdb;
+}
+.bottomimage{
+  width:750rpx;
+  height: 200rpx;
+  justify-content: center;
+  margin-top: 3%
 }

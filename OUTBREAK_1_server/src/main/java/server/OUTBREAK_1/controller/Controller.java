@@ -16,7 +16,13 @@ import server.OUTBREAK_1.util.DBConnect;
 @RestController
 @SpringBootApplication
 public class Controller {
-	// 登录功能
+	/*
+	*名称：小程序登录函数
+	*描述：小程序登录
+	*参数：String email, String password
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("Login")
 	public Map<String, Object> Login(String email, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -45,7 +51,13 @@ public class Controller {
 		return map;
 	}
 
-	// 注册功能
+	/*
+	*名称：小程序注册函数
+	*描述：小程序注册
+	*参数：String email, String password, String name
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("Register")
 	public Map<String, Object> Register(String email, String password, String name) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -74,7 +86,13 @@ public class Controller {
 		return map;
 	}
 
-	// 简单会议信息功能
+	/*
+	*名称：小程序会议简介函数
+	*描述：小程序会议简介信息
+	*参数：String email
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("SimpleMeeting")
 	public Map<String, Object> SimpleMeeting(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -122,7 +140,13 @@ public class Controller {
 		return map;
 	}
 
-	// 详细会议信息功能
+	/*
+	*名称：小程序会议详情函数
+	*描述：小程序会议详情信息
+	*参数：int mid
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("ComplexMeeting")
 	public Map<String, Object> ComplexMeeting(int mid) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -169,7 +193,13 @@ public class Controller {
 		return map;
 	}
 
-	//确定参加会议
+	/*
+	*名称：会议参加函数
+	*描述：小程序用户参会
+	*参数：String email,int mid
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("setTOF")
 	public Map<String, Object> setTOF(String email,int mid) {
 		System.out.println("进入setTOF");
@@ -195,7 +225,13 @@ public class Controller {
 		return map;
 	}
 	
-	// 全局消息查询功能
+	/*
+	*名称：全局消息函数
+	*描述：小程序用户接受管理端发送消息
+	*参数：void
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("getMessage")
 	public Map<String, Object> getMessage() {
 		System.out.println("进入getMessage");
@@ -232,7 +268,13 @@ public class Controller {
 		return map;
 	}
 
-	// 用户数据查询功能
+	/*
+	*名称：用户信息函数
+	*描述：小程序接受用户信息
+	*参数：String email
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("UserData")
 	public Map<String, Object> UserData(String email) {
 		System.out.println("进入userdata");
@@ -263,7 +305,13 @@ public class Controller {
 		return map;
 	}
 
-	// 用户验证邮件
+	/*
+	*名称：邮件发送函数
+	*描述：发送验证邮件
+	*参数：String email
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("sendEmail")
 	public Map<String, Object> sendEmail(String email) {
 		System.out.println("进入sendEmail");
@@ -279,7 +327,13 @@ public class Controller {
 		return map;
 	}
 
-	// 用户修改资料
+	/*
+	*名称：用户资料更新函数
+	*描述：更新用户资料
+	*参数：String email, String name, String value
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("changeData")
 	public Map<String, Object> changeData(String email, String name, String value) {
 		System.out.println("进入changedata");
@@ -307,7 +361,13 @@ public class Controller {
 		return map;
 	}
 	
-	//用户评价查询功能
+	/*
+	*名称：用户评价查询函数
+	*描述：查询用户评价状态
+	*参数：String email
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 	@RequestMapping("searchAssessment")
 	public Map<String, Object> searchAssessment(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -338,7 +398,13 @@ public class Controller {
 		db.close();
 		return map;
 	}
-	//评价更新功能
+	/*
+	*名称：用户评价写入函数
+	*描述：接受用户评价
+	*参数：String email,int mid,double grade1,double grade2,double grade3,double grade4,double grade5
+	*返回类型：Map<String, Object> 
+	*作者：周于楷
+	*/
 		@RequestMapping("Assessment")
 		public Map<String, Object> Assessment(String email,int mid,double grade1,double grade2,double grade3,double grade4,double grade5) {
 			Map<String, Object> map = new HashMap<String, Object>();
