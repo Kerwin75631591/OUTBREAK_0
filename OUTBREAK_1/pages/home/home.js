@@ -142,7 +142,8 @@ Page({
     })
     if (this.data.A1 > 10 || this.data.A1 < 0) {
       wx.showToast({
-        title: '请输入0～10',
+        title: '错误！',
+        content: '请输入0～10',
         duration: 1000,
         mask: true,
       })
@@ -161,7 +162,8 @@ Page({
     })
     if (this.data.A2 > 10 || this.data.A2 < 0) {
       wx.showToast({
-        title: '请输入0～10',
+        title: '错误！',
+        content: '请输入0～10',
         duration: 1000,
         mask: true,
       })
@@ -180,7 +182,8 @@ Page({
     })
     if (this.data.A3 > 10 || this.data.A3 < 0) {
       wx.showToast({
-        title: '请输入0～10',
+        title: '错误！',
+        content: '请输入0～10',
         duration: 1000,
         mask: true,
       })
@@ -199,7 +202,8 @@ Page({
     })
     if (this.data.A4 > 10 || this.data.A4 < 0) {
       wx.showToast({
-        title: '请输入0～10',
+        title: '错误！',
+        content: '请输入0～10',
         duration: 1000,
         mask: true,
       })
@@ -218,7 +222,8 @@ Page({
     })
     if (this.data.A5 > 10 || this.data.A5 < 0) {
       wx.showToast({
-        title: '请输入0～10',
+        title: '错误！',
+        content: '请输入0～10',
         duration: 1000,
         mask: true,
       })
@@ -233,7 +238,7 @@ Page({
   */
   assessmentCancel: function () {
     wx.showToast({
-      title: '请您尽快完成会议评估',
+      content: '请您尽快完成会议评估',
       duration: 1000,
       mask: true,
     });
@@ -249,7 +254,8 @@ Page({
     var mid = e.currentTarget.dataset.mid;
     if (this.data.A1 == null || this.data.A1 == '' || this.data.A2 == null || this.data.A2 == '' || this.data.A3 == null || this.data.A3 == '' ||this.data.A4 == null || this.data.A4 == '' || this.data.A5 == null || this.data.A5 == '') {
       wx.showToast({
-        title: '请输入正确的分数！',
+        title: '错误！',
+        content: '请输入正确的分数！',
         duration: 1000,
         mask: true,
       })
@@ -273,7 +279,7 @@ Page({
         responseType: 'text',
         success: function (res) {
           wx.showLoading({
-            title: '正在提交会议评估表，请稍等！',
+            content: '正在提交会议评估表，请稍等！',
             duration: 500,
             mask: true
           }
@@ -281,7 +287,7 @@ Page({
         },
         fail: function (res) {
           wx.showToast({
-            title: '提交失败，请重试！',
+            content: '提交失败，请重试！',
             icon: 'none',
             duration: 1000
           })
@@ -289,13 +295,13 @@ Page({
         complete: function (res) {
           if (res.data.judge) {
             wx.showToast({
-              title: '会议评估表提交成功！',
+              content: '会议评估表提交成功！',
               duration: 1000,
               mask: true
             })
           } else {
             wx.showToast({
-              title: '会议评估表提交失败，请重试！',
+              content: '会议评估表提交失败，请重试！',
               icon: 'none',
               duration: 1000,
               mask: true

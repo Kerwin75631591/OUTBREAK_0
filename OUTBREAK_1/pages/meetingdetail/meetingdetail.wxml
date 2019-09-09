@@ -27,12 +27,12 @@
     <view class="td">{{content}}</view>
   </view>
   <view id="people" class="tr">
-    <view class="th">会议名单</view>
+    <view class="th">会议名单(点击姓名查看)</view>
     <view id="peoplemenu" class="td">
       <view class="peopleItem" wx:for="{{people}}">
-        <view>{{item.name}} </view>
-        <view wx:if="{{item.TOF}}">确定参加</view>
-        <view wx:else>未确定参加</view>       
+        <view><text bindtap="peopleInfomation" data-email="{{item.email}}">{{item.name}}</text></view>
+        <view wx:if="{{item.TOF}}">······确定参加</view>
+        <view wx:else>······未确定参加</view>       
       </view>
     </view>
   </view>

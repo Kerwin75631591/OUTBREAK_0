@@ -164,8 +164,22 @@ Page({
                 app.globalData.email = that.data.email;
                 // 打印全局邮箱值到控制台
                 console.log(app.globalData.email);
-                wx.reLaunch({
-                  url: '/pages/home/home',
+                //提醒用户尽快完善个人信息
+                wx.showModal({
+                  title: '友情提醒',
+                  content: '请尽快至「我的 - 编辑个人资料」完善个人信息，以便使用名片墙功能！',
+                  confirmText: '立即修改',
+                  success (res) {
+                    if (res.confirm) {
+                      wx.reLaunch({
+                        url: '/pages/mydata/mydata',
+                      })
+                    }else{
+                      wx.reLaunch({
+                        url: '/pages/home/home',
+                      })
+                    }
+                  },
                 })
               }
             }

@@ -189,5 +189,47 @@ Page({
     this.data.people.push({name:'Ronn',TOF:'参加',email:'Ronn@owl.com'});
     this.data.people.push({name:'George',TOF:'未确定',email:'George@owl.com'});
     console.log(this.data.people);
+  },
+
+/*
+* 名称：与会者名片查看函数
+* 描述：查看某一个与会者的名片，只有一个返回按钮
+* 参数：String email（即该与会者的邮箱）
+* 返回类型：void
+* 作者：胡昱
+*/
+  peopleInfomation: function(e){
+    var email = e.currentTarget.dataset.email;
+    wx.request({
+      url: 'http://49.235.194.230:443/UserData',
+      data: {
+        email: this.data.email,
+      },
+      method: "GET",
+      header: {
+        'content-type': "applicaton/json"
+      },
+      success: function (res) {
+        var duties = res.data.duties;
+        var phoneNumber = res.data.phoneNumber;
+        var email = res.data.email;
+        var address = res.data.address;
+        if(duties == null || typeof(duties) == undefined){
+          dutie = '未设置或不愿透露';
+        }
+        if (phoneNumber == null || typeof (phoneNumber) == undefined) {
+          phoneNumber = '未设置或不愿透露';
+        }
+        if (address == null || typeof (address) == undefined) {
+          address = '未设置或不愿透露';
+        }
+        wx.showModal({
+          title: res.data.name + '的名片',
+          content: '职务：'+ duties + '\n联系方式：' + phoneNumber + '\n邮箱：' + email + '\n地址：' + address,
+          showCancel: false,
+        })
+      }
+      
+    });
   }
 })
