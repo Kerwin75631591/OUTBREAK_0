@@ -152,6 +152,7 @@ public class DBConnect {
 	}
 
 	// MessageTable插入新消息
+	@SuppressWarnings("deprecation")
 	public void insertMessage(String message) throws SQLException {
 		String sql = "INSERT INTO MessageTable(message ,time)values(?,?)";
 		PreparedStatement pstmt = connection.prepareStatement(sql);

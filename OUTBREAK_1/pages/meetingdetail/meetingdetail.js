@@ -199,11 +199,11 @@ Page({
 * 作者：胡昱
 */
   peopleInfomation: function(e){
-    var email = e.currentTarget.dataset.email;
+    var emailForInfomation = e.currentTarget.dataset.email;
     wx.request({
       url: 'http://49.235.194.230:443/UserData',
       data: {
-        email: this.data.email,
+        email: emailForInfomation,
       },
       method: "GET",
       header: {
@@ -215,7 +215,7 @@ Page({
         var email = res.data.email;
         var address = res.data.address;
         if(duties == null || typeof(duties) == undefined){
-          dutie = '未设置或不愿透露';
+          duties = '未设置或不愿透露';
         }
         if (phoneNumber == null || typeof (phoneNumber) == undefined) {
           phoneNumber = '未设置或不愿透露';
