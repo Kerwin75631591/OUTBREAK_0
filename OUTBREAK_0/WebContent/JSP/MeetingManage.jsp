@@ -17,11 +17,16 @@ charset=GBK"
 <link type="text/css" rel="stylesheet"
 	href="<%=path%>/CSS/MeetingManage.css">
 <script>
+	/*author:马康耀
+	功能：跳转到创建会议界面
+	参数：void
+	返回值：void*/
 	function jumpToCreate(){
 		var email=document.getElementById("email").value;
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
 		closeWin();
 	}
+	/**/
 	function endMeeting(mid){
 		if(confirm("是否是要对会议有效性进行评估？")){
 			document.getElementById("isAssessment").value = "true";

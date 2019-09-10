@@ -10,6 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html" charset="GBK">
 <script>
 	var CHECK;
+	/*
+	author：马康耀
+	功能：提交表单以注册
+	参数：void
+	返回值：void
+	*/
 	function subForm(){
 		var pw=document.getElementById("pw").value;
 		var rpw=document.getElementById("rpw").value;
@@ -39,6 +45,12 @@
 			}
 		}
 	}
+	/*
+	author：马康耀
+	功能：生成随机数并将相应信息发送给RegCheckCL.jsp
+	参数：void
+	返回值：void
+	*/
 	function postEmail(){
 		while(true){
 			CHECK=Math.floor(Math.random()*1000000);
@@ -52,6 +64,12 @@
 		//alert(e);
 		window.open("./RegCheckCL.jsp?Email="+email+"&check="+e);
 	}
+	/*
+	author：马康耀
+	功能：对验证码进行加密
+	参数：void
+	返回值：String
+	*/
 	function encrypt(){
 		//alert(typeof CHECK);
 		var enc=CHECK;
