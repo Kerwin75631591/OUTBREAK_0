@@ -59,14 +59,14 @@ public class EmailPoster {
         }
     }
     public static void sendRegCheck(String receiver, int check) {
-    	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p>");
+    	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！感谢您使用OUTBREAK会议管理系统！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p><p>如有疑问，请拨打客服热线：15651693126</p>");
     }
     public static void sendIfInvited(String receiver, String topic, boolean hasRegistered) {
-    	String content="<p>尊敬的用户您好，</p><p>您在outbreak会议管理系统中受邀参加  "+topic+" 会议</p>";
+    	String content="<p>尊敬的用户您好！感谢您使用OUTBREAK会议管理系统</p><p>您已被受邀参加  "+topic+" 会议</p>";
     	if(hasRegistered) {
-    		content+="<p>您可以在微信小程序中查看会议的详细信息</p>";
+    		content+="<p>您可以使用您的OUTBREAK账号登录微信小程序，查看会议的详细信息，并选择是否参加会议。</p><p>如有疑问，请拨打客服热线：15651693126</p>";
     	}else {
-    		content+="<p>您可以在微信小程序中查看会议的详细信息，帐号为您的邮箱，默认密码为outbreak123</p>";
+    		content+="<p>您可以在OUTBREAK微信小程序中查看会议的详细信息。</p><p>您的注册账号为您的邮箱，默认密码为outbreak123</p><p>如有疑问，请拨打客服热线：15651693126</p>";
     	}
     	new EmailPoster(receiver).sendEmail("会议受邀", content);
     }
