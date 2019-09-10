@@ -1,3 +1,5 @@
+<!-- author:Âí¿µÒ« ÍõÃ÷îÈ -->
+
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
 <% String path = request.getContextPath();  %>

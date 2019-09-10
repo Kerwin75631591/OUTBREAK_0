@@ -1,3 +1,5 @@
+<!-- author:Âí¿µÒ« -->
+
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
 <%@ page import="com.outbreak.dao.UserBeanCL" %>

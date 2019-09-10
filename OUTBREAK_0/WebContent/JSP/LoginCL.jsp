@@ -1,3 +1,5 @@
+<!-- author:ÍõÃ÷îÈ -->
+
 <%@page import="java.sql.*"%>
 <%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ page import="com.outbreak.entity.UserBean"%>

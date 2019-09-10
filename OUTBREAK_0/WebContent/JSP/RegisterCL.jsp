@@ -1,3 +1,5 @@
+<!-- author:Âí¿µÒ« ºúêÅ -->
+
 <%@ page language="java" contentType="text/html; charset=GBK"
     pageEncoding="GBK"%>
 <%@ page import="javax.swing.JOptionPane" %>
