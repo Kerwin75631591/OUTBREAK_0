@@ -1,4 +1,4 @@
-<!-- author:马康耀 -->
+<!-- author:马康耀 胡昱 -->
 
 <%@ page language="java" contentType="text/html; 
 charset=GBK"
@@ -26,7 +26,12 @@ charset=GBK"
 		window.open("../JSP/MeetingCreate.jsp?email="+email);
 		closeWin();
 	}
-	/**/
+	/*
+	author：胡昱
+	功能：提交表单至会议评估
+	参数：void
+	返回值：void
+	*/
 	function endMeeting(mid){
 		if(confirm("是否是要对会议有效性进行评估？")){
 			document.getElementById("isAssessment").value = "true";
