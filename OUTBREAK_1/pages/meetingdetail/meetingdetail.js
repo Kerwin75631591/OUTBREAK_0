@@ -211,7 +211,7 @@ Page({
       },
       success: function (res) {
         var duties = res.data.duties;
-        var phoneNumber = res.data.phoneNumber;
+        var phoneNumber = res.data.phoneNum;
         var email = res.data.email;
         var address = res.data.address;
         if(duties == null || typeof(duties) == undefined){
