@@ -11,8 +11,8 @@ public class EmailPosterCL {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//EmailPosterCL.sendRegCheck("383250208@qq.com", 159836);
-		EmailPosterCL.sendPwResetCheck("383250208@qq.com", 584264);
+		//EmailPosterCL.sendRegCheck("toEmail@qq.com", 159836);
+		EmailPosterCL.sendPwResetCheck("toEmail@qq.com", 584264);
 	}
 
 }
