@@ -13,9 +13,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailPoster {
-	String from="15008181891@163.com";
-    String password="mky999729mzz";
-    String to="383250208@qq.com";
+	String from="fromEmail@163.com";
+    String password="password";
+    String to="toEmail@qq.com";
     String emailHost="smtp.163.com";
     String smtpPort="25";
     public EmailPoster(String receiver){
@@ -59,32 +59,32 @@ public class EmailPoster {
         }
     }
     public static void sendRegCheck(String receiver, int check) {
-    	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p>");
+    	new EmailPoster(receiver).sendEmail("outbreak注册验证码", "<p>尊敬的用户您好！感谢您使用OUTBREAK会议管理系统！</p><p>您在outbreak会议管理系统注册的验证码为"+check+"</p><p>如有疑问，请拨打客服热线：15651693126</p>");
     }
     public static void sendPwResetCheck(String receiver, int check) {
-    	new EmailPoster(receiver).sendEmail("重置密码", "<p>尊敬的用户您好！</p><p>您重置密码的验证码为"+check+"，请不要将验证码泄漏给他人</p>");
+    	new EmailPoster(receiver).sendEmail("重置密码", "<p>尊敬的用户您好！感谢您使用OUTBREAK会议管理系统！</p><p>您重置密码的验证码为"+check+"，请不要将验证码泄漏给他人。</p><p>如有疑问，请拨打客服热线：15651693126</p>");
     }
     public static void sendIfInvited(String receiver, String topic, boolean hasRegistered) {
-    	String content="<p>尊敬的用户您好，</p><p>您在outbreak会议管理系统中受邀参加"+topic+"会议</p>";
+    	String content="<p>尊敬的用户您好！感谢您使用OUTBREAK会议管理系统！</p><p>您在outbreak会议管理系统中受邀参加"+topic+"会议</p>";
     	if(hasRegistered) {
-    		content+="<p>您可以在微信小程序中查看会议的详细信息</p>";
+    		content+="<p>您可以在微信小程序中查看会议的详细信息</p><p>如有疑问，请拨打客服热线：15651693126</p>";
     	}else {
-    		content+="<p>您可以在微信小程序中查看会议的详细信息，帐号为您的邮箱，默认密码为outbreak123</p>";
+    		content+="<p>您可以在微信小程序中查看会议的详细信息，帐号为您的邮箱，默认密码为outbreak123</p><p>如有疑问，请拨打客服热线：15651693126</p>";
     	}
     	new EmailPoster(receiver).sendEmail("会议受邀", content);
     }
     public static void test(){
-        EmailPoster emailPoster=new EmailPoster("383250208@qq.com");
+        EmailPoster emailPoster=new EmailPoster("toEmail@qq.com");
         emailPoster.sendEmail("会议提醒","OUTBREAK会议管理系统提醒您：\n您明天在231有一个会议参加");
     }
     public static void testRegCheck() {
-    	EmailPoster.sendRegCheck("383250208@qq.com", 154396);
+    	EmailPoster.sendRegCheck("toEmail@qq.com", 154396);
     }
     public static void main(String[] args){
         //test();
         //EmailPoster.test();
     	//EmailPoster.testRegCheck();
-    	//EmailPoster.sendIfInvited("383250208@qq.com", "加班", false);
-    	EmailPoster.sendPwResetCheck("383250208@qq.com", 123456);
+    	//EmailPoster.sendIfInvited("toEmail@qq.com", "加班", false);
+    	EmailPoster.sendPwResetCheck("toEmail@qq.com", 123456);
     }
 }
