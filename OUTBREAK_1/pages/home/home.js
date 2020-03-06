@@ -298,7 +298,8 @@ Page({
               content: '会议评估表提交成功！',
               duration: 1000,
               mask: true
-            })
+            });
+            getCurrentPages()[getCurrentPages().length - 1].onLoad();
           } else {
             wx.showToast({
               content: '会议评估表提交失败，请重试！',
@@ -307,7 +308,7 @@ Page({
               mask: true
             })
           }
-          getCurrentPages()[getCurrentPages().length - 1].onLoad();
+          
           
         },
       });
